@@ -5,7 +5,7 @@ const Navbar = () => {
     <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <div className='container'>
         {/* Logo on the left */}
-        <a className='navbar-brand' href='#'>
+        <a className='navbar-brand' href='/'>
           Navbar
         </a>
 
@@ -29,42 +29,42 @@ const Navbar = () => {
         >
           <ul className='navbar-nav mb-2 mb-lg-0'>
             <li className='nav-item'>
-              <a className='nav-link active' href='#'>
+              <a className='nav-link active' href='/'>
                 Home
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <a className='nav-link' href='/'>
                 About
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <a className='nav-link' href='/'>
                 Contact{' '}
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link ' href='#'>
+              <a className='nav-link ' href='/'>
                 Faq
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link ' href='#'>
-                Testimonilas
+              <a className='nav-link ' href='/'>
+                Testimonial
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link ' href='#'>
+              <a className='nav-link ' href='/'>
                 Blog
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link ' href='#'>
+              <a className='nav-link ' href='/'>
                 Career
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link ' href='#'>
+              <a className='nav-link ' href='/'>
                 Donations
               </a>
             </li>
