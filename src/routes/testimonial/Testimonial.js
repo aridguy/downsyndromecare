@@ -1,13 +1,11 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+const Testimonial = () => {
   return (
-    <main>
-      
-    </main>
-  );
+    <div>
+      testimonial
+    </div>
+  )
 }
 
-export default App;
+export default Testimonial

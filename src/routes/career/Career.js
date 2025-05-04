@@ -1,13 +1,11 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+const Career = () => {
   return (
-    <main>
-      
-    </main>
-  );
+    <div>
+      career
+    </div>
+  )
 }
 
-export default App;
+export default Career

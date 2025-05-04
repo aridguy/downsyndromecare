@@ -1,13 +1,11 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+const Faq = () => {
   return (
-    <main>
-      
-    </main>
-  );
+    <div>
+      welcome to faq
+    </div>
+  )
 }
 
-export default App;
+export default Faq

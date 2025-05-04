@@ -1,13 +1,11 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+const Blog = () => {
   return (
-    <main>
-      
-    </main>
-  );
+    <div>
+      blog spot
+    </div>
+  )
 }
 
-export default App;
+export default Blog

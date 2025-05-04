@@ -7,7 +7,7 @@ const Home = () => {
     <div className="">
       <Navbar />
       <Landing />
-      <h2>welcome to Chromosome Down Syndrome </h2>
+      <h1>welcome to Chromosome Down Syndrome </h1>
     </div>
   )
 }

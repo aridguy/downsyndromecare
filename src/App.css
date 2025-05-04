@@ -1,11 +1,57 @@
-
-
-/* landing page styles */
-
-.hero-bg{
-  background-image: url("./assets/hero-bg.png");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  /* background-color: #f5f5f5; */
+}
+.hero-bg {
+  background-image: url('./assets/hero-bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
-  
+  height: 35em;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+  top: 0px;
+  z-index: 0;
+  width: 100%;
+}
+
+/* navbar */
+.routes{
+  color: white;
+}
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: white !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+/* Mobile menu background (only shows when collapsed) */
+@media (max-width: 991.98px) {
+  .mobile-menu-background {
+    background: rgba(173, 216, 230, 0.9) !important;
+    /* backdrop-filter: blur(5px); */
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 15px;
+  }
+}
+
+/* Ensure white text and proper spacing */
+.navbar-dark .navbar-nav .nav-link {
+  color: white !important;
+  padding: 8px 15px;
+}
+
+/* White toggler icon */
+.navbar-dark .navbar-toggler {
+  border-color: white;
 }
