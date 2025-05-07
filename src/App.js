@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NoPage from './NoPage';
 import Home from './routes/home/Home';
 import About from './routes/about/About';
+import Contact from './routes/contact/Contact';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

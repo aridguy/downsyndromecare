@@ -2,13 +2,13 @@ import React from 'react'
 import { TypeAnimation } from 'react-type-animation';
 // import HeroBg from '../assets/hero-bg.png'
 
-const Landing = () => {
+const ContactLanding = () => {
   return (
     <div className='hero-bg'>
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-12 text-center text-white'>
-            <h1 className='display-1 fw-bolder'>We <b className='text-primary'>Rise</b> By Lifting Others</h1>
+            <h1 className='display-1 fw-bolder'>Contact Us Today!</h1>
             <TypeAnimation
               sequence={[
                 // Same substring at the start will only be typed out once, initially
@@ -33,4 +33,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default ContactLanding
