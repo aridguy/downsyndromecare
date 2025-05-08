@@ -89,6 +89,38 @@ const Home = () => {
                       </small>
                     </div>
                   </div>
+                  <div className='row mt-5'>
+                    <div className='col-12 col-md-4 text-center'>
+                      <h1>🎓 </h1>
+                      <h4 className='playfair-font fw-bolder'>
+                        Inclusive Education
+                      </h4>
+                      <small>
+                        Promoting inclusive learning <br /> in schools tailored<br />
+                        for every child's growth.
+                      </small>
+                    </div>
+                    <div className='col-12 col-md-4 text-center'>
+                      <h1>🧑</h1>
+                      <h4 className='playfair-font fw-bolder'>
+                        Health & Therapy
+                      </h4>
+                      <small>
+                        Access to quality medical <br /> and therapy services
+                        for physical and <br /> mental well-being.
+                      </small>
+                    </div>
+                    <div className='col-12 col-md-4 text-center'>
+                      <h1>👨‍👩‍👧</h1>
+                      <h4 className='playfair-font fw-bolder'>
+                        Family Support
+                      </h4>
+                      <small>
+                        Empowering families of <br /> children with Down Syndrome<br />
+                        through guidance & care.
+                      </small>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className='2'></div>
