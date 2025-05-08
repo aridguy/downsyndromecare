@@ -6,6 +6,7 @@ import Phone from '../../assets/phone.png'
 import Email from '../../assets/mail.png'
 import Time from '../../assets/time.png'
 import Maps from '../../chunks/Maps'
+import Footer from '../../components/Footer'
 
 const Contact = () => {
   return (
@@ -141,6 +142,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

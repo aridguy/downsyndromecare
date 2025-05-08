@@ -7,7 +7,7 @@ const ContactLanding = () => {
     <div className='hero-bg'>
       <div className='container'>
         <div className='row'>
-          <div className='col-12 col-md-12 text-center text-white'>
+          <div className='col-12 col-md-12 text-white'>
             <h1 className='display-1 fw-bolder'>Contact Us Today!</h1>
             <TypeAnimation
               sequence={[
