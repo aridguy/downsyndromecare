@@ -99,3 +99,9 @@ body {
   font-size: 1em;
   color: #555;
 }
+
+.volunteer-bg{
+  background-image: url(./assets/volunteer.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
