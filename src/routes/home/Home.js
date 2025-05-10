@@ -5,11 +5,34 @@ import Footer from '../../components/Footer'
 import Change1 from '../../assets/change1.png'
 import Change2 from '../../assets/change2.png'
 import Change3 from '../../assets/change3.png'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+import Volunteer1 from '../../assets/volunteer1.png'
+import Volunteer2 from '../../assets/volunteer2.png'
+import Volunteer3 from '../../assets/volunteer3.png'
+import Volunteer4 from '../../assets/volunteer4.png'
 
 // import WhatWeDo from '../../components/WhatWeDo'
 // import Landing from '../../chunks/Landing'
 
 const Home = () => {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  }
   return (
     <div className=''>
       <Navbar />
@@ -240,6 +263,92 @@ const Home = () => {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+      }
+      {
+        // volunteers section
+        <section>
+          <div className='container mt-5'>
+            <div className='row'>
+              <div className='col-3'></div>
+              <div className='col-md-6 text-center'>
+                <h1 className='playfair-font fw-bolder text-center'>
+                  Our Volunteers
+                </h1>
+                <small className='text-center'>
+                  Our Volunteers contributing to the good course across the
+                  world
+                </small>
+              </div>
+              <div className='col-3'></div>
+            </div>
+            <div className='row mt-5 mb-5'>
+              <div className='col-md-1'></div>
+              <div className='col-md-10'>
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  showDots={false}
+                  responsive={responsive}
+                  infinite={true}
+                  autoPlay={true}
+                  autoPlaySpeed={3000} // Scroll every 3 seconds
+                  keyBoardControl={true}
+                  customTransition='all 0.5s ease-in-out'
+                  transitionDuration={500} // Smooth transition
+                  containerClass='carousel-container'
+                  removeArrowOnDeviceType={['tablet']}
+                  dotListClass='custom-dot-list-style'
+                  itemClass='carousel-item-padding-40-px'
+                  ssr={true} // Server-side render
+                  // showDots={true}
+                >
+                  <div className='text-center'>
+                    <img
+                      src={Volunteer1}
+                      alt='change the world'
+                      style={{ width: '90%', height: 'auto' }}
+                    />
+                    <div className='mt-4'></div>
+                  </div>
+                  <div className='text-center'>
+                    <img
+                      src={Volunteer3}
+                      alt='change the world'
+                      style={{ width: '90%', height: 'auto' }}
+                    />
+                    <div className='mt-4'>
+                      <h4 className='playfair-font'>George Fisher </h4>
+                      <span>Health care</span>
+                    </div>
+                  </div>
+                  <div className='text-center'>
+                    <img
+                      src={Volunteer2}
+                      alt='change the world'
+                      style={{ width: '90%', height: 'auto' }}
+                    />
+                    <div className='mt-4'>
+                      <h4 className='playfair-font'>Laurel Clerk</h4>
+                      <span>Social Worker</span>
+                    </div>
+                  </div>
+                  <div className='text-center'>
+                    <img
+                      src={Volunteer4}
+                      alt='change the world'
+                      style={{ width: '90%', height: 'auto' }}
+                    />
+                    <div className='mt-4'>
+                      <h4 className='playfair-font'>Nick Porter </h4>
+                      <span>Lawyer</span>
+                    </div>
+                  </div>
+                </Carousel>
+              </div>
+              <div className='col-md-1'></div>
             </div>
           </div>
         </section>
