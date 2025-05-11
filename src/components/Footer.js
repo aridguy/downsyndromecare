@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Tel from '../assets/icons/tel.png'
+import Time from '../assets/icons/time.png'
+import Location from '../assets/icons/location.png'
+import Email from '../assets/icons/mail.png'
 
 const Footer = () => {
   return (
@@ -95,33 +99,29 @@ const Footer = () => {
         <div className='row text-center text-md-left mt-4'>
           <div className='col-md-3 mb-3'>
             <p>
-              <i className='bi bi-telephone-fill me-2'></i>+234 08058518598
-            </p>
-            <p>
-              <i className='bi bi-telephone-fill me-2'></i>+234 08058884312
+              <img src={Tel} alt='tel line' />&nbsp; 
+             +234 08058518598{' '}
+              <br /> +234 08058884312
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <i className='bi bi-envelope-fill me-2'></i>
-              info@c21downsyndromecare.org
-            </p>
-            <p>
-              <i className='bi bi-envelope-fill me-2'></i>
+             
+              <img width="40" src={Email} alt='tel line' /> &nbsp; 
+              info@c21downsyndromecare.org <br />
               contact@c21downsyndromecare.org
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <i className='bi bi-clock-fill me-2'></i>Mon–Fri: 8am–7pm
-            </p>
-            <p>
-              <i className='bi bi-clock-fill me-2'></i>Sat: 9am–5pm
+              <img src={Time} alt='tel line' />{' '}
+              Mon–Fri: 8am–7pm <br />
+              Sat: 9am–5pm
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <i className='bi bi-geo-alt-fill me-2'></i>Lagos Nigeria
+            <img src={Location} alt='tel line' />&nbsp; Lagos Nigeria
             </p>
           </div>
         </div>

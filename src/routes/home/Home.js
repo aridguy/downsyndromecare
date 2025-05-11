@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import { TypeAnimation } from 'react-type-animation'
 import Footer from '../../components/Footer'
@@ -11,6 +11,10 @@ import Volunteer1 from '../../assets/volunteer1.png'
 import Volunteer2 from '../../assets/volunteer2.png'
 import Volunteer3 from '../../assets/volunteer3.png'
 import Volunteer4 from '../../assets/volunteer4.png'
+import Marquee from 'react-fast-marquee'
+import Testimonial1 from '../../assets/testimonial.png'
+import CountUp from 'react-countup'
+import Socials from '../../chunks/Socials'
 
 // import WhatWeDo from '../../components/WhatWeDo'
 // import Landing from '../../chunks/Landing'
@@ -19,7 +23,7 @@ const Home = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
       slidesToSlide: 3 // optional, default to 1.
     },
     tablet: {
@@ -29,12 +33,21 @@ const Home = () => {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 2,
       slidesToSlide: 1 // optional, default to 1.
     }
   }
+  useEffect(() => {
+    // Initialize AOS when component mounts
+    const AOS = require('aos');
+    AOS.init({
+      duration: 1000,
+      once: true, // Animations happen only once
+    });
+  }, []);
   return (
     <div className=''>
+      <Socials />
       <Navbar />
       <div className='hero-bg'>
         <div className='container mt-5 hero-texts'>
@@ -163,7 +176,7 @@ const Home = () => {
       }
       {
         // section 3 change the world
-        <section style={{ marginTop: '1px' }}>
+        <section data-aos="fade-up" data-aos-duration="1000" style={{ marginTop: '1px' }}>
           <div className='container'>
             <div className='row'>
               <div className='col-3'></div>
@@ -311,7 +324,10 @@ const Home = () => {
                       alt='change the world'
                       style={{ width: '90%', height: 'auto' }}
                     />
-                    <div className='mt-4'></div>
+                    <div className='mt-4'>
+                      <h4 className='playfair-font'>George Fisher </h4>
+                      <span>Health care</span>
+                    </div>
                   </div>
                   <div className='text-center'>
                     <img
@@ -347,6 +363,194 @@ const Home = () => {
                     </div>
                   </div>
                 </Carousel>
+              </div>
+              <div className='col-md-1'></div>
+            </div>
+          </div>
+        </section>
+      }
+
+      {
+        // section 4 | counter things we have achieve
+
+        <section className='container-fluid achievements-bg py-5 text-white'>
+          <div className='container'>
+            <div className='row text-center'>
+              <div className='col-md-3 mb-4'>
+                <h2 className='display-5 fw-bold'>
+                  <CountUp end={120} duration={10} />+
+                </h2>
+                <p className='mb-0'>Projects Done</p>
+              </div>
+
+              <div className='col-md-3 mb-4'>
+                <h2 className='display-5 fw-bold'>
+                  <CountUp end={300} duration={10} />+
+                </h2>
+                <p className='mb-0'>Volunteers</p>
+              </div>
+
+              <div className='col-md-3 mb-4'>
+                <h2 className='display-5 fw-bold'>
+                  <CountUp end={85} duration={10} />
+                </h2>
+                <p className='mb-0'>Missions</p>
+              </div>
+
+              <div className='col-md-3 mb-4'>
+                <h2 className='display-5 fw-bold'>
+                  N<CountUp end={15000} duration={10} separator=',' />+
+                </h2>
+                <p className='mb-0'>Donations</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      {
+        // TESTIMONIALS
+        <section className='mt-5 mb-5' style={{ MarginTop: '7em' }}>
+          <div className='container'>
+            <div className='row mt-5 mb-5'>
+              <div className='col-3'></div>
+              <div className='col-md-6 text-center'>
+                <h1 className='playfair-font fw-bolder text-center'>
+                  Testimonials
+                </h1>
+                <small className='text-center'>
+                  hear what people say about Chromosome 21 Down Syndrome Care
+                </small>
+              </div>
+              <div className='col-3'></div>
+            </div>
+            <div className='row'>
+              <div className='col-md-1'></div>
+              <div className='col-md-10'>
+                <Marquee pauseOnHover={true} speed={50} pauseOnClick={true}>
+                  <div className='d-flex gap-3'>
+                    <div
+                      style={{
+                        padding: '2em',
+                        width: '17em',
+                        height: '300px',
+                        backgroundColor: '#07263B',
+                        borderRadius: '8px',
+                        // display: 'flex', // Enable flexbox
+                        justifyContent: 'center', // Center horizontally
+                        alignItems: 'center', // Center vertically
+                        textAlign: 'center', // For additional text alignment
+                        color: 'white'
+                      }}
+                      className='testimonials'
+                    >
+                      <img src={Testimonial1} alt='testimonials' />
+                      <p className='playfair-font'>George Fisher </p>
+                      <i>
+                        "The support and resources provided by Chromosome 21
+                        have been invaluable in our journey. We are forever
+                        grateful."
+                      </i>
+                    </div>
+                    &nbsp;
+                    <div
+                      style={{
+                        padding: '2em',
+                        width: '17em',
+                        height: '300px',
+                        backgroundColor: '#07263B',
+                        borderRadius: '8px',
+                        // display: 'flex', // Enable flexbox
+                        justifyContent: 'center', // Center horizontally
+                        alignItems: 'center', // Center vertically
+                        textAlign: 'center', // For additional text alignment
+                        color: 'white'
+                      }}
+                      className='testimonials'
+                    >
+                      <img src={Testimonial1} alt='testimonials' />
+                      <p className='playfair-font'>George Fisher </p>
+                      <i>
+                        "The support and resources provided by Chromosome 21
+                        have been invaluable in our journey. We are forever
+                        grateful."
+                      </i>
+                    </div>
+                    &nbsp;
+                    <div
+                      style={{
+                        padding: '2em',
+                        width: '17em',
+                        height: '300px',
+                        backgroundColor: '#07263B',
+                        borderRadius: '8px',
+                        // display: 'flex', // Enable flexbox
+                        justifyContent: 'center', // Center horizontally
+                        alignItems: 'center', // Center vertically
+                        textAlign: 'center', // For additional text alignment
+                        color: 'white'
+                      }}
+                      className='testimonials'
+                    >
+                      <img src={Testimonial1} alt='testimonials' />
+                      <p className='playfair-font'>George Fisher </p>
+                      <i>
+                        "The support and resources provided by Chromosome 21
+                        have been invaluable in our journey. We are forever
+                        grateful."
+                      </i>
+                    </div>
+                    &nbsp;
+                    <div
+                      style={{
+                        padding: '2em',
+                        width: '17em',
+                        height: '300px',
+                        backgroundColor: '#07263B',
+                        borderRadius: '8px',
+                        // display: 'flex', // Enable flexbox
+                        justifyContent: 'center', // Center horizontally
+                        alignItems: 'center', // Center vertically
+                        textAlign: 'center', // For additional text alignment
+                        color: 'white'
+                      }}
+                      className='testimonials'
+                    >
+                      <img src={Testimonial1} alt='testimonials' />
+                      <p className='playfair-font'>George Fisher </p>
+                      <i>
+                        "The support and resources provided by Chromosome 21
+                        have been invaluable in our journey. We are forever
+                        grateful."
+                      </i>
+                    </div>
+                    &nbsp;
+                    <div
+                      style={{
+                        padding: '2em',
+                        width: '17em',
+                        height: '300px',
+                        backgroundColor: '#07263B',
+                        borderRadius: '8px',
+                        // display: 'flex', // Enable flexbox
+                        justifyContent: 'center', // Center horizontally
+                        alignItems: 'center', // Center vertically
+                        textAlign: 'center', // For additional text alignment
+                        color: 'white'
+                      }}
+                      className='testimonials'
+                    >
+                      <img src={Testimonial1} alt='testimonials' />
+                      <p className='playfair-font'>George Fisher </p>
+                      <i>
+                        "The support and resources provided by Chromosome 21
+                        have been invaluable in our journey. We are forever
+                        grateful."
+                      </i>
+                    </div>
+                    &nbsp;
+                  </div>
+                </Marquee>
               </div>
               <div className='col-md-1'></div>
             </div>
