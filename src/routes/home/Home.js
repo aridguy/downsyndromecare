@@ -15,6 +15,10 @@ import Marquee from 'react-fast-marquee'
 import Testimonial1 from '../../assets/testimonial.png'
 import CountUp from 'react-countup'
 import Socials from '../../chunks/Socials'
+import Projects from '../../assets/icons/projects.png'
+import Donation from '../../assets/icons/donation.png'
+import Missions from '../../assets/icons/missions.png'
+import Volunteers from '../../assets/icons/volunteers.png'
 
 // import WhatWeDo from '../../components/WhatWeDo'
 // import Landing from '../../chunks/Landing'
@@ -39,12 +43,12 @@ const Home = () => {
   }
   useEffect(() => {
     // Initialize AOS when component mounts
-    const AOS = require('aos');
+    const AOS = require('aos')
     AOS.init({
       duration: 1000,
-      once: true, // Animations happen only once
-    });
-  }, []);
+      once: true // Animations happen only once
+    })
+  }, [])
   return (
     <div className=''>
       <Socials />
@@ -176,7 +180,11 @@ const Home = () => {
       }
       {
         // section 3 change the world
-        <section data-aos="fade-up" data-aos-duration="1000" style={{ marginTop: '1px' }}>
+        <section
+          data-aos='fade-up'
+          data-aos-duration='1000'
+          style={{ marginTop: '1px' }}
+        >
           <div className='container'>
             <div className='row'>
               <div className='col-3'></div>
@@ -372,33 +380,68 @@ const Home = () => {
 
       {
         // section 4 | counter things we have achieve
-
         <section className='container-fluid achievements-bg py-5 text-white'>
           <div className='container'>
             <div className='row text-center'>
-              <div className='col-md-3 mb-4'>
-                <h2 className='display-5 fw-bold'>
+              {/* Project Done */}
+              <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
+                <div className='mb-3'>
+                  <img
+                    width='50'
+                    src={Projects}
+                    alt='project-icon'
+                    className='img-fluid'
+                  />
+                </div>
+                <h2 className='display-5 fw-bold mb-2'>
                   <CountUp end={120} duration={10} />+
                 </h2>
                 <p className='mb-0'>Projects Done</p>
               </div>
 
-              <div className='col-md-3 mb-4'>
-                <h2 className='display-5 fw-bold'>
+              {/* Volunteers */}
+              <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
+                <div className='mb-3'>
+                  <img
+                    width='50'
+                    src={Volunteers}
+                    alt='volunteer-icon'
+                    className='img-fluid'
+                  />
+                </div>
+                <h2 className='display-5 fw-bold mb-2'>
                   <CountUp end={300} duration={10} />+
                 </h2>
                 <p className='mb-0'>Volunteers</p>
               </div>
 
-              <div className='col-md-3 mb-4'>
-                <h2 className='display-5 fw-bold'>
+              {/* Missions */}
+              <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
+                <div className='mb-3'>
+                  <img
+                    width='30'
+                    src={Missions}
+                    alt='mission-icon'
+                    className='img-fluid'
+                  />
+                </div>
+                <h2 className='display-5 fw-bold mb-2'>
                   <CountUp end={85} duration={10} />
                 </h2>
                 <p className='mb-0'>Missions</p>
               </div>
 
-              <div className='col-md-3 mb-4'>
-                <h2 className='display-5 fw-bold'>
+              {/* Donations */}
+              <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
+                <div className='mb-3'>
+                  <img
+                    width='30'
+                    src={Donation}
+                    alt='donation-icon'
+                    className='img-fluid'
+                  />
+                </div>
+                <h2 className='display-5 fw-bold mb-2'>
                   N<CountUp end={15000} duration={10} separator=',' />+
                 </h2>
                 <p className='mb-0'>Donations</p>

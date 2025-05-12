@@ -233,9 +233,7 @@ body {
   background-position: -2px 1px;
   transform: rotate(-45deg);
   float: none;
-  /*Bootstrap Overide*/
   opacity: 1;
-  /*Bootstrap Overide*/
 }
 .ba-we-love-subscribers-wrap {
   position: fixed;
