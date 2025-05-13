@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <nav
-    style={{ zIndex: '9999', position: 'fixed', top: 0, width: '100%' }}
+      style={{ zIndex: '9999', position: 'fixed', top: 0, width: '100%' }}
       className='navbar fixed navbar-expand-lg navbar-dark'
     >
       <div className='container'>
@@ -49,12 +49,12 @@ const Navbar = () => {
             </li>
             <li className='nav-item'>
               <Link className='nav-link' to='/faq'>
-                FAQ
+                Volunteer
               </Link>
             </li>
             <li className='nav-item'>
               <Link className='nav-link' to='/testimonial'>
-                Testimonials
+                Projects
               </Link>
             </li>
             <li className='nav-item'>
@@ -63,13 +63,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link className='nav-link' to='/about'>
-                About
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to='/donation'>
-                Donation
+              <Link className='nav-link' to='/faq'>
+                FAQ
               </Link>
             </li>
             {/* Donate button for mobile */}

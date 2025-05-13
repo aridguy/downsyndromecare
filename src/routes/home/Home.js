@@ -138,36 +138,34 @@ const Home = () => {
                   </div>
                   <div className='row mt-5'>
                     <div className='col-12 col-md-4 text-center'>
-                      <h1>🎓 </h1>
+                      <h1>🤝 </h1>
                       <h4 className='playfair-font fw-bolder'>
-                        Inclusive Education
+                        Community Inclusions
                       </h4>
                       <small>
-                        Promoting inclusive learning <br /> in schools tailored
-                        <br />
-                        for every child's growth.
+                        Building a world where everyone, <br /> regardless of
+                        ability, belongs
                       </small>
                     </div>
                     <div className='col-12 col-md-4 text-center'>
-                      <h1>🧑</h1>
+                      <h1>🌍 </h1>
                       <h4 className='playfair-font fw-bolder'>
-                        Health & Therapy
+                        Global Partnership
                       </h4>
                       <small>
-                        Access to quality medical <br /> and therapy services
-                        for physical and <br /> mental well-being.
+                        Collaborating with national &<br /> and therapy services
+                        international
+                        <br /> bodies for sustainable impacts
                       </small>
                     </div>
                     <div className='col-12 col-md-4 text-center'>
-                      <h1>👨‍👩‍👧</h1>
+                      <h1>💬</h1>
                       <h4 className='playfair-font fw-bolder'>
-                        Family Support
+                        Advocacy & Awareness
                       </h4>
                       <small>
-                        Empowering families of <br /> children with Down
-                        Syndrome
-                        <br />
-                        through guidance & care.
+                        Creating public awareness to eliminate <br /> stigma and foster
+                        empathy
                       </small>
                     </div>
                   </div>
