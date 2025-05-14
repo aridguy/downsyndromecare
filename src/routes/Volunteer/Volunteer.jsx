@@ -218,9 +218,9 @@ const Volunteer = () => {
                     {/* Submit Button */}
                     <button
                       type='submit'
-                      className='btn btn-primary btn-block btn-lg mt-4'
+                      className='btn btn-primary btn-block btn-lg mt-4 playfair-font'
                     >
-                      Submit Application
+                      Join Us!
                     </button>
                   </form>
                 </div>
