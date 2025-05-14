@@ -4,6 +4,10 @@ import Tel from '../assets/icons/tel.png'
 import Time from '../assets/icons/time.png'
 import Location from '../assets/icons/location.png'
 import Email from '../assets/icons/mail.png'
+import { BsInstagram } from 'react-icons/bs'
+import { ImFacebook2 } from 'react-icons/im'
+import { TfiEmail, TfiHeadphone } from 'react-icons/tfi'
+import { SiYoutube } from 'react-icons/si'
 
 const Footer = () => {
   return (
@@ -15,32 +19,89 @@ const Footer = () => {
         <div className='row text-md-left'>
           {/* About Us */}
           <div className='col-md-3 col-6 mb-4'>
-            <h5 className='text-uppercase mb-3'>About Us</h5>
-            <ul className='list-unstyled'>
+            <h5 className='text-uppercase mb-3'>Follow Us</h5>
+            <ul className='d-flex gap-4 list-unstyled'>
               <li>
-                <Link to='/' className='text-white text-decoration-none'>
-                  Organisation
+                <Link
+                  to='https://www.instagram.com/c21downsyndromecarefoundation?igsh=MWYyNDR6aHR0bGlqaQ=='
+                  className='text-white text-decoration-none'
+                >
+                  <BsInstagram />
                 </Link>
               </li>
               <li>
-                <Link to='/' className='text-white text-decoration-none'>
-                  Partners
+                <Link
+                  to='https://www.facebook.com/share/1CKwxp8vAF/?mibextid=wwXIfr'
+                  className='text-white text-decoration-none'
+                >
+                  <ImFacebook2 />
                 </Link>
+              </li>
+              <li>
+                <a
+                  href='mailto:c21downsyndromecare@gmail.com'
+                  className='text-white text-decoration-none'
+                >
+                  <TfiEmail />
+                </a>
+              </li>
+              <li>
+                <a
+                  href='tel:08035881312'
+                  className='text-white text-decoration-none'
+                >
+                  <TfiHeadphone />{' '}
+                  {/* You can also use an icon like <TfiPhone /> */}
+                </a>
+              </li>
+              <li>
+                <a href='/' className='text-white text-decoration-none'>
+                  <SiYoutube />{' '}
+                  {/* You can also use an icon like <TfiPhone /> */}
+                </a>
               </li>
             </ul>
           </div>
           {/* Important Links */}
           <div className='col-md-3 col-6 mb-4'>
-            <h5 className='text-uppercase mb-3'>Important Links</h5>
+            <h5 className='text-uppercase mb-3'>Links</h5>
             <ul className='list-unstyled'>
               <li>
                 <Link to='/' className='text-white text-decoration-none'>
-                  Photo Gallery
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to='/about' className='text-white text-decoration-none'>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to='/contact' className='text-white text-decoration-none'>
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/volunteer'
+                  className='text-white text-decoration-none'
+                >
+                  Volunteer
                 </Link>
               </li>
               <li>
                 <Link to='/' className='text-white text-decoration-none'>
-                  Our Team
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link to='/' className='text-white text-decoration-none'>
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to='/' className='text-white text-decoration-none'>
+                  FAQ
                 </Link>
               </li>
               <li>
@@ -96,40 +157,64 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className='row text-center text-md-left mt-4'>
+        <div className='row text-center text-md-left mt-4 '>
           <div className='col-md-3 mb-3'>
             <p>
-              <img src={Tel} alt='tel line' />&nbsp; 
-             +234 08058518598{' '}
-              <br /> +234 08058884312
+              <img src={Tel} alt='tel line' />
+              &nbsp; +234 08058518598 <br /> +234 08035881312
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-             
-              <img width="40" src={Email} alt='tel line' /> &nbsp; 
+              <img width='40' src={Email} alt='tel line' /> &nbsp;
               info@c21downsyndromecare.org <br />
               contact@c21downsyndromecare.org
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <img src={Time} alt='tel line' />{' '}
-              Mon–Fri: 8am–7pm <br />
+              <img src={Time} alt='tel line' /> Mon–Fri: 8am–7pm <br />
               Sat: 9am–5pm
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-            <img src={Location} alt='tel line' />&nbsp; Lagos Nigeria
+              <img src={Location} alt='tel line' />
+              &nbsp; Lagos Nigeria
             </p>
           </div>
         </div>
 
         {/* Footer Bottom */}
+        <div className='mt-4 border-top pt-3'>
+          <div className='row justify-content-center text-center'>
+            <div className='col-md-2'>
+              {' '}
+              <p className='cursor'>Legal</p>
+            </div>
+            <div className='col-md-2'>
+              <p className='cursor'>Privacy/Policy</p>
+            </div>
+            <div className='col-md-2'>
+              {' '}
+              <p className='cursor'>Cookies Policy</p>
+            </div>
+            <div className='col-md-3'>
+              <p className='cursor'>Volunteer Policy/Privacy</p>
+            </div>
+            <div className='col-md-3'>
+              <p className='cursor'>Modern Slavery Statement</p>
+            </div>
+          </div>
+          <small className='text-grey'></small>
+        </div>
         <div className='text-center mt-4 border-top pt-3'>
           <p className='mb-0'>&copy; Copyright {new Date().getFullYear()}</p>
-          <small className='text-grey'></small>
+          <div>
+            <sup className='text-grey mt-5' style={{ marginTop: '3em' }}>
+              {/* codeTECHS did it! */}
+            </sup>
+          </div>
         </div>
       </div>
     </footer>

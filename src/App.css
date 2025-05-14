@@ -13,6 +13,9 @@ body {
 .inter-font {
   font-family: 'Inter', sans-serif;
 }
+.cursor{
+  cursor: pointer;
+}
 .playfair-font {
   font-family: 'Playfair Display', serif;
 }
@@ -250,3 +253,11 @@ body {
   border-radius: 5px;
   color: #fff;
 }
+
+
+.objectiveBg{
+  background-image: url(./assets/objective-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+

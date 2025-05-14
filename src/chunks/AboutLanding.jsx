@@ -8,7 +8,7 @@ const ContactLanding = () => {
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-12 text-white'>
-            <h1 className='display-1 text-primary fw-bolder'>About Us</h1>
+            <h1 className='display-1 text-warning fw-bolder'>About Us</h1>
            
           </div>
         </div>
