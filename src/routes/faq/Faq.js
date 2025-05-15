@@ -273,7 +273,7 @@ const Faq = () => {
                     1000,
                     'One classroom built, one life healed—this is how love begins',
                     1000,
-                    'Behind every statistic is a person waiting to be seen',
+                    'Behind every statistic is a person waiting to be seen.',
                     1000,
                     'We don’t need superheroes—just everyday heroes choosing compassion',
                     1000
