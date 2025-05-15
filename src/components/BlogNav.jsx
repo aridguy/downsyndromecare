@@ -2,10 +2,16 @@ import React from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const BlogNav = () => {
   return (
     <nav
-      style={{ zIndex: '9999', position: 'fixed', top: 0, width: '100%' }}
+      style={{ 
+        zIndex: '9999', 
+        position: 'fixed', 
+        top: 0, 
+        width: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.9)' // Dark black background with slight transparency
+      }}
       className='navbar fixed navbar-expand-lg navbar-dark'
     >
       <div className='container'>
@@ -25,11 +31,14 @@ const Navbar = () => {
         >
           <span className='navbar-toggler-icon'></span>
         </button>
-        {/* Collapsible content with light blue transparent background bg-primary bg-opacity-25 rounded-3*/}
+        {/* Collapsible content with dark background */}
         <div
-          className='collapse navbar-collapse justify-content-center '
+          className='collapse navbar-collapse justify-content-center'
           id='navbarNavCenter'
-          style={{ backdropFilter: 'blur(8px)' }}
+          style={{ 
+            backdropFilter: 'blur(8px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)' // Slightly different shade for contrast
+          }}
         >
           <ul className='navbar-nav mb-2 mb-lg-0'>
             <li className='nav-item'>
@@ -53,7 +62,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link className='nav-link' to='/projects'>
+              <Link className='nav-link' to='/testimonial'>
                 Projects
               </Link>
             </li>
@@ -86,4 +95,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default BlogNav

@@ -8,6 +8,8 @@ import About from './routes/about/About';
 import Contact from './routes/contact/Contact';
 import Volunteer from './routes/Volunteer/Volunteer';
 import Faq from './routes/faq/Faq';
+import Blog from './routes/blog/Blog';
+import Projects from './routes/projects/Projects'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="volunteer" element={<Volunteer />} />
           <Route path="faq" element={<Faq />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
