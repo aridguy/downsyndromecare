@@ -1,14 +1,15 @@
 import React from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
+import Logo from '../assets/logo/logos.png'
 
 const BlogNav = () => {
   return (
     <nav
-      style={{ 
-        zIndex: '9999', 
-        position: 'fixed', 
-        top: 0, 
+      style={{
+        zIndex: '9999',
+        position: 'fixed',
+        top: 0,
         width: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.9)' // Dark black background with slight transparency
       }}
@@ -17,7 +18,7 @@ const BlogNav = () => {
       <div className='container'>
         {/* Logo on the left */}
         <Link className='nav-link' to='/'>
-          Navbar
+          <img width='50' src={Logo} fill alt='logo-image' />
         </Link>
         {/* Toggler for small screens */}
         <button
@@ -35,7 +36,7 @@ const BlogNav = () => {
         <div
           className='collapse navbar-collapse justify-content-center'
           id='navbarNavCenter'
-          style={{ 
+          style={{
             backdropFilter: 'blur(8px)',
             backgroundColor: 'rgba(0, 0, 0, 0.7)' // Slightly different shade for contrast
           }}
@@ -62,7 +63,7 @@ const BlogNav = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link className='nav-link' to='/testimonial'>
+              <Link className='nav-link' to='/projects'>
                 Projects
               </Link>
             </li>

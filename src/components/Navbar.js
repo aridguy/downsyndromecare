@@ -1,6 +1,7 @@
 import React from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
+import Logo from '../assets/logo/logos.png'
 
 const Navbar = () => {
   return (
@@ -11,7 +12,7 @@ const Navbar = () => {
       <div className='container'>
         {/* Logo on the left */}
         <Link className='nav-link' to='/'>
-          Navbar
+          <img width='50' src={Logo} fill alt='logo-image' />
         </Link>
         {/* Toggler for small screens */}
         <button

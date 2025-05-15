@@ -3,10 +3,12 @@ import ProjectLanding from '../../chunks/ProjectsLanding'
 import Proj1 from '../../assets/pro-a.png'
 import Proj2 from '../../assets/pro-b.png'
 import Proj3 from '../../assets/pro-c.png'
+import Navbar from '../../components/Navbar'
 
 const Projects = () => {
   return (
     <div>
+      <Navbar />
       <ProjectLanding />
       {
         // PROJECT SECTION OF THE APPLICATION
