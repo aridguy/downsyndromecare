@@ -4,6 +4,7 @@ import Proj1 from '../../assets/pro-a.png'
 import Proj2 from '../../assets/pro-b.png'
 import Proj3 from '../../assets/pro-c.png'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 const Projects = () => {
   return (
@@ -12,7 +13,7 @@ const Projects = () => {
       <ProjectLanding />
       {
         // PROJECT SECTION OF THE APPLICATION
-        <section style={{ marginTop: '37em' }}>
+        <section className='mb-5' style={{ marginTop: '37em' }}>
           <div className='container'>
             <div className='row'>
               <div className='col-md-4 mt-5 text-center'>
@@ -64,6 +65,7 @@ const Projects = () => {
           </div>
         </section>
       }
+      <Footer />
     </div>
   )
 }

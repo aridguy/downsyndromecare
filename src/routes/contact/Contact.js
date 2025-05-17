@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Navbar from '../../components/Navbar'
 import ContactLanding from '../../chunks/ContactLanding'
 import Location from '../../assets/location.png'
@@ -7,8 +7,49 @@ import Email from '../../assets/mail.png'
 import Time from '../../assets/time.png'
 import Maps from '../../chunks/Maps'
 import Footer from '../../components/Footer'
+import emailjs from '@emailjs/browser'
+
+// import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2'
 
 const Contact = () => {
+  const form = useRef()
+
+  const sendEmail = e => {
+    e.preventDefault()
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        result => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.style.zIndex = '1000';
+              toast.style.marginTop = '2.7em';
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'message sent'
+          })
+          form.current.reset()
+        },
+        error => {
+          alert('Failed to send the message. Please try again.')
+        }
+      )
+  }
   return (
     <div>
       <Navbar />
@@ -69,7 +110,7 @@ const Contact = () => {
           <div className='row mt-5'>
             <div className='col-md-3'></div>
             <div className='col-md-6'>
-              <form>
+              <form ref={form} onSubmit={sendEmail}>
                 <p>
                   <small>
                     your name <small className='text-danger'>*</small>
@@ -79,8 +120,7 @@ const Contact = () => {
                     className='form-control'
                     style={{ width: '100%' }}
                     type='text'
-                    name='name'
-                    // placeholder='your name'
+                    name='name' // This matches EmailJS template
                     required
                   />
                 </p>
@@ -93,22 +133,20 @@ const Contact = () => {
                     className='form-control'
                     style={{ width: '100%' }}
                     type='email'
-                    name='email'
-                    // placeholder='your name'
+                    name='email' // This matches EmailJS template
                     required
                   />
                 </p>
                 <p>
                   <small>
-                    topic <small className='text-danger'>*</small>
+                    Subject <small className='text-danger'>*</small>
                   </small>{' '}
                   <br />
                   <input
                     className='form-control'
                     style={{ width: '100%' }}
                     type='text'
-                    name='topic'
-                    // placeholder='your name'
+                    name='subject' // Changed from 'topic' to match template
                     required
                   />
                 </p>
@@ -120,13 +158,14 @@ const Contact = () => {
                   <textarea
                     className='form-control'
                     style={{ width: '100%', minHeight: '200px' }}
-                    type='text'
-                    name='name'
-                    // placeholder='your name'
+                    name='message' // Changed from 'name' to match template
                     required
                   ></textarea>
                 </p>
-                <button className='btn btn-primary justify-content-center center'>
+                <button
+                  type='submit'
+                  className='btn btn-primary justify-content-center center'
+                >
                   SEND
                 </button>
               </form>

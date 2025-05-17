@@ -19,7 +19,7 @@ import Projects from '../../assets/icons/projects.png'
 import Donation from '../../assets/icons/donation.png'
 import Missions from '../../assets/icons/missions.png'
 import Volunteers from '../../assets/icons/volunteers.png'
-
+// import { subscribeToNewsletter } from '../services/GlobalFunctions'
 // import WhatWeDo from '../../components/WhatWeDo'
 // import Landing from '../../chunks/Landing'
 
@@ -42,22 +42,21 @@ const Home = () => {
     }
   }
   useEffect(() => {
-    // Initialize AOS when component mounts
     const AOS = require('aos')
     AOS.init({
       duration: 1000,
-      once: true // Animations happen only once
+      once: true
     })
   }, [])
   return (
     <div className=''>
       <Socials />
       <Navbar />
-      <div className='hero-bg'>
+      <div  className='hero-bg'>
         <div className='container mt-5 hero-texts'>
           <div className='row'>
             <div className='col-12 col-md-12 text-center text-white'>
-              <h1 className='display-1 fw-bolder'>
+              <h1 data-aos='fade-up' data-aos-offset='200' className='display-1 fw-bolder'>
                 We <b className='text-primary'>Rise</b> By Lifting Others
               </h1>
               <TypeAnimation
@@ -95,7 +94,8 @@ const Home = () => {
       </div>
       {
         // SECTION 2
-        <section style={{ marginTop: '37em' }}>
+        <section data-aos="fade-up"
+        data-aos-offset="300" style={{ marginTop: '37em' }}>
           <div className='container'>
             <div className='row'>
               <div className='2'></div>
@@ -164,8 +164,8 @@ const Home = () => {
                         Advocacy & Awareness
                       </h4>
                       <small>
-                        Creating public awareness to eliminate <br /> stigma and foster
-                        empathy
+                        Creating public awareness to eliminate <br /> stigma and
+                        foster empathy
                       </small>
                     </div>
                   </div>
@@ -179,8 +179,8 @@ const Home = () => {
       {
         // section 3 change the world
         <section
-          data-aos='fade-up'
-          data-aos-duration='1000'
+          data-aos="fade-up"
+        data-aos-offset="400"
           style={{ marginTop: '1px' }}
         >
           <div className='container'>
@@ -243,7 +243,12 @@ const Home = () => {
       }
       {
         // BIG THE CHANGE
-        <section className='bg-primary' style={{ marginTop: '7em' }}>
+        <section
+          data-aos="fade-up"
+        data-aos-offset="500"
+          className='bg-primary'
+          style={{ marginTop: '7em' }}
+        >
           <div className='container-fluid'>
             <div className='row'>
               <div
@@ -288,7 +293,8 @@ const Home = () => {
       }
       {
         // volunteers section
-        <section>
+        <section data-aos="fade-up"
+        data-aos-offset="600">
           <div className='container mt-5'>
             <div className='row'>
               <div className='col-3'></div>
@@ -378,7 +384,11 @@ const Home = () => {
 
       {
         // section 4 | counter things we have achieve
-        <section className='container-fluid achievements-bg py-5 text-white'>
+        <section
+          data-aos="fade-up"
+        data-aos-offset="700"
+          className='container-fluid achievements-bg py-5 text-white'
+        >
           <div className='container'>
             <div className='row text-center'>
               {/* Project Done */}
@@ -451,7 +461,12 @@ const Home = () => {
 
       {
         // TESTIMONIALS
-        <section className='mt-5 mb-5' style={{ MarginTop: '7em' }}>
+        <section
+         data-aos="fade-up"
+        data-aos-offset="800"
+          className='mt-5 mb-5'
+          style={{ MarginTop: '7em' }}
+        >
           <div className='container'>
             <div className='row mt-5 mb-5'>
               <div className='col-3'></div>
@@ -598,7 +613,7 @@ const Home = () => {
           </div>
         </section>
       }
-      {<Footer />}
+      {<Footer  />}
     </div>
   )
 }

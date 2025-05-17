@@ -1,21 +1,56 @@
 import React, { useState } from 'react';
-// import './Socials.css'; // We'll create this CSS file
+import { subscribeToNewsletter } from '../services/GlobalFunctions'; // Update the import path
 
 const Socials = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    window.open(
-      'https://feedburner.google.com/fb/a/mailverify?uri=barreldotim',
-      'popupwindow',
-      'scrollbars=yes,width=550,height=520'
-    );
-    return true;
+    setIsSubmitting(true);
+    
+    try {
+      // First try using your API
+      const result = await subscribeToNewsletter(email);
+      
+      if (result.success) {
+        setSubscriptionStatus({ success: true, message: 'Subscription successful!' });
+        // Optionally open FeedBurner as fallback or for verification
+        // window.open(
+        //   'https://feedburner.google.com/fb/a/mailverify?uri=barreldotim',
+        //   'popupwindow',
+        //   'scrollbars=yes,width=550,height=520'
+        // );
+      } else {
+        // If API fails, fall back to FeedBurner
+        console.error('API subscription failed, falling back to FeedBurner');
+        setSubscriptionStatus({ 
+          success: false, 
+          message: result.error || 'Subscription failed, trying alternative...' 
+        });
+        // window.open(
+        //   'https://feedburner.google.com/fb/a/mailverify?uri=barreldotim',
+        //   'popupwindow',
+        //   'scrollbars=yes,width=550,height=520'
+        // );
+      }
+    } catch (error) {
+      console.error('Error in subscription process:', error);
+      setSubscriptionStatus({ 
+        success: false, 
+        message: 'An error occurred. Please try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleForm = () => {
     setIsOpen(!isOpen);
+    // Clear status when closing/opening
+    if (!isOpen) setSubscriptionStatus(null);
   };
 
   return (
@@ -36,11 +71,27 @@ const Socials = () => {
               placeholder="hello@barrel.im"
               type="email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <br />
-            <input className="logo-ani" name="submit" type="submit" value="Subscribe" />
+            <input 
+              className="logo-ani" 
+              name="submit" 
+              type="submit" 
+              value={isSubmitting ? 'Subscribing...' : 'Subscribe'} 
+              disabled={isSubmitting}
+            />
             <input name="uri" type="hidden" value="barreldotim" />
           </form>
+          
+          {/* Subscription status message */}
+          {subscriptionStatus && (
+            <div className={`subscription-status ${subscriptionStatus.success ? 'success' : 'error'}`}>
+              {subscriptionStatus.message}
+            </div>
+          )}
+          
           <div className="img ba-logo logo-ani"></div>
         </div>
         

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Tel from '../assets/icons/tel.png'
 import Time from '../assets/icons/time.png'
@@ -8,8 +8,37 @@ import { BsInstagram } from 'react-icons/bs'
 import { ImFacebook2 } from 'react-icons/im'
 import { TfiEmail, TfiHeadphone } from 'react-icons/tfi'
 import { SiYoutube } from 'react-icons/si'
+import { subscribeToNewsletter } from '../services/GlobalFunctions'
 
 const Footer = () => {
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [message, setMessage] = useState({ text: '', type: '' })
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+
+    // Basic validation
+    if (!email) {
+      setMessage({ text: 'Please enter your email', type: 'error' })
+      return
+    }
+    setIsSubmitting(true)
+    setMessage({ text: '', type: '' })
+    const { success } = await subscribeToNewsletter(email)
+    if (success) {
+      setMessage({ text: 'Subscription successful!', type: 'success' })
+      setEmail('')
+    } else {
+      setMessage({
+        text: 'Subscription failed. Please try again.',
+        type: 'error'
+      })
+    }
+
+    setIsSubmitting(false)
+  }
+
   return (
     <footer
       className=' text-white pt-5 pb-4'
@@ -137,18 +166,37 @@ const Footer = () => {
           {/* Newsletter */}
           <div className='col-md-3 col-12 mb-4'>
             <h5 className='text-uppercase mb-3'>Newsletter</h5>
-            <form>
-              <div className='mb-2'>
-                <input
-                  type='email'
-                  className='form-control'
-                  placeholder='subscribe to our newsletter'
-                />
-              </div>
-              <button type='submit' className='btn btn-primary w-100'>
-                Subscribe
-              </button>
-            </form>
+            <div>
+              <form onSubmit={handleSubmit}>
+                <div className='mb-2'>
+                  <input
+                    type='email'
+                    className='form-control'
+                    placeholder='subscribe to our newsletter'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <button
+                  type='submit'
+                  className='btn btn-primary w-100'
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </form>
+
+              {message.text && (
+                <div
+                  className={`mt-2 alert alert-${
+                    message.type === 'success' ? 'success' : 'danger'
+                  }`}
+                >
+                  {message.text}
+                </div>
+              )}
+            </div>
             <small className='d-block mt-2'>
               Subscribing to our newsletter indicates that you want to get
               frequent information about Chromosome 21 Down Syndrome Care.
