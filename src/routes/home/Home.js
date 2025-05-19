@@ -202,7 +202,7 @@ const Home = () => {
               <div className='8'>
                 <div className='row text-center'>
                   <div className='col-6 col-md-4'>
-                    <img width='100%' src={Change1} alt='change the world' />
+                    <img rel="preload"  loading="lazy" width='100%' src={Change1} alt='change the world' />
                     <h3 className='playfair-font'>
                       Spreading Joy Through Inclusive Education
                     </h3>
@@ -213,7 +213,7 @@ const Home = () => {
                     </span>
                   </div>
                   <div className='col-6 col-md-4'>
-                    <img width='100%' src={Change2} alt='change the world' />
+                    <img rel="preload"  loading="lazy" width='100%' src={Change2} alt='change the world' />
                     <h3 className='playfair-font'>
                       Support for Families and Caregivers
                     </h3>
@@ -224,7 +224,7 @@ const Home = () => {
                     </span>
                   </div>
                   <div className='col-12 col-md-4'>
-                    <img width='100%' src={Change3} alt='change the world' />
+                    <img rel="preload"  loading="lazy" width='100%' src={Change3} alt='change the world' />
                     <h3 className='playfair-font'>
                       Community Drives & Volunteer Programs
                     </h3>
@@ -500,7 +500,7 @@ const Home = () => {
                       }}
                       className='testimonials'
                     >
-                      <img src={Testimonial1} alt='testimonials' />
+                      <img rel="preload"  loading="lazy" src={Testimonial1} alt='testimonials' />
                       <p className='playfair-font'>George Fisher </p>
                       <i>
                         "The support and resources provided by Chromosome 21
@@ -524,7 +524,7 @@ const Home = () => {
                       }}
                       className='testimonials'
                     >
-                      <img src={Testimonial1} alt='testimonials' />
+                      <img rel="preload"  loading="lazy" src={Testimonial1} alt='testimonials' />
                       <p className='playfair-font'>George Fisher </p>
                       <i>
                         "The support and resources provided by Chromosome 21
@@ -548,7 +548,7 @@ const Home = () => {
                       }}
                       className='testimonials'
                     >
-                      <img src={Testimonial1} alt='testimonials' />
+                      <img rel="preload"  loading="lazy" src={Testimonial1} alt='testimonials' />
                       <p className='playfair-font'>George Fisher </p>
                       <i>
                         "The support and resources provided by Chromosome 21
@@ -572,7 +572,7 @@ const Home = () => {
                       }}
                       className='testimonials'
                     >
-                      <img src={Testimonial1} alt='testimonials' />
+                      <img rel="preload"  loading="lazy" src={Testimonial1} alt='testimonials' />
                       <p className='playfair-font'>George Fisher </p>
                       <i>
                         "The support and resources provided by Chromosome 21
@@ -596,7 +596,7 @@ const Home = () => {
                       }}
                       className='testimonials'
                     >
-                      <img src={Testimonial1} alt='testimonials' />
+                      <img rel="preload"  loading="lazy" src={Testimonial1} alt='testimonials' />
                       <p className='playfair-font'>George Fisher </p>
                       <i>
                         "The support and resources provided by Chromosome 21

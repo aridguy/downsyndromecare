@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className='container'>
         {/* Logo on the left */}
         <Link className='nav-link' to='/'>
-          <img width='50' src={Logo} fill alt='logo-image' />
+          <img rel="preload"  loading="lazy" width='50' src={Logo} fill alt='logo-image' />
         </Link>
         {/* Toggler for small screens */}
         <button

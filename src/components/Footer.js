@@ -208,26 +208,26 @@ const Footer = () => {
         <div className='row text-center text-md-left mt-4 '>
           <div className='col-md-3 mb-3'>
             <p>
-              <img src={Tel} alt='tel line' />
+              <img rel="preload"  loading="lazy" src={Tel} alt='tel line' />
               &nbsp; +234 08058518598 <br /> +234 08035881312
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <img width='40' src={Email} alt='tel line' /> &nbsp;
+              <img rel="preload"  loading="lazy" width='40' src={Email} alt='tel line' /> &nbsp;
               info@c21downsyndromecare.org <br />
               contact@c21downsyndromecare.org
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <img src={Time} alt='tel line' /> Mon–Fri: 8am–7pm <br />
+              <img rel="preload"  loading="lazy" src={Time} alt='tel line' /> Mon–Fri: 8am–7pm <br />
               Sat: 9am–5pm
             </p>
           </div>
           <div className='col-md-3 mb-3'>
             <p>
-              <img src={Location} alt='tel line' />
+              <img rel="preload"  loading="lazy" src={Location} alt='tel line' />
               &nbsp; Lagos Nigeria
             </p>
           </div>

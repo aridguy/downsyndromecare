@@ -71,25 +71,25 @@ const Contact = () => {
         <div className='container mt-5 text-center'>
           <div className='row'>
             <div className='col-md-3'>
-              <img src={Location} alt='location' />
+              <img rel="preload"  loading="lazy" src={Location} alt='location' />
               <h5 className='fw-bolder playfair-font'>Our Location</h5>
               <small>1234 NW Bobcat Lane, St. </small> <br />
               <small>Robert, MO 65584-5678</small>
             </div>
             <div className='col-md-3'>
-              <img src={Email} alt='location' />
+              <img rel="preload"  loading="lazy" src={Email} alt='location' />
               <h5 className='fw-bolder playfair-font'>Our Email</h5>
               <small>contact@c21downsyndromcare.org</small> <br />
               <small>Robert, MO 65584-5678</small>
             </div>
             <div className='col-md-3'>
-              <img src={Phone} alt='location' />
+              <img rel="preload"  loading="lazy" src={Phone} alt='location' />
               <h5 className='fw-bolder playfair-font'>Our Lines</h5>
               <small>+44367596005</small> <br />
               <small>+23488574643, +909069464</small>
             </div>
             <div className='col-md-3'>
-              <img src={Time} alt='location' />
+              <img rel="preload"  loading="lazy" src={Time} alt='location' />
               <h5 className='fw-bolder playfair-font'>Our Lines</h5>
               <small>Monday - Friday: 9am - 6 pm</small> <br />
               <small>Weekends: 10:30 am - 6pm</small>

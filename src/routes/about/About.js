@@ -26,7 +26,7 @@ const About = () => {
                 <button className='btn btn-primary mb-4'>Find Out More</button>
               </div>
               <div className='col-md-6'>
-                <img src={Describe1} alt='about us' className='img-fluid' />
+                <img rel="preload" loading="lazy" src={Describe1} alt='about us' className='img-fluid' />
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@ const About = () => {
             </div>
             <div className='row mt-5'>
               <div className='col-md-6 text-center'>
-                <img src={Describe1} alt='about us' className='img-fluid' />
+                <img rel="preload"  loading="lazy" src={Describe1} alt='about us' className='img-fluid' />
               </div>
               <div className='col-md-6 mb-5'>
                 <div>
@@ -195,7 +195,7 @@ const About = () => {
                   <button className='btn btn-primary' style={{width:"100%"}}>Be a Volunteer!</button>
               </div>
               <div className='col-md-6'>
-                <img src={Describe1} alt='about us' className='img-fluid' />
+                <img rel="preload"  loading="lazy" src={Describe1} alt='about us' className='img-fluid' />
               </div>
             </div>
           </div>
