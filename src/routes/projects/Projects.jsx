@@ -17,7 +17,7 @@ const Projects = () => {
           <div className='container'>
             <div className='row'>
               <div className='col-md-4 mt-5 text-center'>
-                <img
+                <img  decoding="async" 
                   className='mb-4'
                   width='100%'
                   src={Proj1}
@@ -32,7 +32,7 @@ const Projects = () => {
                 </button>
               </div>
               <div className='col-md-4 mt-5 text-center'>
-                <img
+                <img  decoding="async" 
                   className='mb-4'
                   width='100%'
                   src={Proj2}
@@ -47,7 +47,7 @@ const Projects = () => {
                 </button>
               </div>
               <div className='col-md-4 mt-5 text-center'>
-                <img
+                <img  decoding="async" 
                   className='mb-4'
                   width='100%'
                   src={Proj3}

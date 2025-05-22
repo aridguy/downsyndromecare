@@ -1,10 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import AboutLanding from '../../chunks/AboutLanding'
 import Describe1 from '../../assets/describe1.png'
 import Footer from '../../components/Footer'
+import { createClient } from 'contentful'
 
 const About = () => {
+  const [visionMissionGoal, setVisionMissionGoal] = useState([])
+  const [objectives, setObjectives] = useState([])
+  useEffect(() => {
+    // achievement section api call
+    const missionsVisionsGoal = createClient({
+      space: 'udyhr959crnv',
+      accessToken: 'U6m5KLASJV3xZW1FnAK3I8i_gOZY7cvkEruDHKL-w_o'
+    })
+    const fetchMissionAndVisionStatements = async () => {
+      try {
+        const response = await missionsVisionsGoal.getEntries({
+          content_type: 'missionAndVisionStatements'
+        })
+        setVisionMissionGoal(response.items)
+        // console.log('Achievements fetched:', response.items)
+      } catch (error) {
+        console.error(
+          'Error fetching fetch Mission And Vision Statements:',
+          error
+        )
+      }
+    }
+
+    // OBJECTIVES API CAL STARTS HERE
+    const objectives = createClient({
+      space: 'udyhr959crnv',
+      accessToken: 'zoFG7JstKXtoxg8FWOljCA1dbJ3Pe1sC8GFEdWtkoOM'
+    })
+    const fetchObjectives = async () => {
+      try {
+        const response = await objectives.getEntries({
+          content_type: 'aimsAndObjectives'
+        })
+        setObjectives(response.items)
+        console.log('objectives fetched:', response.items)
+      } catch (error) {
+        console.error(
+          'Error fetching fetch Mission And Vision Statements:',
+          error
+        )
+      }
+    }
+    fetchObjectives()
+    fetchMissionAndVisionStatements()
+  }, [])
   return (
     <div>
       <Navbar />
@@ -26,7 +72,14 @@ const About = () => {
                 <button className='btn btn-primary mb-4'>Find Out More</button>
               </div>
               <div className='col-md-6'>
-                <img rel="preload" loading="lazy" src={Describe1} alt='about us' className='img-fluid' />
+                <img
+                  decoding='async'
+                  rel='preload'
+                  loading='lazy'
+                  src={Describe1}
+                  alt='about us'
+                  className='img-fluid'
+                />
               </div>
             </div>
           </div>
@@ -48,46 +101,46 @@ const About = () => {
                 </small>
               </div>
             </div>
-            <div className='row mt-5'>
-              <div className='col-md-6 text-center'>
-                <img rel="preload"  loading="lazy" src={Describe1} alt='about us' className='img-fluid' />
+            {visionMissionGoal?.map((visonss, index) => (
+              <div key={index} className='row mt-5'>
+                <div className='col-md-6 text-center'>
+                  <img
+                    decoding='async'
+                    rel='preload'
+                    loading='lazy'
+                    src={visonss.fields.image.fields.file.url}
+                    alt='about us'
+                    className='img-fluid'
+                  />
+                </div>
+                <div className='col-md-6 mb-5'>
+                  <div>
+                    <h3 className='playfair-font fw-bolder text-primary'>
+                      Vision Statement
+                    </h3>
+                    <small className='mt-4 text-center'>
+                      {visonss.fields.vision}
+                    </small>
+                  </div>
+                  <div className='mt-3'>
+                    <h3 className='playfair-font fw-bolder text-primary'>
+                      Mission Statement
+                    </h3>
+                    <small className='mt-4 text-center'>
+                      {visonss.fields.mission}
+                    </small>
+                  </div>
+                  <div className='mt-3'>
+                    <h3 className='playfair-font fw-bolder text-primary'>
+                      Goals
+                    </h3>
+                    <small className='mt-4 text-center'>
+                      {visonss.fields.goals}
+                    </small>
+                  </div>
+                </div>
               </div>
-              <div className='col-md-6 mb-5'>
-                <div>
-                  <h3 className='playfair-font fw-bolder text-primary'>
-                    Vision Statement
-                  </h3>
-                  <small className='mt-4 text-center'>
-                    To be one of the foremost humanitarian setup giving an
-                    almost
-                    <br /> normal life to persons with down syndrome.
-                  </small>
-                </div>
-                <div className='mt-3'>
-                  <h3 className='playfair-font fw-bolder text-primary'>
-                    Vision Statement
-                  </h3>
-                  <small className='mt-4 text-center'>
-                    Making life better for persons with down syndrome through
-                    compassionate
-                    <br />
-                    inclusion in the world order, without discrimination.
-                  </small>
-                </div>
-                <div className='mt-3'>
-                  <h3 className='playfair-font fw-bolder text-primary'>
-                    Goals
-                  </h3>
-                  <small className='mt-4 text-center'>
-                    To achieve testimonies of Down Syndrome persons who are
-                    beneficiaries of our foundation, proving to the world
-                    through their success stories that Down Syndrome is never a
-                    barrier; all living with Down Syndrome can live to their
-                    full potentials in life.
-                  </small>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       }
@@ -96,85 +149,19 @@ const About = () => {
         <section className='sect-1' style={{ marginTop: '8em' }}>
           <div className='container-fluid objectiveBg p-5'>
             <div className='row '>
-              <div className='col-smd-12'>
+              <div className='col-md-12'>
                 <h2 className='text-white playfair-font fw-bold'>
                   Our Aims & Objectives
                 </h2>
               </div>
             </div>
             <div className='row mt-5 text-white playfair-font'>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Awareness Campaigns</p>
-                <i>
-                  Develop and execute campaigns to educate the public about Down
-                  Syndrome, dispelling myths and promoting understanding and
-                  acceptance.
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Right Advocacy</p>
-                <i>
-                  Advocate for the rights, needs, and inclusion of individuals
-                  with Down Syndrome, ensuring access to healthcare, education,
-                  and development opportunities.
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Family Support</p>
-                <i>
-                  Provide support, resources, and information to families of
-                  individuals with Down Syndrome, offering guidance throughout
-                  their journey.
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Community Engagement</p>
-                <i>
-                  Engage with communities, schools, and institutions to promote
-                  inclusion and foster supportive environments for individuals
-                  with Down Syndrome.
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Organizational Collaboration</p>
-                <i>
-                  Collaborating with other down syndrome organizations, both
-                  nationally and internationally, to share knowledge resources
-                  and best practice
-                </i>
-              </div>
-
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Recreational Activities</p>
-                <i>
-                  Developing Recreational Activities and sport programs that
-                  cater to the unique needs and abilities of individuals with
-                  down syndrome
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Research Funding</p>
-                <i>
-                  Raise funds and allocate resources for Down Syndrome research
-                  to enhance medical treatments, therapies and interventions.
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Professional Collaboration</p>
-                <i>
-                  Collaborate with healthcare professionals and educators to
-                  improve medical care, early intervention, and educational
-                  programs.
-                </i>
-              </div>
-              <div className='col-md-3 mt-4'>
-                <p className='fw-bold'>Advocating For Policy Change</p>
-                <i>
-                  Advocate for policy changes at local, regional and national
-                  levels that benefits individuals with down syndrome and
-                  promote their rights and welfare
-                </i>
-              </div>
+              {objectives?.map((obj, index) => (
+                <div className='col-md-3 mt-4'>
+                  <p className='fw-bold'>{obj.fields.objectiveTitle}</p>
+                  <i>{obj.fields.objectiveDescription}</i>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -185,17 +172,30 @@ const About = () => {
           <div className='container'>
             <div className='row'>
               <div className='col-md-6'>
-                <h2 className='playfair-font'>Success Of Our <br />Completed Projects</h2>
+                <h2 className='playfair-font'>
+                  Success Of Our <br />
+                  Completed Projects
+                </h2>
                 <p className='mt-4'>
                   We are proud to have successfully completed numerous projects
                   that have made a positive impact on the lives of individuals
                   with Down syndrome and their families. Our commitment to
                   excellence and dedication to our mission has driven us to
-                  achieve significant milestones in our journey.</p>
-                  <button className='btn btn-primary' style={{width:"100%"}}>Be a Volunteer!</button>
+                  achieve significant milestones in our journey.
+                </p>
+                <button className='btn btn-primary' style={{ width: '100%' }}>
+                  Be a Volunteer!
+                </button>
               </div>
               <div className='col-md-6'>
-                <img rel="preload"  loading="lazy" src={Describe1} alt='about us' className='img-fluid' />
+                <img
+                  decoding='async'
+                  rel='preload'
+                  loading='lazy'
+                  src={Describe1}
+                  alt='about us'
+                  className='img-fluid'
+                />
               </div>
             </div>
           </div>

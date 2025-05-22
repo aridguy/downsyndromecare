@@ -18,7 +18,7 @@ const Blog = () => {
                   <h1 className='fw-bold text-center display-4 playfair-font blog-title'>
                     Down Syndrome Cares c21 Down Syndrome Cares Visited
                   </h1>
-                  <img
+                  <img  decoding="async" 
                     width='100%'
                     fill
                     src={BlogImage}
@@ -57,7 +57,7 @@ const Blog = () => {
                   <h1 className='fw-bold text-center display-4 playfair-font blog-title'>
                     Down Syndrome Cares c21 Down Syndrome Cares Visited
                   </h1>
-                  <img
+                  <img  decoding="async" 
                     width='100%'
                     fill
                     src={BlogImage}
@@ -96,7 +96,7 @@ const Blog = () => {
                   <h1 className='fw-bold text-center display-4 playfair-font blog-title'>
                     Down Syndrome Cares c21 Down Syndrome Cares Visited
                   </h1>
-                  <img
+                  <img  decoding="async" 
                     width='100%'
                     fill
                     src={BlogImage1}

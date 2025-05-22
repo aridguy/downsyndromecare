@@ -21,7 +21,7 @@ const Faq = () => {
           <div className='container'>
             <div className='row'>
               <div className='col-12 col-md-12 text-center'>
-                {/* {<img
+                {/* {<img  decoding="async" 
                   loading='lazy'
                   src={FaqLogo}
                   alt='faq logo'
