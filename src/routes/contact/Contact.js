@@ -11,6 +11,7 @@ import emailjs from '@emailjs/browser'
 
 // import 'sweetalert2/src/sweetalert2.scss'
 import Swal from 'sweetalert2'
+import Socials from '../../chunks/Socials'
 
 const Contact = () => {
   const form = useRef()
@@ -52,6 +53,7 @@ const Contact = () => {
   }
   return (
     <div>
+      <Socials />
       <Navbar />
       <ContactLanding />
       <main>

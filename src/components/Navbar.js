@@ -1,9 +1,10 @@
 import React from 'react'
 import '../App.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../assets/logo/logos.png'
 
 const Navbar = () => {
+  const Navigate = useNavigate("/")
   return (
     <nav
       style={{ zIndex: '9999', position: 'fixed', top: 0, width: '100%' }}
@@ -69,19 +70,13 @@ const Navbar = () => {
               </Link>
             </li>
             {/* Donate button for mobile */}
-            <li className='nav-item d-lg-none mt-3 text-center'>
-              <a href='/' className='btn btn-primary w-100'>
-                Donate
-              </a>
-            </li>
+            
           </ul>
         </div>
         {/* Donate button for large screens */}
-        <div className='d-none d-lg-block'>
-          <a href='/' className='btn btn-primary'>
-            Donate
-          </a>
-        </div>
+        <button onClick={() => {
+          Navigate("/donate")
+        }} className="btn btn-primary">Donate</button>
       </div>
     </nav>
   )

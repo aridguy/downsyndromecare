@@ -4,6 +4,7 @@ import AboutLanding from '../../chunks/AboutLanding'
 import Describe1 from '../../assets/describe1.png'
 import Footer from '../../components/Footer'
 import { createClient } from 'contentful'
+import Socials from '../../chunks/Socials'
 
 const About = () => {
   const [visionMissionGoal, setVisionMissionGoal] = useState([])
@@ -11,8 +12,8 @@ const About = () => {
   useEffect(() => {
     // achievement section api call
     const missionsVisionsGoal = createClient({
-      space: 'udyhr959crnv',
-      accessToken: 'U6m5KLASJV3xZW1FnAK3I8i_gOZY7cvkEruDHKL-w_o'
+      space: process.env.REACT_APP_GENERAL_SPACE_ID,
+      accessToken: process.env.REACT_APP_MISSIONVISIONGOAL_ACCESS_TOKEN
     })
     const fetchMissionAndVisionStatements = async () => {
       try {
@@ -28,11 +29,10 @@ const About = () => {
         )
       }
     }
-
     // OBJECTIVES API CAL STARTS HERE
     const objectives = createClient({
-      space: 'udyhr959crnv',
-      accessToken: 'zoFG7JstKXtoxg8FWOljCA1dbJ3Pe1sC8GFEdWtkoOM'
+      space: process.env.REACT_APP_GENERAL_SPACE_ID,
+      accessToken: process.env.REACT_APP_OBJECTIVES_ACCESS_TOKEN
     })
     const fetchObjectives = async () => {
       try {
@@ -40,7 +40,7 @@ const About = () => {
           content_type: 'aimsAndObjectives'
         })
         setObjectives(response.items)
-        console.log('objectives fetched:', response.items)
+        // console.log('objectives fetched:', response.items)
       } catch (error) {
         console.error(
           'Error fetching fetch Mission And Vision Statements:',
@@ -53,6 +53,7 @@ const About = () => {
   }, [])
   return (
     <div>
+      <Socials />
       <Navbar />
       <AboutLanding />
       {

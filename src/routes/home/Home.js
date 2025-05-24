@@ -46,7 +46,7 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-      // achievement section api call
+    // achievement section api call
     const clientAchievements = createClient({
       space: process.env.REACT_APP_GENERAL_SPACE_ID,
       accessToken: process.env.REACT_APP_ACHIEVEMENTS_ACCESS_TOKEN
@@ -304,7 +304,8 @@ const Home = () => {
                         key={item.sys.id}
                       >
                         {image && (
-                          <img  decoding="async" 
+                          <img
+                            decoding='async'
                             rel='preload'
                             loading='lazy'
                             style={{ width: '100%' }}
@@ -417,7 +418,8 @@ const Home = () => {
                       className='text-center'
                       key={volunteer.sys.id || index}
                     >
-                      <img  decoding="async" 
+                      <img
+                        decoding='async'
                         src={
                           volunteer.fields?.volunteerImage?.fields?.file?.url
                         }
@@ -448,14 +450,12 @@ const Home = () => {
         >
           <div className='container'>
             {achievements?.map((achievement, index) => (
-              <div className='row text-center'>
+              <div key={achievement.sys.id} className='row text-center'>
                 {/* Project Done */}
-                <div
-                  key={achievement.id}
-                  className='col-md-3 mb-4 d-flex flex-column align-items-center'
-                >
+                <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
-                    <img  decoding="async" 
+                    <img
+                      decoding='async'
                       width='50'
                       src={Projects}
                       alt='project-icon'
@@ -474,7 +474,8 @@ const Home = () => {
                 {/* Volunteers */}
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
-                    <img  decoding="async" 
+                    <img
+                      decoding='async'
                       width='50'
                       src={Volunteers}
                       alt='volunteer-icon'
@@ -494,7 +495,8 @@ const Home = () => {
                 {/* Missions */}
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
-                    <img  decoding="async" 
+                    <img
+                      decoding='async'
                       width='30'
                       src={Missions}
                       alt='mission-icon'
@@ -510,7 +512,8 @@ const Home = () => {
                 {/* Donations */}
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
-                    <img  decoding="async" 
+                    <img
+                      decoding='async'
                       width='30'
                       src={Donation}
                       alt='donation-icon'
@@ -561,7 +564,7 @@ const Home = () => {
                   <div className='d-flex gap-3'>
                     {testimonials?.map((testimonial, index) => (
                       <div
-                        key={index}
+                        key={testimonial.sys.id}
                         style={{
                           padding: '2em',
                           width: '17em',
@@ -576,10 +579,14 @@ const Home = () => {
                         }}
                         className='testimonials'
                       >
-                        <img  decoding="async" 
+                        <img
+                          decoding='async'
                           rel='preload'
                           loading='lazy'
-                          src={testimonial.fields?.testimonialImage?.fields?.file?.url}
+                          src={
+                            testimonial.fields?.testimonialImage?.fields?.file
+                              ?.url
+                          }
                           alt='testimonials'
                           style={{
                             width: '50px',
