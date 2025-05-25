@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { FiHeart, FiGlobe, FiCreditCard, FiMail, FiUser } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const Donation = () => {
+  const Navigate = useNavigate()
   const [amount, setAmount] = useState(5000)
   const [currency, setCurrency] = useState('NGN')
   const [donorInfo, setDonorInfo] = useState({
@@ -9,7 +12,6 @@ const Donation = () => {
     email: '',
     message: ''
   })
-
   const presetAmounts = [1000, 2000, 5000, 10000, 20000, 50000]
   const currencies = [
     { code: 'NGN', symbol: '₦', name: 'Naira' },
@@ -17,44 +19,70 @@ const Donation = () => {
     { code: 'GBP', symbol: '£', name: 'British Pound' },
     { code: 'EUR', symbol: '€', name: 'Euro' }
   ]
-
   const handleInputChange = e => {
     const { name, value } = e.target
     setDonorInfo(prev => ({ ...prev, [name]: value }))
   }
-
   const handleSubmit = e => {
     e.preventDefault()
-    // Paystack integration will go here
-    console.log({ amount, currency, donorInfo })
-    alert(`Thank you for your donation of ${currency}${amount}!`)
   }
   // Add this to your handleSubmit function
-const handlePaystackPayment = () => {
-  const handler = window.PaystackPop.setup({
-    key: 'YOUR_PUBLIC_KEY',
-    email: donorInfo.email,
-    amount: amount * 100, // Paystack expects amount in kobo
-    currency: currency,
-    ref: ''+Math.floor((Math.random() * 1000000000) + 1),
-    callback: function(response) {
-      alert('Payment complete! Reference: ' + response.reference);
-    },
-    onClose: function() {
-      alert('Payment window closed');
-    }
-  });
-  handler.openIframe();
-}
+  const handlePaystackPayment = () => {
+    const handler = window.PaystackPop.setup({
+      key: 'pk_test_a1015af9fc065137e0b7fbd27f1a962322fd4211',
+      email: donorInfo.email,
+      amount: amount * 100, // Paystack expects amount in kobo
+      currency: currency,
+      ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+      callback: function (response) {
+        alert('Payment complete! Reference: ' + response.reference)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer
+            toast.onmouseleave = Swal.resumeTimer
+          }
+        })
+        Toast.fire({
+          icon: 'info',
+          title: 'Payment completed ' + response.reference
+        })
+      },
+      onClose: function () {
+        // alert('Payment window closed');
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer
+            toast.onmouseleave = Swal.resumeTimer
+          }
+        })
+        Toast.fire({
+          icon: 'info',
+          title: 'Payment not completed'
+        })
+      }
+    })
+    handler.openIframe()
+  }
 
   return (
     <div
       className='donation-page min-vh-100 py-5'
       style={{
-        backgroundColor: 'red',
+        backgroundColor: 'orange',
         backgroundImage:
-          'url(https://www.cbtkenya.org/wp-content/uploads/2021/05/liv-bruce-odIhQypCuUk-unsplash-1110x630.jpg)', 
-          backgroundSize: "cover", backgroundRepeat: "no-repeat"
+          'url(https://www.cbtkenya.org/wp-content/uploads/2021/05/liv-bruce-odIhQypCuUk-unsplash-1110x630.jpg)',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
       }}
     >
       <div className='container'>
@@ -84,7 +112,13 @@ const handlePaystackPayment = () => {
                         <div className='bg-white text-primary rounded-circle p-2 me-3'>
                           <FiGlobe size={20} />
                         </div>
-                        <span>Multiple currency support</span>
+                        <span>Multiple currency support | coming soon</span>
+                      </div>
+                      <div className='d-flex align-items-center'>
+                        <div className='bg-white text-primary rounded-circle p-2 me-3'>
+                          <FiGlobe size={20} />
+                        </div>
+                        <span>Pay only in naira for now</span>
                       </div>
                     </div>
                   </div>
@@ -203,7 +237,7 @@ const handlePaystackPayment = () => {
 
                     {/* Submit Button */}
                     <button
-                    onClick={handlePaystackPayment}
+                      onClick={handlePaystackPayment}
                       type='submit'
                       className='btn btn-danger w-100 py-3 fw-bold'
                       style={{ backgroundColor: '#ff6b6b', border: 'none' }}
@@ -218,6 +252,16 @@ const handlePaystackPayment = () => {
                     <p className='mb-0'>
                       We accept: Visa, Mastercard, Verve, Bank Transfer
                     </p>
+                    <span
+                      onClick={() => {
+                        Navigate('/')
+                      }}
+                      className='cursor text-primary'
+                      style={{ top: '1em', position: 'relative' }}
+                    >
+                      {' '}
+                      - back home -{' '}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,4 @@
-  // import { createClient } from 'contentful';
-
-
 // FOR NEWS LETTER ONLY
-
 export const subscribeToNewsletter = async (email) => {
     // Validate email input
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -59,12 +55,4 @@ export const subscribeToNewsletter = async (email) => {
       };
     }
   };
-
-  // CHNAGE THE WORLD HOME PAGE
-
-
-// const clientChangeTheWorld = createClient({
-  // space: 'udyhr959crnv',
-  // accessToken: '-JYyfzcUWuULJsDx6E15eqNYQv0TnXmT846gu4GZAos'
-// });
 
