@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar'
 import VolunteerLanding from '../../chunks/VolunteerLanding'
 import Footer from '../../components/Footer'
 import Swal from 'sweetalert2'
-import Socials from '../../chunks/Socials'
+// import Socials from '../../chunks/Socials'
 
 const Volunteer = () => {
   const [image, setImage] = useState(null)
@@ -146,7 +146,7 @@ const Volunteer = () => {
 
   return (
     <div>
-      <Socials />
+     
       <Navbar />
       <VolunteerLanding />
       <section className='mb-5' style={{ marginTop: '40em' }}>

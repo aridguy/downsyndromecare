@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import BlogNav from '../../components/BlogNav'
 import BlogImage from '../../assets/blog.png'
 
-import Socials from '../../chunks/Socials'
+// import Socials from '../../chunks/Socials'
 import { createClient } from 'contentful'
 import { useNavigate } from 'react-router-dom'
 import ReactImageGallery from 'react-image-gallery'
+import Footer from '../../components/Footer'
 
 const Blog = () => {
   const Navigate = useNavigate('/')
@@ -35,44 +36,53 @@ const Blog = () => {
 
   return (
     <div>
-      <Socials />
       <BlogNav />
-      {
-        /* Add your blog content here */
-        <section>
-          <div className='container'>
-            <div className='row mt-5'>
-              <div className='col-md-2'></div>
-              {blog.map((item, index) => (
-                <div className='col-md-8'>
-                  <div style={{ marginTop: '100px' }}>
-                    <h1 className='fw-bold text-center display-4 playfair-font blog-title'>
-                      {item.fields.blogTitle}
-                    </h1>
+      <section style={{ marginBottom: '8em', marginTop: '8em' }}>
+        <div className='container'>
+          <div className='row justify-content-center'>
+            {blog.map((item, index) => (
+              <div key={index} className='col-md-10 mb-5'>
+                <div className='card shadow border-0 p-4 rounded-4'>
+                  {/* Title */}
+                  <h2 className='text-center fw-bold playfair-font mb-4 display-5'>
+                    {item.fields.blogTitle}
+                  </h2>
+
+                  {/* Blog Image */}
+                  <div className='text-center mb-4'>
                     <img
                       decoding='async'
-                      width='100%'
-                      fill
-                      src={BlogImage}
+                      src={
+                        item.fields.blogImage[0]?.fields?.file?.url || BlogImage
+                      }
                       alt='Blog'
-                      className='img-fluid blog-image'
+                      className='img-fluid rounded-3 w-100'
+                      style={{ maxHeight: '400px', objectFit: 'cover' }}
                     />
-                    <h3 className='blog-description'>
-                      {item.fields.blogDescription.substring(0, 120)}...
-                    </h3>
-                    <div className='mb-3'>
-                      <button
-                        className='btn btn-primary'
-                        onClick={() => {
-                          setSelectedBlog(item)
-                          setBlogDetails(true)
-                          // console.log("Selected project" + item)
-                        }}
-                      >
-                        Read more ...
-                      </button>
-                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className='lead text-muted mb-4'>
+                    {item.fields.blogDescription.substring(0, 150)}...
+                  </p>
+
+                  {/* Read More Button */}
+                  <div className='text-center mb-3'>
+                    <button
+                      className='btn btn-primary px-4'
+                      onClick={() => {
+                        setSelectedBlog(item)
+                        setBlogDetails(true)
+                      }}
+                    >
+                      Read more
+                    </button>
+                  </div>
+
+                  {/* Metadata */}
+                  <div className='d-flex justify-content-between text-muted small mt-2'>
                     <span>
+                      Posted on:{' '} <br />
                       {new Date(item.fields.blogDatePosted).toLocaleDateString(
                         'en-US',
                         {
@@ -82,7 +92,6 @@ const Blog = () => {
                         }
                       )}
                     </span>
-                    {', '}
                     <span>
                       {new Intl.RelativeTimeFormat('en').format(
                         Math.floor(
@@ -92,19 +101,18 @@ const Blog = () => {
                         'day'
                       )}
                     </span>
-                    <br />
                     <span>
-                      Author: <span className='fw-bold'>Idowu Ariyo</span>
+                      Author: <br />
+                      <strong>{item.fields.blogAuthor}</strong>
                     </span>
                   </div>
                 </div>
-              ))}
-
-              <div className='col-md-2'></div>
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-      }
+        </div>
+      </section>
+
       {
         // MORE INFO OF A PROJECT
         blogDetails && (
@@ -147,7 +155,6 @@ const Blog = () => {
                         className='cursor'
                         onClick={() => {
                           setBlogDetails(false)
-
                         }}
                         style={{
                           display: 'flex',
@@ -192,7 +199,7 @@ const Blog = () => {
                       </p>
                       <button
                         onClick={() => {
-                          Navigate('/donate')
+                          Navigate('/donation')
                         }}
                         className='btn btn-primary mb-4'
                       >
@@ -208,6 +215,7 @@ const Blog = () => {
           </div>
         )
       }
+      <Footer />
     </div>
   )
 }

@@ -6,15 +6,17 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import Marquee from 'react-fast-marquee'
 import CountUp from 'react-countup'
-import Socials from '../../chunks/Socials'
+// import Socials from '../../chunks/Socials'
 import Projects from '../../assets/icons/projects.png'
 import Donation from '../../assets/icons/donation.png'
 import Missions from '../../assets/icons/missions.png'
 import Volunteers from '../../assets/icons/volunteers.png'
 import { createClient } from 'contentful'
+import { useNavigate } from 'react-router-dom'
 
 // Inside your component:
 const Home = () => {
+  const Navigate = useNavigate("/")
   // innitial states
   const [changeContent, setChangeContent] = useState([])
   const [achievements, setAchievements] = useState([])
@@ -128,7 +130,7 @@ const Home = () => {
 
   return (
     <div className=''>
-      <Socials />
+    
       <Navbar />
       {
         <div className='hero-bg'>
@@ -179,7 +181,7 @@ const Home = () => {
       {
         // SECTION 2
         <section
-          data-aos='fade-up'
+          // data-aos='fade-up'
           data-aos-offset='300'
           style={{ marginTop: '37em' }}
         >
@@ -191,7 +193,7 @@ const Home = () => {
                   <div className='row'>
                     <div className='col-12 col-md-4 text-center'>
                       <h1>🎓 </h1>
-                      <h4 className='playfair-font fw-bolder'>
+                      <h4  className='playfair-font fw-bolder' >
                         Inclusive Education
                       </h4>
                       <small>
@@ -326,7 +328,7 @@ const Home = () => {
         </section>
       }
       {
-        // BIG THE CHANGE
+        // Be The Change You Wish To See In The World
         <section
           data-aos='fade-up'
           data-aos-offset='500'
@@ -363,10 +365,14 @@ const Home = () => {
                   where every individual is valued and included.
                 </small>
                 <div className='d-flex gap-3 mt-5'>
-                  <button className='btn btn-primary text-white'>
+                  <button onClick={() => {
+                    Navigate("/volunteer")
+                  }} className='btn btn-primary text-white'>
                     Volunteer Now
                   </button>
-                  <button className='btn bg-white text-primary'>
+                  <button onClick={() => {
+                    Navigate("/donation")
+                  }} className='btn bg-white text-primary'>
                     Donate Now
                   </button>
                 </div>
@@ -560,7 +566,7 @@ const Home = () => {
             <div className='row'>
               <div className='col-md-1'></div>
               <div className='col-md-10'>
-                <Marquee pauseOnHover={true} speed={50} pauseOnClick={true}>
+                <Marquee pauseOnHover={true} speed={50} pauseOnClick={true} autoFill={true}>
                   <div className='d-flex gap-3'>
                     {testimonials?.map((testimonial, index) => (
                       <div
@@ -571,13 +577,13 @@ const Home = () => {
                           height: '300px',
                           backgroundColor: '#07263B',
                           borderRadius: '8px',
-                          // display: 'flex', // Enable flexbox
                           justifyContent: 'center', // Center horizontally
                           alignItems: 'center', // Center vertically
                           textAlign: 'center', // For additional text alignment
-                          color: 'white'
+                          color: 'white',
+                          // //marginLeft: "1em"
                         }}
-                        className='testimonials'
+                        className='testimonials mx-2'
                       >
                         <img
                           decoding='async'
@@ -598,7 +604,7 @@ const Home = () => {
                           {testimonial.fields.testimonialName}
                         </p>
                         <i>{testimonial.fields.testimonialComment}</i>
-                      </div>
+                      </div> 
                     ))}
                   </div>
                 </Marquee>

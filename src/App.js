@@ -11,7 +11,7 @@ import Faq from './routes/faq/Faq';
 import Blog from './routes/blog/Blog';
 import Projects from './routes/projects/Projects'
 import TawkTo from './components/TawkTo';
-import Donate from "./routes/donation/Donation"
+import Donation from './routes/donation/Donation';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
           <Route path="volunteer" element={<Volunteer />} />
           <Route path="faq" element={<Faq />} />
           <Route path="blog" element={<Blog />} />
-          <Route path="donate" element={<Donate />} />
+          <Route path="donation" element={<Donation />} />
           <Route path="projects" element={<Projects />} />
           <Route path="*" element={<NoPage />} />
       </Routes>

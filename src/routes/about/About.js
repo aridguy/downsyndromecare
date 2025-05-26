@@ -4,7 +4,7 @@ import AboutLanding from '../../chunks/AboutLanding'
 import Describe1 from '../../assets/describe1.png'
 import Footer from '../../components/Footer'
 import { createClient } from 'contentful'
-import Socials from '../../chunks/Socials'
+// import Socials from '../../chunks/Socials'
 
 const About = () => {
   const [visionMissionGoal, setVisionMissionGoal] = useState([])
@@ -53,7 +53,7 @@ const About = () => {
   }, [])
   return (
     <div>
-      <Socials />
+      
       <Navbar />
       <AboutLanding />
       {

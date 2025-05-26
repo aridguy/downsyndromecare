@@ -127,7 +127,7 @@ const Donation = () => {
                 {/* Right Side - Form */}
                 <div className='col-md-7 bg-white p-5'>
                   <h3 className='fw-bold mb-4 text-center text-md-start'>
-                    Support Our Cause
+                    Support a Good Cause
                   </h3>
 
                   <form onSubmit={handleSubmit}>
@@ -255,6 +255,10 @@ const Donation = () => {
                     <span
                       onClick={() => {
                         Navigate('/')
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'smooth' // Smooth scrolling
+                        })
                       }}
                       className='cursor text-primary'
                       style={{ top: '1em', position: 'relative' }}

@@ -6,7 +6,7 @@ import 'react-image-gallery/styles/css/image-gallery.css'
 import ReactImageGallery from 'react-image-gallery'
 import { createClient } from 'contentful'
 import { useNavigate } from 'react-router-dom'
-import Socials from '../../chunks/Socials'
+// import Socials from '../../chunks/Socials'
 
 const Projects = () => {
   const Navigate = useNavigate("/")
@@ -39,7 +39,7 @@ const Projects = () => {
 
   return (
     <div>
-      <Socials />
+   
       <Navbar />
       <ProjectLanding />
       {

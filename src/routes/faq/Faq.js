@@ -4,7 +4,7 @@ import FaqLanding from '../../chunks/FaqLanding'
 
 import Footer from '../../components/Footer'
 import { TypeAnimation } from 'react-type-animation'
-import Socials from '../../chunks/Socials'
+// import Socials from '../../chunks/Socials'
 import { createClient } from 'contentful'
 
 const Faq = () => {
@@ -31,7 +31,7 @@ const Faq = () => {
   }, [])
   return (
     <div>
-      <Socials />
+    
       <Navbar />
       <FaqLanding />
       {
