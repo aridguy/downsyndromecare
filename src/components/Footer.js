@@ -85,6 +85,7 @@ const Footer = () => {
             <ul className='d-flex gap-4 list-unstyled'>
               <li>
                 <Link
+                target='_blank'
                   to='https://www.instagram.com/c21downsyndromecarefoundation?igsh=MWYyNDR6aHR0bGlqaQ=='
                   className='text-white text-decoration-none'
                 >
@@ -93,6 +94,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                target='_blank'
                   to='https://www.facebook.com/share/1CKwxp8vAF/?mibextid=wwXIfr'
                   className='text-white text-decoration-none'
                 >
@@ -125,7 +127,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* Important Links */}
-          <div className='col-md-2 col-6 mb-4'>
+          <div className='col-md-2  mb-4'>
             <h5 className='text-uppercase mb-3'>Links</h5>
             <ul className='list-unstyled'>
               <li>
@@ -182,7 +184,7 @@ const Footer = () => {
           {/* Legal */}
 
           {/* Newsletter */}
-          <div className='col-md-3 col-12 mb-4'>
+          <div className='col-md-3  mb-4'>
             <h5 className='text-uppercase mb-3'>Newsletter</h5>
             <div>
               <form onSubmit={handleSubmit}>
@@ -220,10 +222,10 @@ const Footer = () => {
               frequent information about Chromosome 21 Down Syndrome Care.
             </small>
           </div>
-          <div className='col-md-3 col-12 mb-4 '>
+          <div className='col-md-3  mb-4 '>
             <h5 className='text-uppercase mb-3'>Blog</h5>
             <div className='row'>
-               {blog.slice(0, 4).map((item, index) => (
+               {blog.slice(0, 3).map((item, index) => (
                 <div key={item.sys.id || index} className='col-md-6 mt-1'>
                     <img
                     onClick={() => {
@@ -247,7 +249,7 @@ const Footer = () => {
         <div className='container-fluid text-white py-2'>
           <div className='row text-center text-md-start justify-content-center align-items-center'>
             {/* Phone */}
-            <div className='col-6 col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
+            <div className=' col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
               <img
                 src={Tel}
                 alt='phone icon'
@@ -266,7 +268,7 @@ const Footer = () => {
             </div>
 
             {/* Email */}
-            <div className='col-6 col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
+            <div className=' col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
               <img
                 src={Email}
                 alt='email icon'
@@ -285,7 +287,7 @@ const Footer = () => {
             </div>
 
             {/* Time */}
-            <div className='col-6 col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
+            <div className=' col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
               <img
                 src={Time}
                 alt='time icon'
@@ -304,7 +306,7 @@ const Footer = () => {
             </div>
 
             {/* Location */}
-            <div className='col-6 col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
+            <div className='col-md-3 mb-2 d-flex align-items-center justify-content-center justify-content-md-start'>
               <img
                 src={Location}
                 alt='location icon'

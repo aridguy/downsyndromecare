@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import Navbar from '../../components/Navbar'
 import VolunteerLanding from '../../chunks/VolunteerLanding'
 import Footer from '../../components/Footer'
 import Swal from 'sweetalert2'
+import Loader from '../../components/Loader'
 // import Socials from '../../chunks/Socials'
 
 const Volunteer = () => {
@@ -144,9 +145,20 @@ const Volunteer = () => {
     }
   }
 
+   const [delayed, setDelayed] = useState(true)
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDelayed(false)
+        setLoading(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }, [])
+  
+    if (delayed || loading) return <Loader message="" />
+
   return (
     <div>
-     
       <Navbar />
       <VolunteerLanding />
       <section className='mb-5' style={{ marginTop: '40em' }}>

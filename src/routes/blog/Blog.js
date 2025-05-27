@@ -7,6 +7,7 @@ import { createClient } from 'contentful'
 import { useNavigate } from 'react-router-dom'
 import ReactImageGallery from 'react-image-gallery'
 import Footer from '../../components/Footer'
+import Loader from '../../components/Loader'
 
 const Blog = () => {
   const Navigate = useNavigate('/')
@@ -33,6 +34,18 @@ const Blog = () => {
     // API CALL FOR CHANGE THE WORLD ON THE HOME PAGE OF THE APPLICATION
     fetchBlog()
   }, [])
+
+   const [delayed, setDelayed] = useState(true)
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDelayed(false)
+        setLoading(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }, [])
+  
+    if (delayed || loading) return <Loader message="" />
 
   return (
     <div>

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 import { TypeAnimation } from 'react-type-animation'
 // import Socials from '../../chunks/Socials'
 import { createClient } from 'contentful'
+import Loader from '../../components/Loader'
 
 const Faq = () => {
   const [faq, setFaq] = useState([])
@@ -29,6 +30,18 @@ const Faq = () => {
     // API CALLFOR CHANGE THE WORLD ON THE HOME PAGE OF THE APPLICATION
     fetchFaq()
   }, [])
+
+   const [delayed, setDelayed] = useState(true)
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDelayed(false)
+        setLoading(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }, [])
+  
+    if (delayed || loading) return <Loader message="" />
   return (
     <div>
     

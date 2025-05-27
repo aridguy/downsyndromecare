@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiHeart, FiGlobe, FiCreditCard, FiMail, FiUser } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Loader from '../../components/Loader'
 
 const Donation = () => {
   const Navigate = useNavigate()
@@ -74,6 +75,18 @@ const Donation = () => {
     handler.openIframe()
   }
 
+    const [delayed, setDelayed] = useState(true)
+      const [loading, setLoading] = useState(true)
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setDelayed(false)
+          setLoading(false)
+        }, 3500)
+        return () => clearTimeout(timer)
+      }, [])
+    
+      if (delayed || loading) return <Loader message="Making sure your donation is safe and sound..." />
+
   return (
     <div
       className='donation-page min-vh-100 py-5'
@@ -118,7 +131,7 @@ const Donation = () => {
                         <div className='bg-white text-primary rounded-circle p-2 me-3'>
                           <FiGlobe size={20} />
                         </div>
-                        <span>Pay only in naira for now</span>
+                        <span className='text-danger'>Donate in naira for now!</span>
                       </div>
                     </div>
                   </div>

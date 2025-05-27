@@ -8,8 +8,8 @@ const ContactLanding = () => {
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-12 text-white playfair-font'>
-            <h1 className='display-1 fw-bolder playfair-font text-white'>
-              Pro <b className='text-warning'>jects</b>{' '}
+            <h1 className='display-1 fw-bolder playfair-font text-orange'>
+              Projects{' '}
             </h1>
             <TypeAnimation
               sequence={[

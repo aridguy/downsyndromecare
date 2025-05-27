@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import ContactLanding from '../../chunks/ContactLanding'
 import Location from '../../assets/location.png'
@@ -11,6 +11,7 @@ import emailjs from '@emailjs/browser'
 
 // import 'sweetalert2/src/sweetalert2.scss'
 import Swal from 'sweetalert2'
+import Loader from '../../components/Loader'
 // import Socials from '../../chunks/Socials'
 
 const Contact = () => {
@@ -51,6 +52,17 @@ const Contact = () => {
         }
       )
   }
+   const [delayed, setDelayed] = useState(true)
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDelayed(false)
+        setLoading(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }, [])
+  
+    if (delayed || loading) return <Loader message="" />
   return (
     <div>
   

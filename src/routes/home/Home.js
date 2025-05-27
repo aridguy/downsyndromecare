@@ -13,6 +13,8 @@ import Missions from '../../assets/icons/missions.png'
 import Volunteers from '../../assets/icons/volunteers.png'
 import { createClient } from 'contentful'
 import { useNavigate } from 'react-router-dom'
+import Loader from '../../components/Loader'
+// import Translate from '../../components/Translate'
 
 // Inside your component:
 const Home = () => {
@@ -35,7 +37,7 @@ const Home = () => {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2,
+      items: 1,
       slidesToSlide: 1 // optional, default to 1.
     }
   }
@@ -127,6 +129,17 @@ const Home = () => {
   }, [])
 
   // FOR TESTIMONIALS
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (delayed || loading) return <Loader message="" />
 
   return (
     <div className=''>
@@ -288,7 +301,7 @@ const Home = () => {
             </div>
             <div className='row mt-5'>
               <div className='col-1'></div>
-              <div className='col-10'>
+              <div className='col-12 col-md-10'>
                 <div className='row text-center'>
                   {changeContent.map((item, index) => {
                     // Safely access nested properties
@@ -301,12 +314,13 @@ const Home = () => {
                     return (
                       <div
                         className={
-                          index === 2 ? 'col-12 col-md-4' : 'col-6 col-md-4'
+                          index === 2 ? 'col-12 col-md-4' : 'col-md-4'
                         }
                         key={item.sys.id}
                       >
                         {image && (
                           <img
+                          className='mt-4'
                             decoding='async'
                             rel='preload'
                             loading='lazy'

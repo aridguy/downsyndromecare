@@ -4,9 +4,13 @@ import AboutLanding from '../../chunks/AboutLanding'
 import Describe1 from '../../assets/describe1.png'
 import Footer from '../../components/Footer'
 import { createClient } from 'contentful'
+import { Link } from 'react-router-dom'
+import Loader from '../../components/Loader'
+// import { Link, useNavigate } from 'react-router-dom'
 // import Socials from '../../chunks/Socials'
 
 const About = () => {
+  
   const [visionMissionGoal, setVisionMissionGoal] = useState([])
   const [objectives, setObjectives] = useState([])
   useEffect(() => {
@@ -51,9 +55,22 @@ const About = () => {
     fetchObjectives()
     fetchMissionAndVisionStatements()
   }, [])
+
+   const [delayed, setDelayed] = useState(true)
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDelayed(false)
+        setLoading(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }, [])
+  
+    if (delayed || loading) return <Loader message="" />
+      
+  
   return (
     <div>
-      
       <Navbar />
       <AboutLanding />
       {
@@ -70,7 +87,7 @@ const About = () => {
                   with Down syndrome through advocacy, education, and community
                   programs.
                 </p>
-                <button className='btn btn-primary mb-4'>Find Out More</button>
+                <Link to="/contact" className='btn btn-primary mb-4'>Find Out More</Link>
               </div>
               <div className='col-md-6'>
                 <img
@@ -184,9 +201,7 @@ const About = () => {
                   excellence and dedication to our mission has driven us to
                   achieve significant milestones in our journey.
                 </p>
-                <button className='btn btn-primary' style={{ width: '100%' }}>
-                  Be a Volunteer!
-                </button>
+                <Link to="/volunteer" className='btn btn-primary mb-4'>Be a Volunteer</Link>
               </div>
               <div className='col-md-6'>
                 <img
@@ -195,7 +210,7 @@ const About = () => {
                   loading='lazy'
                   src={Describe1}
                   alt='about us'
-                  className='img-fluid'
+                  className='img-fluid mt-4'
                 />
               </div>
             </div>
