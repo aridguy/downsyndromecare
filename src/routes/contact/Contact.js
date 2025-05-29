@@ -8,7 +8,6 @@ import Time from '../../assets/time.png'
 import Maps from '../../chunks/Maps'
 import Footer from '../../components/Footer'
 import emailjs from '@emailjs/browser'
-
 // import 'sweetalert2/src/sweetalert2.scss'
 import Swal from 'sweetalert2'
 import Loader from '../../components/Loader'
@@ -34,13 +33,13 @@ const Contact = () => {
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.style.zIndex = '1000';
-              toast.style.marginTop = '2.7em';
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
+            didOpen: toast => {
+              toast.style.zIndex = '1000'
+              toast.style.marginTop = '2.7em'
+              toast.onmouseenter = Swal.stopTimer
+              toast.onmouseleave = Swal.resumeTimer
             }
-          });
+          })
           Toast.fire({
             icon: 'success',
             title: 'message sent'
@@ -52,20 +51,19 @@ const Contact = () => {
         }
       )
   }
-   const [delayed, setDelayed] = useState(true)
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setDelayed(false)
-        setLoading(false)
-      }, 1500)
-      return () => clearTimeout(timer)
-    }, [])
-  
-    if (delayed || loading) return <Loader message="" />
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (delayed || loading) return <Loader message='' />
   return (
     <div>
-  
       <Navbar />
       <ContactLanding />
       <main>
@@ -78,32 +76,56 @@ const Contact = () => {
           <div className='row'>
             <div className='col-12 col-md-12 text-center'>
               <h4 className='playfair-font fw-bolder'>Our Location</h4>
-              <small>Donec dapibus mauris id odio ornare tempus.</small>
+              <small>Conveniently located with full accessibility.</small>
             </div>
           </div>
         </div>
         <div className='container mt-5 text-center'>
           <div className='row'>
-            <div className='col-md-3'>
-              <img  decoding="async"  rel="preload"  loading="lazy" src={Location} alt='location' />
+            <div className='col-md-3 mt-4'>
+              <img
+                decoding='async'
+                rel='preload'
+                loading='lazy'
+                src={Location}
+                alt='location'
+              />
               <h5 className='fw-bolder playfair-font'>Our Location</h5>
               <small>1234 NW Bobcat Lane, St. </small> <br />
               <small>Robert, MO 65584-5678</small>
             </div>
-            <div className='col-md-3'>
-              <img  decoding="async"  rel="preload"  loading="lazy" src={Email} alt='location' />
+            <div className='col-md-3 mt-4'>
+              <img
+                decoding='async'
+                rel='preload'
+                loading='lazy'
+                src={Email}
+                alt='location'
+              />
               <h5 className='fw-bolder playfair-font'>Our Email</h5>
               <small>contact@c21downsyndromcare.org</small> <br />
               <small>Robert, MO 65584-5678</small>
             </div>
-            <div className='col-md-3'>
-              <img  decoding="async"  rel="preload"  loading="lazy" src={Phone} alt='location' />
+            <div className='col-md-3 mt-4'>
+              <img
+                decoding='async'
+                rel='preload'
+                loading='lazy'
+                src={Phone}
+                alt='location'
+              />
               <h5 className='fw-bolder playfair-font'>Our Lines</h5>
               <small>+44367596005</small> <br />
               <small>+23488574643, +909069464</small>
             </div>
-            <div className='col-md-3'>
-              <img  decoding="async"  rel="preload"  loading="lazy" src={Time} alt='location' />
+            <div className='col-md-3 mt-4'>
+              <img
+                decoding='async'
+                rel='preload'
+                loading='lazy'
+                src={Time}
+                alt='location'
+              />
               <h5 className='fw-bolder playfair-font'>Our Lines</h5>
               <small>Monday - Friday: 9am - 6 pm</small> <br />
               <small>Weekends: 10:30 am - 6pm</small>

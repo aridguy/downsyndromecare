@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import BlogNav from '../../components/BlogNav'
-import BlogImage from '../../assets/blog.png'
+// import BlogImage from '../../assets/blog.png'
 
 // import Socials from '../../chunks/Socials'
 import { createClient } from 'contentful'
@@ -66,7 +66,7 @@ const Blog = () => {
                     <img
                       decoding='async'
                       src={
-                        item.fields.blogImage[0]?.fields?.file?.url || BlogImage
+                        item.fields.blogImage[0]?.fields?.file?.url
                       }
                       alt='Blog'
                       className='img-fluid rounded-3 w-100'

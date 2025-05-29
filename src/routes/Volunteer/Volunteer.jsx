@@ -56,18 +56,6 @@ const Volunteer = () => {
     setSubmitStatus(null)
 
     try {
-      // Convert files to base64 for EmailJS
-      // const toBase64 = file => new Promise((resolve, reject) => {
-      //   const reader = new FileReader();
-      //   reader.readAsDataURL(file);
-      //   reader.onload = () => resolve(reader.result);
-      //   reader.onerror = error => reject(error);
-      // });
-
-      // const passportBase64 = formData.passport ? await toBase64(formData.passport) : null;
-      // const cvBase64 = formData.cv ? await toBase64(formData.cv) : null;
-
-      // Prepare template parameters
       const templateParams = {
         fullName: formData.fullName,
         email: formData.email,

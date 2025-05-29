@@ -15,7 +15,7 @@ const Loader = ({ message = "Loading, please wait..." }) => {
         zIndex: 9999,
       }}
     >
-      <span class="loader"></span>
+      <span className="loader"></span>
       <p style={{ marginTop: '1rem' }}>{message}</p>
     </div>
   );

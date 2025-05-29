@@ -4,7 +4,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 const ContactLanding = () => {
   return (
-    <div className='hero-bg'>
+    <div className='contact-bg'>
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-12 text-white'>

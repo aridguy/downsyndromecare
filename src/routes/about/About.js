@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import AboutLanding from '../../chunks/AboutLanding'
-import Describe1 from '../../assets/describe1.png'
+import Describe2 from '../../assets/describe1.jpg'
+import Describe1 from '../../assets/describe2.jpg'
 import Footer from '../../components/Footer'
 import { createClient } from 'contentful'
 import { Link } from 'react-router-dom'
@@ -91,6 +92,7 @@ const About = () => {
               </div>
               <div className='col-md-6'>
                 <img
+                style={{borderRadius: "10px"}}
                   decoding='async'
                   rel='preload'
                   loading='lazy'
@@ -120,9 +122,10 @@ const About = () => {
               </div>
             </div>
             {visionMissionGoal?.map((visonss, index) => (
-              <div key={index} className='row mt-5'>
+              <div key={visonss.sys.id || index} className='row mt-5'>
                 <div className='col-md-6 text-center'>
                   <img
+                  style={{borderRadius: "10px"}}
                     decoding='async'
                     rel='preload'
                     loading='lazy'
@@ -175,7 +178,7 @@ const About = () => {
             </div>
             <div className='row mt-5 text-white playfair-font'>
               {objectives?.map((obj, index) => (
-                <div className='col-md-3 mt-4'>
+                <div key={obj.sys.id || index} className='col-md-3 mt-4'>
                   <p className='fw-bold'>{obj.fields.objectiveTitle}</p>
                   <i>{obj.fields.objectiveDescription}</i>
                 </div>
@@ -206,9 +209,10 @@ const About = () => {
               <div className='col-md-6'>
                 <img
                   decoding='async'
+                  style={{borderRadius: "10px"}}
                   rel='preload'
                   loading='lazy'
-                  src={Describe1}
+                  src={Describe2}
                   alt='about us'
                   className='img-fluid mt-4'
                 />

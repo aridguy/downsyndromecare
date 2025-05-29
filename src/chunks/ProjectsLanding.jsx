@@ -4,11 +4,11 @@ import { TypeAnimation } from 'react-type-animation'
 
 const ContactLanding = () => {
   return (
-    <div className='hero-bg'>
+    <div className='project-bg'>
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-12 text-white playfair-font'>
-            <h1 className='display-1 fw-bolder playfair-font text-orange'>
+            <h1 className='display-1 fw-bold playfair-font text-white'>
               Projects{' '}
             </h1>
             <TypeAnimation

@@ -6,7 +6,6 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import Marquee from 'react-fast-marquee'
 import CountUp from 'react-countup'
-// import Socials from '../../chunks/Socials'
 import Projects from '../../assets/icons/projects.png'
 import Donation from '../../assets/icons/donation.png'
 import Missions from '../../assets/icons/missions.png'
@@ -41,13 +40,13 @@ const Home = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   }
-  useEffect(() => {
-    const AOS = require('aos')
-    AOS.init({
-      duration: 1000,
-      once: true
-    })
-  }, [])
+  // useEffect(() => {
+  //   const AOS = require('aos')
+  //   AOS.init({
+  //     duration: 1000,
+  //     once: true
+  //   })
+  // }, [])
 
   useEffect(() => {
     // achievement section api call
@@ -143,7 +142,7 @@ const Home = () => {
 
   return (
     <div className=''>
-    
+   
       <Navbar />
       {
         <div className='hero-bg'>
@@ -151,11 +150,10 @@ const Home = () => {
             <div className='row'>
               <div className='col-12 col-md-12 text-center text-white'>
                 <h1
-                  data-aos='fade-up'
-                  data-aos-offset='200'
+                  
                   className='display-1 fw-bolder'
                 >
-                  We <b className='text-primary'>Rise</b> By Lifting Others
+                  We <b className='text-orange'>Rise</b> By Lifting Others
                 </h1>
                 <TypeAnimation
                   sequence={[
@@ -195,7 +193,7 @@ const Home = () => {
         // SECTION 2
         <section
           // data-aos='fade-up'
-          data-aos-offset='300'
+          // data-aos-offset='300'
           style={{ marginTop: '37em' }}
         >
           <div className='container'>
@@ -281,8 +279,8 @@ const Home = () => {
       {
         // section 3 change the world
         <section
-          data-aos='fade-up'
-          data-aos-offset='400'
+          // data-aos='fade-up'
+          // data-aos-offset='400'
           style={{ marginTop: '1px' }}
         >
           <div className='container'>
@@ -344,8 +342,8 @@ const Home = () => {
       {
         // Be The Change You Wish To See In The World
         <section
-          data-aos='fade-up'
-          data-aos-offset='500'
+          // data-aos='fade-up'
+          // data-aos-offset='500'
           className='bg-primary'
           style={{ marginTop: '7em' }}
         >
@@ -397,7 +395,7 @@ const Home = () => {
       }
       {
         // volunteers section
-        <section data-aos='fade-up' data-aos-offset='600'>
+        <section >
           <div className='container mt-5'>
             <div className='row'>
               <div className='col-3'></div>
@@ -439,6 +437,7 @@ const Home = () => {
                       key={volunteer.sys.id || index}
                     >
                       <img
+                      fill="true"
                         decoding='async'
                         src={
                           volunteer.fields?.volunteerImage?.fields?.file?.url
@@ -464,8 +463,8 @@ const Home = () => {
       {
         // section 4 | counter things we have achieve
         <section
-          data-aos='fade-up'
-          data-aos-offset='700'
+          // data-aos='fade-up'
+          // data-aos-offset='700'
           className='container-fluid achievements-bg py-5 text-white'
         >
           <div className='container'>
@@ -475,6 +474,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
+                    fill="true"
                       decoding='async'
                       width='50'
                       src={Projects}
@@ -495,6 +495,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
+                    fill="true"
                       decoding='async'
                       width='50'
                       src={Volunteers}
@@ -516,6 +517,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
+                    fill="true"
                       decoding='async'
                       width='30'
                       src={Missions}
@@ -533,6 +535,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
+                    fill="true"
                       decoding='async'
                       width='30'
                       src={Donation}
@@ -541,11 +544,11 @@ const Home = () => {
                     />
                   </div>
                   <h2 className='display-5 fw-bold mb-2'>
-                    N
+                    
                     <CountUp
                       end={achievement.fields.donations}
                       duration={10}
-                      separator=','
+                      // separator=','
                     />
                     +
                   </h2>
@@ -559,8 +562,8 @@ const Home = () => {
       {
         // TESTIMONIALS
         <section
-          data-aos='fade-up'
-          data-aos-offset='800'
+          // data-aos='fade-up'
+          // data-aos-offset='800'
           className='mt-5 mb-5'
           style={{ MarginTop: '7em' }}
         >

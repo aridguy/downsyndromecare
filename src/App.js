@@ -10,13 +10,14 @@ import Volunteer from './routes/Volunteer/Volunteer';
 import Faq from './routes/faq/Faq';
 import Blog from './routes/blog/Blog';
 import Projects from './routes/projects/Projects'
-import TawkTo from './components/TawkTo';
+// import TawkTo from './components/TawkTo';
 import Donation from './routes/donation/Donation';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 function App() {
   return (
     <main>
-      <TawkTo />
+      
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -28,6 +29,7 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="donation" element={<Donation />} />
           <Route path="projects" element={<Projects />} />
+          <Route path="privacypolicy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

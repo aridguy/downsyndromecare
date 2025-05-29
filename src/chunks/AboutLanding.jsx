@@ -4,12 +4,11 @@ import React from 'react'
 
 const ContactLanding = () => {
   return (
-    <div className='hero-bg'>
+    <div className='hero-bg-about'>
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-12 text-white'>
-            <h1 className='display-1 text-warning fw-bolder'>About Us</h1>
-           
+            <h1 className='display-1 text-white fw-bolder'>About Us</h1>
           </div>
         </div>
       </div>

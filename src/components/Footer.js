@@ -7,7 +7,7 @@ import Email from '../assets/icons/mail.png'
 import { BsInstagram } from 'react-icons/bs'
 import { ImFacebook2 } from 'react-icons/im'
 import { TfiEmail, TfiHeadphone } from 'react-icons/tfi'
-import { SiYoutube } from 'react-icons/si'
+// import { SiYoutube } from 'react-icons/si'
 import { subscribeToNewsletter } from '../services/GlobalFunctions'
 import { createClient } from 'contentful'
 import ReactImageGallery from 'react-image-gallery'
@@ -16,7 +16,6 @@ const Footer = () => {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState({ text: '', type: '' })
-
   const handleSubmit = async e => {
     e.preventDefault()
 
@@ -40,7 +39,6 @@ const Footer = () => {
 
     setIsSubmitting(false)
   }
-
   const Navigate = useNavigate('/')
   const [blog, setBlog] = useState([])
   const [blogDetails, setBlogDetails] = useState(false)
@@ -118,12 +116,7 @@ const Footer = () => {
                   {/* You can also use an icon like <TfiPhone /> */}
                 </a>
               </li>
-              <li>
-                <a href='/' className='text-white text-decoration-none'>
-                  <SiYoutube />{' '}
-                  {/* You can also use an icon like <TfiPhone /> */}
-                </a>
-              </li>
+             
             </ul>
           </div>
           {/* Important Links */}
@@ -234,7 +227,7 @@ const Footer = () => {
                     }} 
                       decoding='async'
                       width='100%'
-                      fill
+                      fill="true"
                       src={item.fields.blogImage[0].fields.file.url}
                       alt='Blog'
                       className='img-fluid blog-image cursor'
