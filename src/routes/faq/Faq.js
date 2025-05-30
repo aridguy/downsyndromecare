@@ -37,7 +37,7 @@ const Faq = () => {
       const timer = setTimeout(() => {
         setDelayed(false)
         setLoading(false)
-      }, 1500)
+      }, 1000)
       return () => clearTimeout(timer)
     }, [])
   
