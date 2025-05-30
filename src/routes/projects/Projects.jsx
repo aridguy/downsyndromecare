@@ -211,9 +211,9 @@ const Projects = () => {
                         </b>
                       </p>
                       <button onClick={() => {
-                        Navigate("/volunteer")
+                        Navigate("/donation")
                       }} className='btn btn-primary mb-4'>
-                        Volunteer
+                        Donate
                       </button>
                     </div>
                     <div className='col-md-2'></div>

@@ -41,7 +41,7 @@ const Navbar = () => {
         width: '100%',
         transition: 'background-color 0.3s ease, backdrop-filter 0.3s ease',
         backgroundColor:
-          scrolled || isExpanded ? 'rgba(0, 0, 0, 0.9)' : 'transparent',
+          scrolled || isExpanded ? '#07263b' : 'transparent',
         backdropFilter: scrolled || isExpanded ? 'blur(8px)' : 'none'
       }}
       className='container-fluid navbar fixed navbar-expand-lg navbar-dark'
