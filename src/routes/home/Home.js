@@ -214,7 +214,7 @@ const Home = () => {
                       </small>
                     </div>
                     <div className='col-12 col-md-4 text-center'>
-                      <h1>🧑</h1>
+                      <h1>🩺</h1>
                       <h4 className='playfair-font fw-bolder'>
                         Health & Therapy
                       </h4>
@@ -259,7 +259,7 @@ const Home = () => {
                       </small>
                     </div>
                     <div className='col-12 col-md-4 text-center'>
-                      <h1>💬</h1>
+                      <h1>📢</h1>
                       <h4 className='playfair-font fw-bolder'>
                         Advocacy & Awareness
                       </h4>

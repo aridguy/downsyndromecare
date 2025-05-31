@@ -13,6 +13,7 @@ import Projects from './routes/projects/Projects'
 // import TawkTo from './components/TawkTo';
 import Donation from './routes/donation/Donation';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsAndConditions from './components/TermsAndConditions';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="donation" element={<Donation />} />
           <Route path="projects" element={<Projects />} />
           <Route path="privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="termsandcondition" element={<TermsAndConditions/>} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

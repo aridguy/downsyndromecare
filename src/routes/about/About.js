@@ -7,11 +7,30 @@ import Footer from '../../components/Footer'
 import { createClient } from 'contentful'
 import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader'
+import Carousel from 'react-multi-carousel'
 // import { Link, useNavigate } from 'react-router-dom'
 // import Socials from '../../chunks/Socials'
 
 const About = () => {
-  
+  const [team, setTeam] = useState([])
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  }
   const [visionMissionGoal, setVisionMissionGoal] = useState([])
   const [objectives, setObjectives] = useState([])
   useEffect(() => {
@@ -53,23 +72,41 @@ const About = () => {
         )
       }
     }
+
+    // THIS CALL IS FOR VOLUNTEERS
+    const clientVolunteer = createClient({
+      space: process.env.REACT_APP_GENERAL_SPACE_ID,
+      accessToken: process.env.REACT_APP_VOLUNTEER_ACCESS_TOKEN
+    })
+    const fetchVolunteers = async () => {
+      try {
+        const response = await clientVolunteer.getEntries({
+          content_type: 'team'
+        })
+        setTeam(response.items)
+        // console.log('Volunteer fetched:', response.items)
+      } catch (error) {
+        console.error('Error fetching volunteers:', error)
+      }
+    }
+
+    fetchVolunteers()
     fetchObjectives()
     fetchMissionAndVisionStatements()
   }, [])
 
-   const [delayed, setDelayed] = useState(true)
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setDelayed(false)
-        setLoading(false)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }, [])
-  
-    if (delayed || loading) return <Loader message="" />
-      
-  
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (delayed || loading) return <Loader message='' />
+
   return (
     <div>
       <Navbar />
@@ -88,11 +125,13 @@ const About = () => {
                   with Down syndrome through advocacy, education, and community
                   programs.
                 </p>
-                <Link to="/contact" className='btn btn-primary mb-4'>Find Out More</Link>
+                <Link to='/contact' className='btn btn-primary mb-4'>
+                  Find Out More
+                </Link>
               </div>
               <div className='col-md-6'>
                 <img
-                style={{borderRadius: "10px"}}
+                  style={{ borderRadius: '10px' }}
                   decoding='async'
                   rel='preload'
                   loading='lazy'
@@ -105,6 +144,7 @@ const About = () => {
           </div>
         </section>
       }
+
       {
         // section 1 lets colaborate
         <section className='sect-1' style={{ marginTop: '8em' }}>
@@ -125,7 +165,7 @@ const About = () => {
               <div key={visonss.sys.id || index} className='row mt-5'>
                 <div className='col-md-6 text-center'>
                   <img
-                  style={{borderRadius: "10px"}}
+                    style={{ borderRadius: '10px' }}
                     decoding='async'
                     rel='preload'
                     loading='lazy'
@@ -165,6 +205,7 @@ const About = () => {
           </div>
         </section>
       }
+
       {
         // section 1 lets colaborate
         <section className='sect-1' style={{ marginTop: '8em' }}>
@@ -188,6 +229,69 @@ const About = () => {
         </section>
       }
       {
+        // volunteers section
+        <section>
+          <div className='container mt-5' style={{marginBottom: "6em"}}>
+            <div className='row'>
+              <div className='col-3'></div>
+              <div className='col-md-6 text-center'>
+                <h1 className='playfair-font fw-bolder text-center text-warning'>
+                  Meet the Heart of Our Mission
+                </h1>
+                <small className='text-center'>
+                  Dedicated volunteers and team members driving meaningful
+                  change across the world
+                </small>
+              </div>
+
+              <div className='col-3'></div>
+            </div>
+            <div className='row mt-5 mb-5'>
+              <div className='col-md-1'></div>
+              <div className='col-md-10'>
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  showDots={false}
+                  responsive={responsive}
+                  infinite={true}
+                  autoPlay={true}
+                  autoPlaySpeed={3000} // Scroll every 3 seconds
+                  keyBoardControl={true}
+                  customTransition='all 0.5s ease-in-out'
+                  transitionDuration={500} // Smooth transition
+                  containerClass='carousel-container'
+                  removeArrowOnDeviceType={['tablet']}
+                  dotListClass='custom-dot-list-style'
+                  itemClass='carousel-item-padding-40-px'
+                  ssr={true} // Server-side render
+                  // showDots={true}
+                >
+                  {team?.map((team, index) => (
+                    <div className='text-center' key={team.sys.id || index}>
+                      <img
+                        fill='true'
+                        decoding='async'
+                        src={team.fields?.teamImage?.fields?.file?.url}
+                        alt='change the world'
+                        style={{ width: '90%', height: 'auto' }}
+                      />
+                      <div className='mt-4'>
+                        <h4 className='playfair-font'>
+                          {team.fields.teamName}
+                        </h4>
+                        <span>{team.fields.teamName}</span>
+                      </div>
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+              <div className='col-md-1'></div>
+            </div>
+          </div>
+        </section>
+      }
+      {
         // section 1 lets colaborate
         <section className='sect-1 mb-5' style={{ marginTop: '3em' }}>
           <div className='container'>
@@ -204,12 +308,14 @@ const About = () => {
                   excellence and dedication to our mission has driven us to
                   achieve significant milestones in our journey.
                 </p>
-                <Link to="/volunteer" className='btn btn-primary mb-4'>Be a Volunteer</Link>
+                <Link to='/volunteer' className='btn btn-primary mb-4'>
+                  Be a Volunteer
+                </Link>
               </div>
               <div className='col-md-6'>
                 <img
                   decoding='async'
-                  style={{borderRadius: "10px"}}
+                  style={{ borderRadius: '10px' }}
                   rel='preload'
                   loading='lazy'
                   src={Describe2}

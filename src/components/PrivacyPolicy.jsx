@@ -7,112 +7,202 @@ const PrivacyPolicy = () => {
   const styles = {
     container: {
       maxWidth: '800px',
-      margin: '0 auto',
+      margin: '40px auto',
       padding: '20px',
-      fontFamily: 'Arial, sans-serif',
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       lineHeight: '1.6',
-      color: '#333'
-    },
-    header: {
-      textAlign: 'center',
-      padding: '20px 0',
-      backgroundColor: '#f0f8ff',
-      borderRadius: '10px',
-      marginBottom: '30px'
-    },
-    title: {
-      color: '#1976d2',
-      margin: '0'
-    },
-    subtitle: {
-      color: '#555',
-      margin: '10px 0 0'
-    },
-    section: {
-      marginBottom: '30px'
-    },
-    sectionTitle: {
-      color: '#1976d2',
-      borderBottom: '2px solid #eee',
-      paddingBottom: '10px',
-      marginBottom: '15px'
+      color: '#333',
+      backgroundColor: '#fff',
+      borderRadius: '12px',
+      boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
     },
     backButton: {
       display: 'inline-flex',
       alignItems: 'center',
       color: '#1976d2',
-      textDecoration: 'none',
-      marginBottom: '20px',
-      cursor: 'pointer',
-      border: 'none',
       background: 'none',
-      fontSize: '16px'
+      border: 'none',
+      cursor: 'pointer',
+      fontSize: '16px',
+      marginBottom: '25px',
+      fontWeight: '600',
+      textDecoration: 'underline',
+      padding: 0,
+    },
+    backIcon: {
+      marginRight: '8px',
+      stroke: '#1976d2',
+    },
+    header: {
+      textAlign: 'center',
+      paddingBottom: '25px',
+      borderBottom: '2px solid #e0e0e0',
+      marginBottom: '30px',
+    },
+    title: {
+      color: '#1976d2',
+      fontSize: '2.2rem',
+      margin: 0,
+      fontWeight: '700',
+    },
+    subtitle: {
+      color: '#555',
+      fontSize: '1rem',
+      marginTop: '8px',
+      fontStyle: 'italic',
+    },
+    section: {
+      marginBottom: '30px',
+    },
+    sectionTitle: {
+      color: '#1976d2',
+      fontSize: '1.25rem',
+      fontWeight: '600',
+      borderBottom: '2px solid #e0e0e0',
+      paddingBottom: '8px',
+      marginBottom: '15px',
+    },
+    paragraph: {
+      marginBottom: '12px',
+    },
+    list: {
+      marginLeft: '20px',
+      marginBottom: '12px',
+      color: '#444',
     },
     footer: {
       textAlign: 'center',
       marginTop: '40px',
       padding: '20px',
-      backgroundColor: '#f9f9f9',
-      borderRadius: '10px'
+      backgroundColor: '#f5f7fa',
+      borderRadius: '12px',
+      fontSize: '0.95rem',
+      color: '#666',
+      fontStyle: 'italic',
     },
     contactButton: {
-      backgroundColor: '#1976d2',
-      color: 'white',
-      border: 'none',
-      padding: '10px 20px',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      textDecoration: 'none',
       display: 'inline-block',
-      marginTop: '10px'
-    }
+      marginTop: '15px',
+      padding: '10px 24px',
+      backgroundColor: '#1976d2',
+      color: '#fff',
+      borderRadius: '6px',
+      textDecoration: 'none',
+      fontWeight: '600',
+      cursor: 'pointer',
+      transition: 'background-color 0.3s ease',
+    },
   };
 
   return (
     <div style={styles.container}>
       <button style={styles.backButton} onClick={() => navigate('/')}>
-        <svg 
-          width="20" 
-          height="20" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="#1976d2" 
-          strokeWidth="2" 
-          style={{ marginRight: '8px' }}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={styles.backIcon}
         >
-          <path d="M19 12H5M12 19l-7-7 7-7" />
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
         </svg>
         Back to Home
       </button>
 
-      <div style={styles.header}>
+      <header style={styles.header}>
         <h1 style={styles.title}>Privacy Policy</h1>
+        <p style={styles.subtitle}>Effective Date: May 31, 2025</p>
         <p style={styles.subtitle}>Your trust is important to us. Learn how we protect your data.</p>
-      </div>
+      </header>
 
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>1. Information We Collect</h2>
-        <p>We may collect personal information such as your name, email address, and contact details when you:</p>
-        <ul>
-          <li>Register for events or programs</li>
-          <li>Make a donation</li>
-          <li>Subscribe to our newsletter</li>
-          <li>Contact us for support</li>
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>1. Who We Are</h2>
+        <p style={styles.paragraph}>
+          C21Down Syndrome Care is a registered non-governmental organization based in Nigeria.
+          For any privacy-related concerns, contact us at:
+        </p>
+        <ul style={styles.list}>
+          <li>📩 Email: <em>your@email.com</em></li>
+          <li>📞 Phone: <em>+234 08035881312</em></li>
         </ul>
-      </div>
+      </section>
 
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>2. How We Use Your Information</h2>
-        <p>Your information helps us provide better services and support to the Down syndrome community.</p>
-      </div>
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>2. What We Collect</h2>
+        <p style={styles.paragraph}>
+          We collect your name, email, phone number, address, and location when you fill out forms on our website
+          (e.g., newsletter or volunteer registration). We do not collect passwords, financial information, or sensitive biometric data.
+        </p>
+      </section>
 
-      {/* Add more sections following the same pattern */}
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>3. Why We Collect It</h2>
+        <p style={styles.paragraph}>
+          We use your data to create volunteer accounts, onboard you, and conduct background checks as part of our volunteer process.
+        </p>
+      </section>
 
-      <div style={styles.footer}>
-        <h3>Need help or have questions about our privacy policy?</h3>
-        <Link style={styles.contactButton} to="/contact">Contact Us</Link>
-        
-      </div>
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>4. Third-Party Services</h2>
+        <p style={styles.paragraph}>
+          We use Google Forms to collect data and Google Analytics to analyze website traffic.
+        </p>
+      </section>
+
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>5. Data Storage & Retention</h2>
+        <p style={styles.paragraph}>
+          Data is stored securely in Google Cloud and retained only during your engagement with us. It is deleted after your involvement ends.
+        </p>
+      </section>
+
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>6. Your Rights</h2>
+        <p style={styles.paragraph}>
+          You can request access to or deletion of your data anytime by contacting us.
+        </p>
+      </section>
+
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>7. Security</h2>
+        <p style={styles.paragraph}>
+          We use encryption, restricted access, and secure systems to protect your data.
+        </p>
+      </section>
+
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>8. Cookies</h2>
+        <p style={styles.paragraph}>
+          Our website uses essential cookies and Google Analytics. You can disable cookies in your browser settings.
+        </p>
+      </section>
+
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>9. Children’s Privacy</h2>
+        <p style={styles.paragraph}>
+          Our services are intended for adults. We do not knowingly collect data from children.
+        </p>
+      </section>
+
+      <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>10. Policy Updates</h2>
+        <p style={styles.paragraph}>
+          We may update this policy. Continued use of our site means you accept any changes.
+        </p>
+      </section>
+
+      <footer style={styles.footer}>
+        <p>Thank you for trusting <strong>C21Down Syndrome Care</strong> 💙</p>
+        <Link to="/contact" style={styles.contactButton}>
+          Contact Us
+        </Link>
+      </footer>
     </div>
   );
 };

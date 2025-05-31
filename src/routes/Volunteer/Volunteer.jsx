@@ -5,10 +5,11 @@ import VolunteerLanding from '../../chunks/VolunteerLanding'
 import Footer from '../../components/Footer'
 import Swal from 'sweetalert2'
 import Loader from '../../components/Loader'
+import Logo from '../../assets/logo/logos.png'
 // import Socials from '../../chunks/Socials'
 
 const Volunteer = () => {
-  const [image, setImage] = useState(null)
+  // const [image, setImage] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
 
@@ -30,18 +31,6 @@ const Volunteer = () => {
     newsletterConsent: false
   })
 
-  const handleImageChange = e => {
-    const file = e.target.files[0]
-    if (file) {
-      setImage(URL.createObjectURL(file))
-      setFormData({ ...formData, passport: file })
-    }
-  }
-
-  const handleFileChange = e => {
-    setFormData({ ...formData, cv: e.target.files[0] })
-  }
-
   const handleChange = e => {
     const { name, value, type, checked } = e.target
     setFormData({
@@ -54,7 +43,6 @@ const Volunteer = () => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
-
     try {
       const templateParams = {
         fullName: formData.fullName,
@@ -121,7 +109,7 @@ const Volunteer = () => {
         dataAccuracy: false,
         newsletterConsent: false
       })
-      setImage(null)
+      // setImage(null)
     } catch (error) {
       console.error('Error sending email:', error)
       setSubmitStatus({
@@ -133,18 +121,17 @@ const Volunteer = () => {
     }
   }
 
-   const [delayed, setDelayed] = useState(true)
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setDelayed(false)
-        setLoading(false)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }, [])
-  
-    if (delayed || loading) return <Loader message="" />
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [])
 
+  if (delayed || loading) return <Loader message='' />
   return (
     <div>
       <Navbar />
@@ -185,77 +172,7 @@ const Volunteer = () => {
                         marginBottom: '20px'
                       }}
                     >
-                      <div className='col-md-6 d-flex align-items-center'>
-                        <div style={{ width: '100%' }}>
-                          <label
-                            style={{
-                              display: 'block',
-                              position: 'relative',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            <input
-                              required
-                              type='file'
-                              name='passport'
-                              onChange={handleImageChange}
-                              accept='image/*'
-                              style={{
-                                position: 'absolute',
-                                width: '1px',
-                                height: '1px',
-                                padding: 0,
-                                margin: '-1px',
-                                overflow: 'hidden',
-                                clip: 'rect(0,0,0,0)',
-                                border: 0
-                              }}
-                            />
-                            <span
-                              style={{
-                                display: 'inline-block',
-                                padding: '8px 16px',
-                                backgroundColor: '#ff9900',
-                                color: 'white',
-                                borderRadius: '4px',
-                                fontSize: '14px',
-                                transition: 'background-color 0.3s'
-                              }}
-                            >
-                              Choose File
-                            </span>
-                            <sup
-                              style={{
-                                display: 'block',
-                                marginTop: '8px',
-                                fontSize: '12px',
-                                color: '#6c757d'
-                              }}
-                            >
-                              Upload Passport Photograph
-                            </sup>
-                            <sup>
-                              Note: a physical copy might be requested later
-                            </sup>
-                          </label>
-                        </div>
-                      </div>
-                      <div className='col-md-6 d-flex align-items-center justify-content-end'>
-                        {image && (
-                          <img
-                            className='profilePics'
-                            src={image}
-                            alt='Preview'
-                            style={{
-                              width: '100px',
-                              height: '100px',
-                              borderRadius: '100px',
-                              objectFit: 'cover',
-                              border: '1px solid #dee2e6'
-                            }}
-                          />
-                        )}
-                      </div>
+                      {<img src={Logo} alt='logo' style={{width: "20%"}} />}
                     </div>
                   </div>
 
@@ -428,43 +345,6 @@ const Volunteer = () => {
                       style={{ minHeight: '13em' }}
                     ></textarea>
                   </div>
-
-                  <div className='mt-3'>
-                    <label
-                      htmlFor='cv'
-                      style={{
-                        display: 'inline-block',
-                        padding: '8px 16px',
-                        backgroundColor: '#f3a005',
-                        color: 'white',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        transition: 'background-color 0.3s',
-                        fontSize: '14px',
-                        marginBottom: '4px'
-                      }}
-                    >
-                      Choose File
-                      <input
-                        id='cv'
-                        name='cv'
-                        required
-                        type='file'
-                        accept='.pdf,.doc,.docx'
-                        onChange={handleFileChange}
-                        style={{ display: 'none' }}
-                      />
-                    </label>
-                    <br />
-                    <sup
-                      className='mt-1 text-muted'
-                      style={{ fontSize: '12px' }}
-                    >
-                      Upload your CV (PDF, DOC, DOCX)
-                    </sup>
-                    <sup>Note: a physical copy might be requested later</sup>
-                  </div>
-
                   {/* Consent Checkboxes */}
                   <div className='mb-3 form-check'>
                     <input

@@ -10,7 +10,7 @@ import Loader from '../../components/Loader'
 // import Socials from '../../chunks/Socials'
 
 const Projects = () => {
-  const Navigate = useNavigate("/")
+  const Navigate = useNavigate('/')
   const [projects, setProjects] = useState([])
   const [projectDetails, setProjectDetails] = useState(false)
   const [selectedProject, setSelectedProject] = useState([])
@@ -37,97 +37,131 @@ const Projects = () => {
     fetchProject()
   }, [])
 
-   const [delayed, setDelayed] = useState(true)
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setDelayed(false)
-        setLoading(false)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }, [])
-  
-    if (delayed || loading) return <Loader message="" />
- 
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (delayed || loading) return <Loader message='' />
 
   return (
     <div>
-   
       <Navbar />
       <ProjectLanding />
-      {
-        // PROJECT SECTION OF THE APPLICATION
-        <section className='mb-5' style={{ marginTop: '37em' }}>
-          <div className='container'>
-            <div className='row'>
-              {projects.map((item, index) => (
-                <div key={item.sys.id} className='col-md-4 mt-5 text-center'>
+
+      <section className='mb-5' style={{ marginTop: '37em' }}>
+        <div className='container'>
+          <div className='row'>
+            {projects.map((item, index) => {
+              const title = item.fields.projectTitle || ''
+              const description = item.fields.projectDescription || ''
+              const status = item.fields.projectStatus || 'Completed' // default status
+              const projectDate = new Date(item.fields.projectDate)
+
+              return (
+                <div
+                  key={item.sys.id}
+                  className='col-md-4 mt-5 d-flex justify-content-center'
+                >
                   <div
+                    className='card shadow-sm border-0'
                     style={{
-                      position: 'relative', // Needed for proper image containment
                       width: '100%',
-                      aspectRatio: '16/9', // Set your desired aspect ratio (e.g., 16:9, 4:3, 1:1)
-                      overflow: 'hidden', // Ensures image doesn't overflow container
-                      borderRadius: '8px', // Optional styling
-                      backgroundColor: '#f5f5f5' // Shows while image loads
+                      maxWidth: '360px',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      transition: 'transform 0.3s'
                     }}
                   >
-                    <img
+                    <div
                       style={{
                         position: 'relative',
                         width: '100%',
-                        // height: '100%',
-                        objectFit: 'cover', // This makes the image fill the container
-                        // objectPosition: 'center' // Centers the image
+                        aspectRatio: '16/9',
+                        overflow: 'hidden'
                       }}
-                      decoding='async'
-                      className='mb-4'
-                      src={item.fields?.projectImage[0]?.fields?.file?.url}
-                      alt='project-img'
-                    />
+                    >
+                      <img
+                        src={item.fields?.projectImage[0]?.fields?.file?.url}
+                        alt='project-img'
+                        decoding='async'
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                      <span
+                        style={{
+                          position: 'absolute',
+                          top: '10px',
+                          right: '10px',
+                          backgroundColor:
+                            status === 'Completed' ? '#4caf50' : '#f59e0b',
+                          color: '#fff',
+                          padding: '4px 10px',
+                          borderRadius: '10px',
+                          fontSize: '0.75rem',
+                          fontWeight: 'bold',
+                          // textTransform: 'uppercase'
+                        }}
+                      >
+                        {status}
+                      </span>
+                    </div>
+
+                    <div className='card-body text-center'>
+                      <h5 className='card-title fw-bold'>
+                        {title.length > 30
+                          ? `${title.substring(0, 30)}...`
+                          : title}
+                      </h5>
+                      <p className='card-text text-muted playfair-font'>
+                        {description.length > 60
+                          ? `${description.substring(0, 60)}...`
+                          : description}
+                      </p>
+                      <div className='mb-3'>
+                        <small className='text-secondary'>
+                          {projectDate.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          })}
+                          {' • '}
+                          {new Intl.RelativeTimeFormat('en', {
+                            numeric: 'auto'
+                          }).format(
+                            Math.floor(
+                              (new Date() - projectDate) / (1000 * 60 * 60 * 24)
+                            ),
+                            'day'
+                          )}
+                        </small>
+                      </div>
+                      <button
+                        className='btn btn-primary btn-sm w-100'
+                        onClick={() => {
+                          setSelectedProject(item)
+                          setProjectDetails(true)
+                        }}
+                      >
+                        See Details
+                      </button>
+                    </div>
                   </div>
-                  <h4> {item.fields.projectTitle.substring(0, 25)}...</h4>
-                  <span className='playfair-font'>
-                    {item.fields.projectDescription.substring(0, 40)}...
-                  </span>{' '}
-                  <br />
-                  <span>
-                    {new Date(item.fields.projectDate).toLocaleDateString(
-                      'en-US',
-                      {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      }
-                    )}
-                  </span>
-                  {', '}
-                  <span>
-                    {new Intl.RelativeTimeFormat('en').format(
-                      Math.floor(
-                        (new Date() - new Date(item.fields.projectDate)) /
-                          (1000 * 60 * 60 * 24)
-                      ),
-                      'day'
-                    )}
-                  </span>
-                  <br />
-                  <button
-                    className='btn btn-primary btn-block btn-lg'
-                    onClick={() => {
-                      setSelectedProject(item)
-                      setProjectDetails(true)
-                      // console.log("Selected project" + item)
-                    }}
-                  >
-                    See details
-                  </button>
                 </div>
-              ))}
-            </div>
+              )
+            })}
           </div>
-        </section>
-      }
+        </div>
+      </section>
+
       {
         // MORE INFO OF A PROJECT
         projectDetails && (
@@ -185,11 +219,13 @@ const Projects = () => {
                     </div>
 
                     <div className='col-md-8 mt-4 text-center'>
-                      <h1 className='platfair-font fw-bold text-center'>
+                      <h1 className='platfair-font fw-bold text-center text-primary'>
                         Project Title: {selectedProject.fields.projectTitle}
                       </h1>
                       <hr />
                       <ReactImageGallery
+                        showPlayButton={false}
+                        loading='lazy'
                         items={selectedProject.fields.projectImage.map(img => ({
                           original: img.fields.file.url,
                           thumbnail: img.fields.file.url
@@ -197,6 +233,19 @@ const Projects = () => {
                       />
                       <p className='text-center'>
                         {selectedProject.fields.projectDescription}
+                      </p>
+                      <p className='play-project-video'>
+                        <a
+                          target='_blank'
+                          id='play-video'
+                          rel='noReferrer'
+                          class='video-play-button'
+                          href={selectedProject.fields.projectVideoLink}
+                          data-toggle='modal'
+                          data-target='#savoybeachhotel'
+                        >
+                          <span></span>
+                        </a>
                       </p>
                       <p>
                         Date Posted:{' '}
@@ -210,9 +259,12 @@ const Projects = () => {
                           })}
                         </b>
                       </p>
-                      <button onClick={() => {
-                        Navigate("/donation")
-                      }} className='btn btn-primary mb-4'>
+                      <button
+                        onClick={() => {
+                          Navigate('/donation')
+                        }}
+                        className='btn btn-primary mb-4'
+                      >
                         Donate
                       </button>
                     </div>

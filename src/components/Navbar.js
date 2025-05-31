@@ -31,6 +31,16 @@ const Navbar = () => {
     }
   }
 
+  // Handle navigation click
+  const handleNavClick = (e, path) => {
+    // If already on the same page, scroll to top
+    if (window.location.pathname === path) {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+    setIsExpanded(false)
+  }
+
   return (
     <nav
       style={{
@@ -84,14 +94,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/'
-                onClick={e => {
-                  // If already on home page, scroll to top
-                  if (window.location.pathname === '/') {
-                    e.preventDefault()
-                    window.scrollTo({ top: 0, behavior: 'smooth' })
-                  }
-                  setIsExpanded(false)
-                }}
+                onClick={(e) => handleNavClick(e, '/')}
               >
                 Home
               </Link>
@@ -100,7 +103,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/about'
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => handleNavClick(e, '/about')}
               >
                 About
               </Link>
@@ -109,7 +112,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/contact'
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => handleNavClick(e, '/contact')}
               >
                 Contact
               </Link>
@@ -118,7 +121,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/volunteer'
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => handleNavClick(e, '/volunteer')}
               >
                 Volunteer
               </Link>
@@ -127,7 +130,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/projects'
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => handleNavClick(e, '/projects')}
               >
                 Projects
               </Link>
@@ -136,7 +139,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/blog'
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => handleNavClick(e, '/blog')}
               >
                 Blog
               </Link>
@@ -145,7 +148,7 @@ const Navbar = () => {
               <Link
                 className='nav-link'
                 to='/faq'
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => handleNavClick(e, '/faq')}
               >
                 FAQ
               </Link>

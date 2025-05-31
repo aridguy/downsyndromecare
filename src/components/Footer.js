@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Tel from '../assets/icons/tel.png'
 import Time from '../assets/icons/time.png'
 import Location from '../assets/icons/location.png'
@@ -7,10 +7,7 @@ import Email from '../assets/icons/mail.png'
 import { BsInstagram } from 'react-icons/bs'
 import { ImFacebook2 } from 'react-icons/im'
 import { TfiEmail, TfiHeadphone } from 'react-icons/tfi'
-// import { SiYoutube } from 'react-icons/si'
 import { subscribeToNewsletter } from '../services/GlobalFunctions'
-import { createClient } from 'contentful'
-import ReactImageGallery from 'react-image-gallery'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
@@ -39,30 +36,6 @@ const Footer = () => {
 
     setIsSubmitting(false)
   }
-  const Navigate = useNavigate('/')
-  const [blog, setBlog] = useState([])
-  const [blogDetails, setBlogDetails] = useState(false)
-  const [selectedBlog, setSelectedBlog] = useState([])
-  useEffect(() => {
-    // achievement section api call
-    const clientBlog = createClient({
-      space: process.env.REACT_APP_GENERAL_SPACE_ID,
-      accessToken: process.env.REACT_APP_ACHIEVEMENTS_ACCESS_TOKEN
-    })
-    const fetchBlog = async () => {
-      try {
-        const response = await clientBlog.getEntries({
-          content_type: 'blog'
-        })
-        setBlog(response.items)
-        // console.log('blog fetched:', response.items)
-      } catch (error) {
-        console.error('Error fetching projects:', error)
-      }
-    }
-    // API CALL FOR CHANGE THE WORLD ON THE HOME PAGE OF THE APPLICATION
-    fetchBlog()
-  }, [])
 
   return (
     <footer
@@ -83,7 +56,7 @@ const Footer = () => {
             <ul className='d-flex gap-4 list-unstyled'>
               <li>
                 <Link
-                target='_blank'
+                  target='_blank'
                   to='https://www.instagram.com/c21downsyndromecarefoundation?igsh=MWYyNDR6aHR0bGlqaQ=='
                   className='text-white text-decoration-none'
                 >
@@ -92,7 +65,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                target='_blank'
+                  target='_blank'
                   to='https://www.facebook.com/share/1CKwxp8vAF/?mibextid=wwXIfr'
                   className='text-white text-decoration-none'
                 >
@@ -116,12 +89,11 @@ const Footer = () => {
                   {/* You can also use an icon like <TfiPhone /> */}
                 </a>
               </li>
-             
             </ul>
           </div>
           {/* Important Links */}
-          <div className='col-md-2  mb-4'>
-            <h5 className='text-uppercase mb-3'>Links</h5>
+          <div className='col-md-3  mb-4'>
+            <h5 className='text-uppercase mb-3'>important pages</h5>
             <ul className='list-unstyled'>
               <li>
                 <Link to='/' className='text-white text-decoration-none'>
@@ -138,14 +110,7 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link
-                  to='/volunteer'
-                  className='text-white text-decoration-none'
-                >
-                  Volunteer
-                </Link>
-              </li>
+              <li></li>
               <li>
                 <Link
                   to='/projects'
@@ -159,11 +124,7 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
-              <li>
-                <Link to='/faq' className='text-white text-decoration-none'>
-                  FAQ
-                </Link>
-              </li>
+              <li></li>
               <li>
                 <Link
                   to='/donation'
@@ -175,9 +136,23 @@ const Footer = () => {
             </ul>
           </div>
           {/* Legal */}
-
+          <div className='col-md-2  mb-4 '>
+            <h5 className='text-uppercase mb-3'>legals</h5>
+            <ul className='list-unstyled'>
+              <li>
+                <Link to='/privacypolicy' className='text-white text-decoration-none'>
+                  Privacy / Policy
+                </Link>
+              </li>
+              <li>
+                <Link to='/termsandcondition' className='text-white text-decoration-none'>
+                  Terms & Conditions
+                </Link>
+              </li>
+            </ul>
+          </div>
           {/* Newsletter */}
-          <div className='col-md-3  mb-4'>
+          <div className='col-md-3 mb-4'>
             <h5 className='text-uppercase mb-3'>Newsletter</h5>
             <div>
               <form onSubmit={handleSubmit}>
@@ -201,11 +176,7 @@ const Footer = () => {
               </form>
 
               {message.text && (
-                <div
-                  className={`mt-2 alert alert-${
-                    message.type === 'success' ? 'success' : 'danger'
-                  }`}
-                >
+                <div className={`mt-2 alert alert-${message.type}`}>
                   {message.text}
                 </div>
               )}
@@ -214,28 +185,6 @@ const Footer = () => {
               Subscribing to our newsletter indicates that you want to get
               frequent information about Chromosome 21 Down Syndrome Care.
             </small>
-          </div>
-          <div className='col-md-3  mb-4 '>
-            <h5 className='text-uppercase mb-3'>Blog</h5>
-            <div className='row'>
-               {blog.slice(0, 3).map((item, index) => (
-                <div key={item.sys.id || index} className='col-md-6 mt-1'>
-                    <img
-                    onClick={() => {
-                      setSelectedBlog(item)
-                      setBlogDetails(true)
-                    }} 
-                      decoding='async'
-                      width='100%'
-                      fill="true"
-                      src={item.fields.blogImage[0].fields.file.url}
-                      alt='Blog'
-                      className='img-fluid blog-image cursor'
-                    />
-                </div>
-               ))}
-              
-            </div>
           </div>
         </div>
         {/* Contact Info */}
@@ -317,28 +266,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Footer Bottom */}
-        <div className='mt-4 border-top pt-3'>
-          <div className='row justify-content-center text-center'>
-            <div className='col-md-2'>
-              {' '}
-              <p className='cursor'>Legal</p>
-            </div>
-            <div className='col-md-2'>
-              <p className='cursor'>Privacy/Policy</p>
-            </div>
-            <div className='col-md-2'>
-              {' '}
-              <p className='cursor'>Cookies Policy</p>
-            </div>
-            <div className='col-md-3'>
-              <p className='cursor'>Volunteer Policy/Privacy</p>
-            </div>
-            <div className='col-md-3'>
-              <p className='cursor'>Modern Slavery Statement</p>
-            </div>
-          </div>
-          <small className='text-grey'></small>
-        </div>
+
         <div className='text-center mt-4 border-top pt-3'>
           <p className='mb-0'>&copy; Copyright {new Date().getFullYear()}</p>
           <div>
@@ -348,108 +276,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {
-        // MORE INFO OF A PROJECT
-        blogDetails && (
-          <div
-            className='container-fluid'
-            style={{
-              background: 'rgba(0, 0, 0, 0.5)',
-              position: 'fixed', // Changed from absolute to fixed
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              height: '100%',
-              margin: 0,
-              padding: 0,
-              overflow: 'hidden',
-              zIndex: 1000 // Ensures it stays on top if needed
-            }}
-          >
-            <div className='row'>
-              <div className='col-md-2'></div>
-              {blogDetails && selectedBlog && (
-                <div className='col-md-8'>
-                  <div
-                    className='row text-black'
-                    style={{
-                      background: 'white',
-                      borderTopRightRadius: '10px',
-                      borderBottomRightRadius: '10px',
-                      width: '100%',
-                      marginTop: '5em',
-                      overflowY: 'auto',
-                      height: 'calc(95vh - 5em)',
-                      position: 'relative'
-                    }}
-                  >
-                    <div className='col-md-2'>
-                      <div
-                        className='cursor'
-                        onClick={() => {
-                          setBlogDetails(false)
-                        }}
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          height: '100px',
-                          width: '100px',
-                          fontSize: '48px',
-                          fontWeight: 'bold',
-                          margin: '0 auto'
-                        }}
-                      >
-                        ✕
-                      </div>
-                    </div>
-
-                    <div className='col-md-8 mt-4 text-center'>
-                      <h1 className='platfair-font fw-bold text-center text-black'>
-                        Blog Title: {selectedBlog.fields.blogTitle}
-                      </h1>
-                      <hr />
-                      <ReactImageGallery
-                        items={selectedBlog.fields.blogImage.map(img => ({
-                          original: img.fields.file.url,
-                          thumbnail: img.fields.file.url
-                        }))}
-                      />
-                      <p className='text-center'>
-                        {selectedBlog.fields.blogDescription}
-                      </p>
-                      <p>
-                        Date Posted:{' '}
-                        <b>
-                          {new Date(
-                            selectedBlog.fields.blogDatePosted
-                          ).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </b>
-                      </p>
-                      <button
-                        onClick={() => {
-                          Navigate('/donation')
-                        }}
-                        className='btn btn-primary mb-4'
-                      >
-                        Donate Today!
-                      </button>
-                    </div>
-                    <div className='col-md-2'></div>
-                  </div>
-                </div>
-              )}
-              <div className='col-md-2'></div>
-            </div>
-          </div>
-        )
-      }
     </footer>
   )
 }

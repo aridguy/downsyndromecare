@@ -27,8 +27,17 @@ const Donation = () => {
   const handleSubmit = e => {
     e.preventDefault()
   }
-  // Add this to your handleSubmit function
+
   const handlePaystackPayment = () => {
+    if (currency !== 'NGN') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Currency Not Supported',
+        text: 'Please select NGN (₦) for donations at this time',
+      });
+      return;
+    }
+
     const handler = window.PaystackPop.setup({
       key: 'pk_test_a1015af9fc065137e0b7fbd27f1a962322fd4211',
       email: donorInfo.email,
@@ -48,13 +57,14 @@ const Donation = () => {
             toast.onmouseleave = Swal.resumeTimer
           }
         })
+        
         Toast.fire({
           icon: 'info',
           title: 'Payment completed ' + response.reference
         })
+        Navigate("/")
       },
       onClose: function () {
-        // alert('Payment window closed');
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -75,17 +85,17 @@ const Donation = () => {
     handler.openIframe()
   }
 
-    const [delayed, setDelayed] = useState(true)
-      const [loading, setLoading] = useState(true)
-      useEffect(() => {
-        const timer = setTimeout(() => {
-          setDelayed(false)
-          setLoading(false)
-        }, 3500)
-        return () => clearTimeout(timer)
-      }, [])
-    
-      if (delayed || loading) return <Loader message="Making sure your donation is safe and sound..." />
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 3500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (delayed || loading) return <Loader message="Making sure your donation is safe and sound..." />
 
   return (
     <div
@@ -125,13 +135,7 @@ const Donation = () => {
                         <div className='bg-white text-primary rounded-circle p-2 me-3'>
                           <FiGlobe size={20} />
                         </div>
-                        <span>Multiple currency support | coming soon</span>
-                      </div>
-                      <div className='d-flex align-items-center'>
-                        <div className='bg-white text-primary rounded-circle p-2 me-3'>
-                          <FiGlobe size={20} />
-                        </div>
-                        <span className='text-danger'>Donate in naira for now!</span>
+                        <span className='text-danger'>Currently accepting only NGN donations</span>
                       </div>
                     </div>
                   </div>
@@ -157,14 +161,24 @@ const Donation = () => {
                             className={`btn ${
                               currency === curr.code
                                 ? 'btn-primary'
-                                : 'btn-outline-primary'
-                            } rounded-pill`}
-                            onClick={() => setCurrency(curr.code)}
+                                : curr.code === 'NGN'
+                                ? 'btn-outline-primary'
+                                : 'btn-outline-secondary'
+                            } rounded-pill position-relative`}
+                            onClick={() => curr.code === 'NGN' && setCurrency(curr.code)}
+                            disabled={curr.code !== 'NGN'}
+                            title={curr.code !== 'NGN' ? "Coming soon" : ""}
                           >
                             {curr.symbol} {curr.code}
+                            {curr.code !== 'NGN' && (
+                              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+                                Soon
+                              </span>
+                            )}
                           </button>
                         ))}
                       </div>
+                      <small className="text-muted">Only Naira (₦) payments are currently enabled</small>
                     </div>
 
                     {/* Amount Selection */}
@@ -184,15 +198,12 @@ const Donation = () => {
                             } rounded-pill`}
                             onClick={() => setAmount(amt)}
                           >
-                            {currency === 'NGN' ? '₦' : '$'}
-                            {amt.toLocaleString()}
+                            ₦{amt.toLocaleString()}
                           </button>
                         ))}
                       </div>
                       <div className='input-group'>
-                        <span className='input-group-text'>
-                          {currencies.find(c => c.code === currency)?.symbol}
-                        </span>
+                        <span className='input-group-text'>₦</span>
                         <input
                           type='number'
                           className='form-control'
@@ -255,8 +266,7 @@ const Donation = () => {
                       className='btn btn-danger w-100 py-3 fw-bold'
                       style={{ backgroundColor: '#ff6b6b', border: 'none' }}
                     >
-                      DONATE NOW {currency === 'NGN' ? '₦' : '$'}
-                      {amount.toLocaleString()}
+                      DONATE NOW ₦{amount.toLocaleString()}
                     </button>
                   </form>
 
@@ -270,7 +280,7 @@ const Donation = () => {
                         Navigate('/')
                         window.scrollTo({
                           top: 0,
-                          behavior: 'smooth' // Smooth scrolling
+                          behavior: 'smooth'
                         })
                       }}
                       className='cursor text-primary'
