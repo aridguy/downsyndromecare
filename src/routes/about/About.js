@@ -208,7 +208,7 @@ const About = () => {
 
       {
         // section 1 lets colaborate
-        <section className='sect-1' style={{ marginTop: '8em' }}>
+        <section className='sect-1' style={{ marginTop: '2em' }}>
           <div className='container-fluid objectiveBg p-5'>
             <div className='row '>
               <div className='col-md-12'>
