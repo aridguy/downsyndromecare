@@ -94,29 +94,11 @@ const Blog = () => {
 
                   {/* Metadata */}
                   <div className='d-flex justify-content-between text-muted small mt-2'>
+                    
+                    
                     <span>
-                      Posted on:{' '} <br />
-                      {new Date(item.fields.blogDatePosted).toLocaleDateString(
-                        'en-US',
-                        {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                        }
-                      )}
-                    </span>
-                    <span>
-                      {new Intl.RelativeTimeFormat('en').format(
-                        Math.floor(
-                          (new Date() - new Date(item.fields.blogDatePosted)) /
-                            (1000 * 60 * 60 * 24)
-                        ),
-                        'day'
-                      )}
-                    </span>
-                    <span>
-                      Author: <br />
-                      <strong>{item.fields.blogAuthor}</strong>
+                       <br />
+                      <strong>by {item.fields.blogAuthor}</strong>
                     </span>
                   </div>
                 </div>
