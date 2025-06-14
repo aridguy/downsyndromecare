@@ -180,7 +180,7 @@ const Blog = () => {
                       <p className='text-center'>
                         {selectedBlog.fields.blogDescription}
                       </p>
-                      <p>
+                      {/* <p>
                         Date Posted:{' '}
                         <b>
                           {new Date(
@@ -191,7 +191,7 @@ const Blog = () => {
                             day: 'numeric'
                           })}
                         </b>
-                      </p>
+                      </p> */}
                       <button
                         onClick={() => {
                           Navigate('/donation')
