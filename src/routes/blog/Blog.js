@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import BlogNav from '../../components/BlogNav'
+// import BlogNav from '../../components/BlogNav'
 // import BlogImage from '../../assets/blog.png'
 
 // import Socials from '../../chunks/Socials'
@@ -49,7 +49,7 @@ const Blog = () => {
 
   return (
     <div>
-      <BlogNav />
+      // <BlogNav />
       <section style={{ marginBottom: '8em', marginTop: '8em' }}>
         <div className='container'>
           <div className='row justify-content-center'>
