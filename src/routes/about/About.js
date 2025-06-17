@@ -231,7 +231,7 @@ const About = () => {
       {
         // volunteers section
         <section>
-          <div className='container mt-5' style={{marginBottom: "6em"}}>
+          <div className='container mt-5' style={{ marginBottom: '6em' }}>
             <div className='row'>
               <div className='col-3'></div>
               <div className='col-md-6 text-center'>
@@ -256,31 +256,48 @@ const About = () => {
                   responsive={responsive}
                   infinite={true}
                   autoPlay={true}
-                  autoPlaySpeed={3000} // Scroll every 3 seconds
+                  autoPlaySpeed={3000}
                   keyBoardControl={true}
                   customTransition='all 0.5s ease-in-out'
-                  transitionDuration={500} // Smooth transition
+                  transitionDuration={500}
                   containerClass='carousel-container'
                   removeArrowOnDeviceType={['tablet']}
                   dotListClass='custom-dot-list-style'
                   itemClass='carousel-item-padding-40-px'
-                  ssr={true} // Server-side render
-                  // showDots={true}
+                  ssr={true}
                 >
                   {team?.map((team, index) => (
-                    <div className='text-center' key={team.sys.id || index}>
+                    <div
+                      key={team.sys.id || index}
+                      style={{
+                        width: '230px', // Fixed width for each item
+                        textAlign: 'center',
+                        padding: '0 10px', // Adds horizontal spacing
+                        margin: '0 auto' // Centers the item in the carousel slide
+                      }}
+                    >
                       <img
-                        fill='true'
                         decoding='async'
                         src={team.fields?.teamImage?.fields?.file?.url}
-                        alt='change the world'
-                        style={{ width: '90%', height: 'auto' }}
+                        alt='Team Member'
+                        style={{
+                          width: '100%',
+                          height: '280px',
+                          objectFit: 'cover',
+                          display: 'block',
+                          borderRadius: '10px'
+                        }}
                       />
-                      <div className='mt-4'>
-                        <h4 className='playfair-font'>
+                      <div style={{ marginTop: '16px' }}>
+                        <h4
+                          style={{
+                            fontFamily: 'Playfair Display, serif',
+                            margin: 0
+                          }}
+                        >
                           {team.fields.teamName}
                         </h4>
-                        <span>{team.fields.teamName}</span>
+                        <span>{team.fields.teamRole}</span>
                       </div>
                     </div>
                   ))}

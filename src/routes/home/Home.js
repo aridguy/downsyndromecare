@@ -17,7 +17,7 @@ import Loader from '../../components/Loader'
 
 // Inside your component:
 const Home = () => {
-  const Navigate = useNavigate("/")
+  const Navigate = useNavigate('/')
   // innitial states
   const [changeContent, setChangeContent] = useState([])
   const [achievements, setAchievements] = useState([])
@@ -138,21 +138,17 @@ const Home = () => {
     return () => clearTimeout(timer)
   }, [])
 
-  if (delayed || loading) return <Loader message="" />
+  if (delayed || loading) return <Loader message='' />
 
   return (
     <div className=''>
-   
       <Navbar />
       {
         <div className='hero-bg'>
           <div className='container mt-5 hero-texts'>
             <div className='row'>
               <div className='col-12 col-md-12 text-center text-white'>
-                <h1
-                  
-                  className='display-1 fw-bolder'
-                >
+                <h1 className='display-1 fw-bolder'>
                   We <b className='text-orange'>Rise</b> By Lifting Others
                 </h1>
                 <TypeAnimation
@@ -204,7 +200,7 @@ const Home = () => {
                   <div className='row'>
                     <div className='col-12 col-md-4 text-center'>
                       <h1>🎓 </h1>
-                      <h4  className='playfair-font fw-bolder' >
+                      <h4 className='playfair-font fw-bolder'>
                         Inclusive Education
                       </h4>
                       <small>
@@ -311,18 +307,19 @@ const Home = () => {
                     const text = itemFields.description || ''
                     return (
                       <div
-                        className={
-                          index === 2 ? 'col-12 col-md-4' : 'col-md-4'
-                        }
+                        className={index === 2 ? 'col-12 col-md-4' : 'col-md-4'}
                         key={item.sys.id}
                       >
                         {image && (
                           <img
-                          className='mt-4'
+                            className='mt-4'
                             decoding='async'
-                            rel='preload'
                             loading='lazy'
-                            style={{ width: '100%' }}
+                            style={{
+                              width: '100%',
+                              height: '200px',
+                              objectFit: 'cover' // or 'contain'
+                            }}
                             src={image}
                             alt={altText}
                           />
@@ -377,14 +374,20 @@ const Home = () => {
                   where every individual is valued and included.
                 </small>
                 <div className='d-flex gap-3 mt-5'>
-                  <button onClick={() => {
-                    Navigate("/volunteer")
-                  }} className='btn btn-primary text-white'>
+                  <button
+                    onClick={() => {
+                      Navigate('/volunteer')
+                    }}
+                    className='btn btn-primary text-white'
+                  >
                     Volunteer Now
                   </button>
-                  <button onClick={() => {
-                    Navigate("/donation")
-                  }} className='btn bg-white text-primary'>
+                  <button
+                    onClick={() => {
+                      Navigate('/donation')
+                    }}
+                    className='btn bg-white text-primary'
+                  >
                     Donate Now
                   </button>
                 </div>
@@ -395,7 +398,7 @@ const Home = () => {
       }
       {
         // volunteers section
-        <section >
+        <section>
           <div className='container mt-5'>
             <div className='row'>
               <div className='col-3'></div>
@@ -420,33 +423,46 @@ const Home = () => {
                   responsive={responsive}
                   infinite={true}
                   autoPlay={true}
-                  autoPlaySpeed={3000} // Scroll every 3 seconds
+                  autoPlaySpeed={3000}
                   keyBoardControl={true}
                   customTransition='all 0.5s ease-in-out'
-                  transitionDuration={500} // Smooth transition
+                  transitionDuration={500}
                   containerClass='carousel-container'
                   removeArrowOnDeviceType={['tablet']}
                   dotListClass='custom-dot-list-style'
                   itemClass='carousel-item-padding-40-px'
-                  ssr={true} // Server-side render
-                  // showDots={true}
+                  ssr={true}
                 >
                   {volunteers?.map((volunteer, index) => (
                     <div
-                      className='text-center'
                       key={volunteer.sys.id || index}
+                      style={{
+                        width: '230px',
+                        textAlign: 'center',
+                        padding: '0 10px', // Horizontal spacing
+                        margin: '0 auto' // Center item in slide
+                      }}
                     >
                       <img
-                      fill="true"
-                        decoding='async'
+                        style={{
+                          width: '100%',
+                          height: '280px',
+                          objectFit: 'cover',
+                          display: 'block',
+                          borderRadius: '10px'
+                        }}
                         src={
                           volunteer.fields?.volunteerImage?.fields?.file?.url
                         }
-                        alt='change the world'
-                        style={{ width: '90%', height: 'auto' }}
+                        alt='Volunteer'
                       />
-                      <div className='mt-4'>
-                        <h4 className='playfair-font'>
+                      <div style={{ marginTop: '16px' }}>
+                        <h4
+                          style={{
+                            fontFamily: 'Playfair Display, serif',
+                            margin: 0
+                          }}
+                        >
                           {volunteer.fields.volunteerName}
                         </h4>
                         <span>{volunteer.fields.volunteerRole}</span>
@@ -474,7 +490,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
-                    fill="true"
+                      fill='true'
                       decoding='async'
                       width='50'
                       src={Projects}
@@ -495,7 +511,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
-                    fill="true"
+                      fill='true'
                       decoding='async'
                       width='50'
                       src={Volunteers}
@@ -517,7 +533,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
-                    fill="true"
+                      fill='true'
                       decoding='async'
                       width='30'
                       src={Missions}
@@ -535,7 +551,7 @@ const Home = () => {
                 <div className='col-md-3 mb-4 d-flex flex-column align-items-center'>
                   <div className='mb-3'>
                     <img
-                    fill="true"
+                      fill='true'
                       decoding='async'
                       width='30'
                       src={Donation}
@@ -544,7 +560,6 @@ const Home = () => {
                     />
                   </div>
                   <h2 className='display-5 fw-bold mb-2'>
-                    
                     <CountUp
                       end={achievement.fields.donations}
                       duration={10}
@@ -583,7 +598,12 @@ const Home = () => {
             <div className='row'>
               <div className='col-md-1'></div>
               <div className='col-md-10'>
-                <Marquee pauseOnHover={true} speed={50} pauseOnClick={true} autoFill={true}>
+                <Marquee
+                  pauseOnHover={true}
+                  speed={50}
+                  pauseOnClick={true}
+                  autoFill={true}
+                >
                   <div className='d-flex gap-3'>
                     {testimonials?.map((testimonial, index) => (
                       <div
@@ -597,7 +617,7 @@ const Home = () => {
                           justifyContent: 'center', // Center horizontally
                           alignItems: 'center', // Center vertically
                           textAlign: 'center', // For additional text alignment
-                          color: 'white',
+                          color: 'white'
                           // //marginLeft: "1em"
                         }}
                         className='testimonials mx-2'
@@ -621,7 +641,7 @@ const Home = () => {
                           {testimonial.fields.testimonialName}
                         </p>
                         <i>{testimonial.fields.testimonialComment}</i>
-                      </div> 
+                      </div>
                     ))}
                   </div>
                 </Marquee>
