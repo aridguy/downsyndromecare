@@ -396,86 +396,101 @@ const Home = () => {
           </div>
         </section>
       }
-      {
-        // volunteers section
-        <section>
-          <div className='container mt-5'>
-            <div className='row'>
-              <div className='col-3'></div>
-              <div className='col-md-6 text-center'>
-                <h1 className='playfair-font fw-bolder text-center'>
-                  Our Volunteers
-                </h1>
-                <small className='text-center'>
-                  Our Volunteers contributing to the good course across the
-                  world
-                </small>
+     {
+  // volunteers section
+  <section>
+    <div className='container mt-5'>
+      <div className='row'>
+        <div className='col-3'></div>
+        <div className='col-md-6 text-center'>
+          <h1 className='playfair-font fw-bolder text-center'>
+            Our Volunteers
+          </h1>
+          <small className='text-center'>
+            Our Volunteers contributing to the good course across the world
+          </small>
+        </div>
+        <div className='col-3'></div>
+      </div>
+      <div className='row mt-5 mb-5'>
+        <div className='col-md-1'></div>
+        <div className='col-md-10'>
+          {!volunteers ? (
+            // Loading state
+            <div className="text-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
               </div>
-              <div className='col-3'></div>
+              <p className="mt-2">Loading volunteers...</p>
             </div>
-            <div className='row mt-5 mb-5'>
-              <div className='col-md-1'></div>
-              <div className='col-md-10'>
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  showDots={false}
-                  responsive={responsive}
-                  infinite={true}
-                  autoPlay={true}
-                  autoPlaySpeed={3000}
-                  keyBoardControl={true}
-                  customTransition='all 0.5s ease-in-out'
-                  transitionDuration={500}
-                  containerClass='carousel-container'
-                  removeArrowOnDeviceType={['tablet']}
-                  dotListClass='custom-dot-list-style'
-                  itemClass='carousel-item-padding-40-px'
-                  ssr={true}
+          ) : volunteers.length === 0 ? (
+            // Empty state
+            <div className="text-center py-5">
+              <p>No volunteers found</p>
+            </div>
+          ) : (
+            // Carousel when data is loaded
+            <Carousel
+              swipeable={true}
+              draggable={true}
+              showDots={false}
+              responsive={responsive}
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={3000}
+              keyBoardControl={true}
+              customTransition='all 0.5s ease-in-out'
+              transitionDuration={500}
+              containerClass='carousel-container'
+              removeArrowOnDeviceType={['tablet']}
+              dotListClass='custom-dot-list-style'
+              itemClass='carousel-item-padding-40-px'
+              ssr={true}
+            >
+              {volunteers.map((volunteer, index) => (
+                <div
+                  key={volunteer.sys.id || index}
+                  style={{
+                    width: '230px',
+                    textAlign: 'center',
+                    padding: '0 10px',
+                    margin: '0 auto'
+                  }}
                 >
-                  {volunteers?.map((volunteer, index) => (
-                    <div
-                      key={volunteer.sys.id || index}
+                  <img
+                    style={{
+                      width: '100%',
+                      height: '280px',
+                      objectFit: 'cover',
+                      display: 'block',
+                      borderRadius: '10px'
+                    }}
+                    src={
+                      volunteer.fields?.volunteerImage?.fields?.file?.url
+                    }
+                    alt='Volunteer'
+                  />
+                  <div style={{ marginTop: '16px' }}>
+                    <h4
                       style={{
-                        width: '230px',
-                        textAlign: 'center',
-                        padding: '0 10px', // Horizontal spacing
-                        margin: '0 auto' // Center item in slide
+                        fontFamily: 'Playfair Display, serif',
+                        margin: 0
                       }}
                     >
-                      <img
-                        style={{
-                          width: '100%',
-                          height: '280px',
-                          objectFit: 'cover',
-                          display: 'block',
-                          borderRadius: '10px'
-                        }}
-                        src={
-                          volunteer.fields?.volunteerImage?.fields?.file?.url
-                        }
-                        alt='Volunteer'
-                      />
-                      <div style={{ marginTop: '16px' }}>
-                        <h4
-                          style={{
-                            fontFamily: 'Playfair Display, serif',
-                            margin: 0
-                          }}
-                        >
-                          {volunteer.fields.volunteerName}
-                        </h4>
-                        <span>{volunteer.fields.volunteerRole}</span>
-                      </div>
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-              <div className='col-md-1'></div>
-            </div>
-          </div>
-        </section>
-      }
+                      {volunteer.fields.volunteerName}
+                    </h4>
+                    <span>{volunteer.fields.volunteerRole}</span>
+                  </div>
+                </div>
+              ))}
+            </Carousel>
+          )}
+        </div>
+        <div className='col-md-1'></div>
+      </div>
+    </div>
+  </section>
+}
       {
         // section 4 | counter things we have achieve
         <section

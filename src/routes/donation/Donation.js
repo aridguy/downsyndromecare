@@ -39,7 +39,7 @@ const Donation = () => {
     }
 
     const handler = window.PaystackPop.setup({
-      key: 'pk_test_a1015af9fc065137e0b7fbd27f1a962322fd4211',
+      key: process.env.REACT_APP_PK_KEY,
       email: donorInfo.email,
       amount: amount * 100, // Paystack expects amount in kobo
       currency: currency,

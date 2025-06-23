@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser'
 import Navbar from '../../components/Navbar'
 import VolunteerLanding from '../../chunks/VolunteerLanding'
 import Footer from '../../components/Footer'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 import Loader from '../../components/Loader'
 import Logo from '../../assets/logo/logos.png'
 // import Socials from '../../chunks/Socials'
@@ -77,21 +77,22 @@ const Volunteer = () => {
         success: true,
         message: 'Application submitted successfully!'
       })
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: toast => {
-          toast.onmouseenter = Swal.stopTimer
-          toast.onmouseleave = Swal.resumeTimer
-        }
-      })
-      Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully'
-      })
+      // const Toast = Swal.mixin({
+      //   toast: true,
+      //   position: 'top-end',
+      //   showConfirmButton: false,
+      //   timer: 3000,
+      //   timerProgressBar: true,
+      //   didOpen: toast => {
+      //     toast.onmouseenter = Swal.stopTimer
+      //     toast.onmouseleave = Swal.resumeTimer
+      //   }
+      // })
+      console.log('Application submitted successfully!')
+      // Toast.fire({
+      //   icon: 'success',
+      //   title: 'submi'
+      // })
       // Reset form
       setFormData({
         fullName: '',
@@ -172,7 +173,7 @@ const Volunteer = () => {
                         marginBottom: '20px'
                       }}
                     >
-                      {<img src={Logo} alt='logo' style={{width: "20%"}} />}
+                      {<img src={Logo} alt='logo' style={{ width: '20%' }} />}
                     </div>
                   </div>
 
@@ -313,7 +314,6 @@ const Volunteer = () => {
                       required
                     />
                   </div>
-
                   {/* Volunteer-Specific Fields */}
                   <div className='mb-3'>
                     <label htmlFor='skills' className='form-label'>
@@ -329,7 +329,6 @@ const Volunteer = () => {
                       required
                     />
                   </div>
-
                   <div className='mb-3'>
                     <label htmlFor='motivation' className='form-label'>
                       Why Do You Want to Join Us?
@@ -360,7 +359,6 @@ const Volunteer = () => {
                       I confirm that the above information is accurate.
                     </label>
                   </div>
-
                   <div className='mb-3 form-check'>
                     <input
                       type='checkbox'
@@ -377,7 +375,6 @@ const Volunteer = () => {
                       Send me newsletters and updates about the charity.
                     </label>
                   </div>
-
                   {/* Submit Button */}
                   <button
                     type='submit'
@@ -386,7 +383,6 @@ const Volunteer = () => {
                   >
                     {isSubmitting ? 'Submitting...' : 'Join Us!'}
                   </button>
-
                   {submitStatus && (
                     <div
                       className={`alert mt-3 ${
