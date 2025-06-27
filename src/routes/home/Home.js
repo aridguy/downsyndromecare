@@ -149,7 +149,7 @@ const Home = () => {
             <div className='row'>
               <div className='col-12 col-md-12 text-center text-white'>
                 <h1 className='display-1 fw-bolder'>
-                  We <b className='text-orange'>Rises</b> By Lifting Others
+                  We <b className='text-orange'>Rise</b> By Lifting Others
                 </h1>
                 <TypeAnimation
                   sequence={[
