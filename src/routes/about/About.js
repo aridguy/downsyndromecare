@@ -297,7 +297,7 @@ const About = () => {
                         >
                           {team.fields.teamName}
                         </h4>
-                        <span>{team.fields.teamRole}</span>
+                        <span>{team.fields.teamPosition}</span>
                       </div>
                     </div>
                   ))}

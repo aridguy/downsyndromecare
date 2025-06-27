@@ -138,7 +138,7 @@ const Contact = () => {
               <h4 className='playfair-font fw-bolder'>
                 Your Feedback Is Much Appreciated!
               </h4>
-              <small>Donec dapibus mauris id odio ornare tempus.</small>
+              {/* <small>Donec dapibus mauris id odio ornare tempus.</small> */}
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ const Contact = () => {
               <form ref={form} onSubmit={sendEmail}>
                 <p>
                   <small>
-                    your name <small className='text-danger'>*</small>
+                    Your Name <small className='text-danger'>*</small>
                   </small>{' '}
                   <br />
                   <input
@@ -162,7 +162,7 @@ const Contact = () => {
                 </p>
                 <p>
                   <small>
-                    your email address <small className='text-danger'>*</small>
+                    Your Email Address <small className='text-danger'>*</small>
                   </small>{' '}
                   <br />
                   <input
@@ -188,7 +188,7 @@ const Contact = () => {
                 </p>
                 <p>
                   <small>
-                    your message <small className='text-danger'>*</small>
+                    Your Message <small className='text-danger'>*</small>
                   </small>{' '}
                   <br />
                   <textarea
