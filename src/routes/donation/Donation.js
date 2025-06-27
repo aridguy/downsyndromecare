@@ -3,8 +3,34 @@ import { FiHeart, FiGlobe, FiCreditCard, FiMail, FiUser } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Loader from '../../components/Loader'
+import { createClient } from 'contentful'
 
 const Donation = () => {
+  const [success, setSuccess] = useState(false)
+  const [changeSuccessContent, setChangeSuccessContent] = useState([])
+  const clientSuccess = createClient({
+    space: process.env.REACT_APP_GENERAL_SPACE_ID,
+    accessToken: process.env.REACT_APP_ACHIEVEMENTS_ACCESS_TOKEN
+  })
+
+  useEffect(() => {
+    const successUi = async () => {
+      try {
+        const response = await clientSuccess.getEntries({
+          content_type: 'successDonation'
+        })
+        setChangeSuccessContent(response.items)
+        // console.log('Achievements fetched:', response.items)
+        // setSuccess(true)
+      } catch (error) {
+        console.error('Error fetching achievements:', error)
+      }
+    }
+
+    successUi()
+    // clientSuccess()
+  }, []) // Empty dependency array means this runs once on component mount
+
   const Navigate = useNavigate()
   const [amount, setAmount] = useState(5000)
   const [currency, setCurrency] = useState('NGN')
@@ -33,9 +59,9 @@ const Donation = () => {
       Swal.fire({
         icon: 'error',
         title: 'Currency Not Supported',
-        text: 'Please select NGN (₦) for donations at this time',
-      });
-      return;
+        text: 'Please select NGN (₦) for donations at this time'
+      })
+      return
     }
 
     const handler = window.PaystackPop.setup({
@@ -45,7 +71,7 @@ const Donation = () => {
       currency: currency,
       ref: '' + Math.floor(Math.random() * 1000000000 + 1),
       callback: function (response) {
-        alert('Payment complete! Reference: ' + response.reference)
+        // alert('Payment complete! Reference: ' + response.reference)
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -57,19 +83,19 @@ const Donation = () => {
             toast.onmouseleave = Swal.resumeTimer
           }
         })
-        
+
         Toast.fire({
           icon: 'info',
           title: 'Payment completed ' + response.reference
         })
-        Navigate("/")
+        setSuccess(true)
       },
       onClose: function () {
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 3000,
+          timer: 9000,
           timerProgressBar: true,
           didOpen: toast => {
             toast.onmouseenter = Swal.stopTimer
@@ -95,7 +121,8 @@ const Donation = () => {
     return () => clearTimeout(timer)
   }, [])
 
-  if (delayed || loading) return <Loader message="Making sure your donation is safe and sound..." />
+  if (delayed || loading)
+    return <Loader message='Making sure your donation is safe and sound...' />
 
   return (
     <div
@@ -135,7 +162,9 @@ const Donation = () => {
                         <div className='bg-white text-primary rounded-circle p-2 me-3'>
                           <FiGlobe size={20} />
                         </div>
-                        <span className='text-danger'>Currently accepting only NGN donations</span>
+                        <span className='text-danger'>
+                          Currently accepting only NGN donations
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -165,20 +194,24 @@ const Donation = () => {
                                 ? 'btn-outline-primary'
                                 : 'btn-outline-secondary'
                             } rounded-pill position-relative`}
-                            onClick={() => curr.code === 'NGN' && setCurrency(curr.code)}
+                            onClick={() =>
+                              curr.code === 'NGN' && setCurrency(curr.code)
+                            }
                             disabled={curr.code !== 'NGN'}
-                            title={curr.code !== 'NGN' ? "Coming soon" : ""}
+                            title={curr.code !== 'NGN' ? 'Coming soon' : ''}
                           >
                             {curr.symbol} {curr.code}
                             {curr.code !== 'NGN' && (
-                              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+                              <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark'>
                                 Soon
                               </span>
                             )}
                           </button>
                         ))}
                       </div>
-                      <small className="text-muted">Only Naira (₦) payments are currently enabled</small>
+                      <small className='text-muted'>
+                        Only Naira (₦) payments are currently enabled
+                      </small>
                     </div>
 
                     {/* Amount Selection */}
@@ -296,6 +329,100 @@ const Donation = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <div
+          className='position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center'
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.86)',
+            zIndex: 9999
+          }}
+        >
+          <div
+            className='text-center bg-white p-4 rounded shadow'
+            style={{
+              maxWidth: '500px',
+              width: '90%',
+              padding: '8em'
+            }}
+          >
+            <div>
+              {changeSuccessContent.map((item, index) => (
+                <div key={index}>
+                  <img
+                    src={item.fields.image.fields.file.url}
+                    alt='Thank You'
+                    className='img-fluid mb-4'
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      objectFit: 'cover',
+                      borderRadius: '50%' // perfect circle
+                    }}
+                  />
+
+                  <h2 className='text-success'>{item.fields.title}</h2>
+                  <p className='lead text-muted'>{item.fields.subtitle}</p>
+                </div>
+              ))}
+            </div>
+
+            <button
+              className='btn btn-primary me-2'
+              onClick={() => Navigate('/')}
+            >
+              Go Back Home
+            </button>
+            <button
+              className='btn btn-warning'
+              onClick={() => {
+                Navigate('/donation')
+                setSuccess(false)
+              }}
+            >
+              Make Another Donation
+            </button>
+
+            {/* Footer Icons */}
+            <div className='mt-4'>
+              <ul className='d-flex justify-content-center gap-4 list-unstyled'>
+                <li>
+                  <a
+                    href='https://www.instagram.com/c21downsyndromecarefoundation?igsh=MWYyNDR6aHR0bGlqaQ=='
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-dark fs-5'
+                  >
+                    <i className='bi bi-instagram'></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.facebook.com/share/1CKwxp8vAF/?mibextid=wwXIfr'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-dark fs-5'
+                  >
+                    <i className='bi bi-facebook'></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='mailto:c21downsyndromecare@gmail.com'
+                    className='text-dark fs-5'
+                  >
+                    <i className='bi bi-envelope-fill'></i>
+                  </a>
+                </li>
+                <li>
+                  <a href='tel:08035881312' className='text-dark fs-5'>
+                    <i className='bi bi-telephone-fill'></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

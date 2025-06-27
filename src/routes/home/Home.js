@@ -13,6 +13,7 @@ import Volunteers from '../../assets/icons/volunteers.png'
 import { createClient } from 'contentful'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/Loader'
+
 // import Translate from '../../components/Translate'
 
 // Inside your component:
@@ -40,13 +41,7 @@ const Home = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   }
-  // useEffect(() => {
-  //   const AOS = require('aos')
-  //   AOS.init({
-  //     duration: 1000,
-  //     once: true
-  //   })
-  // }, [])
+  
 
   useEffect(() => {
     // achievement section api call
