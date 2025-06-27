@@ -29,7 +29,7 @@ const Donation = () => {
 
     successUi()
     // clientSuccess()
-  }, []) // Empty dependency array means this runs once on component mount
+  }, [clientSuccess]) // Empty dependency array means this runs once on component mount
 
   const Navigate = useNavigate()
   const [amount, setAmount] = useState(5000)
