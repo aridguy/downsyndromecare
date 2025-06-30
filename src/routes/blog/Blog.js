@@ -35,17 +35,17 @@ const Blog = () => {
     fetchBlog()
   }, [])
 
-   const [delayed, setDelayed] = useState(true)
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setDelayed(false)
-        setLoading(false)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }, [])
-  
-    if (delayed || loading) return <Loader message="" />
+  const [delayed, setDelayed] = useState(true)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayed(false)
+      setLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (delayed || loading) return <Loader message='' />
 
   return (
     <div>
@@ -65,9 +65,7 @@ const Blog = () => {
                   <div className='text-center mb-4'>
                     <img
                       decoding='async'
-                      src={
-                        item.fields.blogImage[0]?.fields?.file?.url
-                      }
+                      src={item.fields.blogImage[0]?.fields?.file?.url}
                       alt='Blog'
                       className='img-fluid rounded-3 w-100'
                       style={{ maxHeight: '400px', objectFit: 'cover' }}
@@ -94,10 +92,8 @@ const Blog = () => {
 
                   {/* Metadata */}
                   <div className='d-flex justify-content-between text-muted small mt-2'>
-                    
-                    
                     <span>
-                       <br />
+                      <br />
                       <strong>by {item.fields.blogAuthor}</strong>
                     </span>
                   </div>
@@ -108,108 +104,83 @@ const Blog = () => {
         </div>
       </section>
 
-      {
-        // MORE INFO OF A PROJECT
-        blogDetails && (
-          <div
-            className='container-fluid'
-            style={{
-              background: 'rgba(0, 0, 0, 0.5)',
-              position: 'fixed', // Changed from absolute to fixed
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              height: '100%',
-              margin: 0,
-              padding: 0,
-              overflow: 'hidden',
-              zIndex: 1000 // Ensures it stays on top if needed
-            }}
-          >
-            <div className='row'>
-              <div className='col-md-2'></div>
-              {blogDetails && selectedBlog && (
-                <div className='col-md-8'>
-                  <div
-                    className='row'
-                    style={{
-                      background: 'white',
-                      borderTopRightRadius: '10px',
-                      borderBottomRightRadius: '10px',
-                      width: '100%',
-                      marginTop: '5em',
-                      overflowY: 'auto',
-                      height: 'calc(95vh - 5em)',
-                      position: 'relative'
-                    }}
-                  >
-                    <div className='col-md-2'>
-                      <div
-                        className='cursor'
-                        onClick={() => {
-                          setBlogDetails(false)
-                        }}
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          height: '100px',
-                          width: '100px',
-                          fontSize: '48px',
-                          fontWeight: 'bold',
-                          margin: '0 auto'
-                        }}
-                      >
-                        ✕
-                      </div>
-                    </div>
+      {blogDetails && selectedBlog && (
+  <div
+    className='container-fluid'
+    style={{
+      background: 'rgba(0, 0, 0, 0.5)',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: '100%',
+      height: '100%',
+      margin: 0,
+      padding: '1rem',
+      overflowY: 'auto',
+      zIndex: 1000
+    }}
+  >
+    <div className='row justify-content-center'>
+      <div className='col-12 col-md-10 col-lg-8 bg-white rounded shadow mt-5 position-relative p-4'>
+        {/* Close Button */}
+        <div
+          className='position-absolute top-0 end-0 m-3 fs-3 fw-bold text-danger'
+          onClick={() => setBlogDetails(false)}
+          style={{ cursor: 'pointer' }}
+        >
+          ✕
+        </div>
 
-                    <div className='col-md-8 mt-4 text-center'>
-                      <h1 className='platfair-font fw-bold text-center'>
-                        Blog Title: {selectedBlog.fields.blogTitle}
-                      </h1>
-                      <hr />
-                      <ReactImageGallery
-                        items={selectedBlog.fields.blogImage.map(img => ({
-                          original: img.fields.file.url,
-                          thumbnail: img.fields.file.url
-                        }))}
-                      />
-                      <p className='text-center'>
-                        {selectedBlog.fields.blogDescription}
-                      </p>
-                      {/* <p>
-                        Date Posted:{' '}
-                        <b>
-                          {new Date(
-                            selectedBlog.fields.blogDatePosted
-                          ).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </b>
-                      </p> */}
-                      <button
-                        onClick={() => {
-                          Navigate('/donation')
-                        }}
-                        className='btn btn-primary mb-4'
-                      >
-                        Donate Today!
-                      </button>
-                    </div>
-                    <div className='col-md-2'></div>
-                  </div>
-                </div>
-              )}
-              <div className='col-md-2'></div>
-            </div>
-          </div>
-        )
-      }
+        {/* Title */}
+        <h1 className='platfair-font fw-bold text-center'>
+          Blog Title: {selectedBlog.fields.blogTitle}
+        </h1>
+        <hr />
+
+        {/* Image Gallery */}
+        <ReactImageGallery
+          showPlayButton={false}
+          items={selectedBlog.fields.blogImage.map(img => ({
+            original: img.fields.file.url,
+            thumbnail: img.fields.file.url
+          }))}
+        />
+
+        {/* Description */}
+        <p className='text-center mt-3'>
+          {selectedBlog.fields.blogDescription}
+        </p>
+
+        {/* Optional Date */}
+        {/* <p className='text-center'>
+          Date Posted:{' '}
+          <b>
+            {new Date(
+              selectedBlog.fields.blogDatePosted
+            ).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
+          </b>
+        </p> */}
+
+        {/* Donate Button */}
+        <div className='text-center'>
+          <button
+            onClick={() => Navigate('/donation')}
+            className='btn btn-primary mb-3'
+          >
+            Donate Today!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
       <Footer />
     </div>
   )

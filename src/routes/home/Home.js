@@ -13,6 +13,7 @@ import Volunteers from '../../assets/icons/volunteers.png'
 import { createClient } from 'contentful'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/Loader'
+// import { contentfulClient } from '../../components/HeroBanners'
 
 // import Translate from '../../components/Translate'
 
@@ -24,6 +25,7 @@ const Home = () => {
   const [achievements, setAchievements] = useState([])
   const [volunteers, setVolunteers] = useState([])
   const [testimonials, setTestimonials] = useState([])
+  
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -41,7 +43,22 @@ const Home = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   }
-  
+//   const [banner, setBanner] = useState([])
+//  useEffect(() => {
+//     const fetchSuccessContent = async () => {
+//       try {
+//         const response = await contentfulClient.getEntries({
+//           content_type: 'pageHeroes'
+//         })
+//         setBanner(response.items)
+//        console.log(response.items)
+//       } catch (error) {
+//         console.error('Error fetching content:', error)
+//       }
+//     }
+
+//     fetchSuccessContent()
+//   }, [])
 
   useEffect(() => {
     // achievement section api call

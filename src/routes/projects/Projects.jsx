@@ -10,6 +10,12 @@ import Loader from '../../components/Loader'
 // import Socials from '../../chunks/Socials'
 
 const Projects = () => {
+  const normalizeDate = date => {
+    const d = new Date(date)
+    d.setHours(0, 0, 0, 0)
+    return d
+  }
+
   const Navigate = useNavigate('/')
   const [projects, setProjects] = useState([])
   const [projectDetails, setProjectDetails] = useState(false)
@@ -102,13 +108,16 @@ const Projects = () => {
                           top: '10px',
                           right: '10px',
                           backgroundColor:
-                            status === 'Completed' ? '#4caf50' : '#f59e0b',
+                            status === 'Completed'
+                              ? '#4caf50'
+                              : status === 'Ongoing'
+                              ? '#f59e0b'
+                              : '#3b82f6',
                           color: '#fff',
                           padding: '4px 10px',
                           borderRadius: '10px',
                           fontSize: '0.75rem',
-                          fontWeight: 'bold',
-                          // textTransform: 'uppercase'
+                          fontWeight: 'bold'
                         }}
                       >
                         {status}
@@ -138,7 +147,9 @@ const Projects = () => {
                             numeric: 'auto'
                           }).format(
                             Math.floor(
-                              (new Date() - projectDate) / (1000 * 60 * 60 * 24)
+                              (normalizeDate(projectDate) -
+                                normalizeDate(new Date())) /
+                                (1000 * 60 * 60 * 24)
                             ),
                             'day'
                           )}
@@ -162,121 +173,95 @@ const Projects = () => {
         </div>
       </section>
 
-      {
-        // MORE INFO OF A PROJECT
-        projectDetails && (
-          <div
-            className='container-fluid'
-            style={{
-              background: 'rgba(0, 0, 0, 0.5)',
-              position: 'fixed', // Changed from absolute to fixed
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              height: '100%',
-              margin: 0,
-              padding: 0,
-              overflow: 'hidden',
-              zIndex: 1000 // Ensures it stays on top if needed
-            }}
-          >
-            <div className='row'>
-              <div className='col-md-2'></div>
-              {projectDetails && selectedProject && (
-                <div className='col-md-8'>
-                  <div
-                    className='row'
-                    style={{
-                      background: 'white',
-                      borderTopRightRadius: '10px',
-                      borderBottomRightRadius: '10px',
-                      width: '100%',
-                      marginTop: '5em',
-                      overflowY: 'auto',
-                      height: 'calc(95vh - 5em)',
-                      position: 'relative'
-                    }}
-                  >
-                    <div className='col-md-2'>
-                      <div
-                        className='cursor'
-                        onClick={() => setProjectDetails(false)}
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          height: '100px',
-                          width: '100px',
-                          fontSize: '48px',
-                          fontWeight: 'bold',
-                          margin: '0 auto'
-                        }}
-                      >
-                        ✕
-                      </div>
-                    </div>
+      {projectDetails && selectedProject && (
+        <div
+          className='container'
+          style={{
+            background: 'rgba(0, 0, 0, 0.5)',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 1000,
+            overflowY: 'auto',
+            padding: '1rem'
+          }}
+        >
+          <div className='row justify-content-center'>
+            <div className='col-12 col-md-10 col-lg-8 bg-white rounded shadow p-4 mt-5 position-relative'>
+              {/* Close Button */}
+              <div
+                className='position-absolute top-0 end-0 m-3 fs-3 fw-bold text-danger cursor-pointer'
+                onClick={() => setProjectDetails(false)}
+                style={{ cursor: 'pointer' }}
+              >
+                ✕
+              </div>
 
-                    <div className='col-md-8 mt-4 text-center'>
-                      <h1 className='platfair-font fw-bold text-center text-primary'>
-                        Project Title: {selectedProject.fields.projectTitle}
-                      </h1>
-                      <hr />
-                      <ReactImageGallery
-                        showPlayButton={false}
-                        loading='lazy'
-                        items={selectedProject.fields.projectImage.map(img => ({
-                          original: img.fields.file.url,
-                          thumbnail: img.fields.file.url
-                        }))}
-                      />
-                      <p className='text-center'>
-                        {selectedProject.fields.projectDescription}
-                      </p>
-                      <p className='play-project-video'>
-                        <a
-                          target='_blank'
-                          id='play-video'
-                          rel='noReferrer'
-                          class='video-play-button'
-                          href={selectedProject.fields.projectVideoLink}
-                          data-toggle='modal'
-                          data-target='#savoybeachhotel'
-                        >
-                          <span></span>
-                        </a>
-                      </p>
-                      <p>
-                        Date Posted:{' '}
-                        <b>
-                          {new Date(
-                            selectedProject.fields.projectDate
-                          ).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </b>
-                      </p>
-                      <button
-                        onClick={() => {
-                          Navigate('/donation')
-                        }}
-                        className='btn btn-primary mb-4'
-                      >
-                        Donate
-                      </button>
-                    </div>
-                    <div className='col-md-2'></div>
-                  </div>
-                </div>
-              )}
-              <div className='col-md-2'></div>
+              {/* Title */}
+              <h1 className='platfair-font fw-bold text-center text-primary'>
+                Project Title: {selectedProject.fields.projectTitle}
+              </h1>
+              <hr />
+
+              {/* Gallery */}
+              <ReactImageGallery
+                showPlayButton={false}
+                loading='lazy'
+                items={selectedProject.fields.projectImage.map(img => ({
+                  original: img.fields.file.url,
+                  thumbnail: img.fields.file.url
+                }))}
+              />
+
+              {/* Description */}
+              <p className='text-center mt-3'>
+                {selectedProject.fields.projectDescription}
+              </p>
+
+              {/* Video Button */}
+              <p className='text-center'>
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  className='video-play-button'
+                  href={selectedProject.fields.projectVideoLink}
+                >
+                  <span></span>
+                </a>
+              </p>
+
+              {/* Date */}
+              <p className='text-center'>
+                Date Posted:{' '}
+                <b>
+                  {new Date(
+                    selectedProject.fields.projectDate
+                  ).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                  })}
+                </b>
+              </p>
+
+              {/* Donate Button */}
+              <div className='text-center'>
+                <button
+                  onClick={() => Navigate('/donation')}
+                  className='btn btn-primary mb-3'
+                >
+                  Donate
+                </button>
+              </div>
             </div>
           </div>
-        )
-      }
+        </div>
+      )}
+
       <Footer />
     </div>
   )
