@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import ContactLanding from '../../chunks/ContactLanding'
-import Location from '../../assets/location.png'
+// import Location from '../../assets/location.png'
 import Phone from '../../assets/phone.png'
 import Email from '../../assets/mail.png'
 import Time from '../../assets/time.png'
