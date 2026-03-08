@@ -43,23 +43,7 @@ const Home = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   }
-//   const [banner, setBanner] = useState([])
-//  useEffect(() => {
-//     const fetchSuccessContent = async () => {
-//       try {
-//         const response = await contentfulClient.getEntries({
-//           content_type: 'pageHeroes'
-//         })
-//         setBanner(response.items)
-//        console.log(response.items)
-//       } catch (error) {
-//         console.error('Error fetching content:', error)
-//       }
-//     }
-
-//     fetchSuccessContent()
-//   }, [])
-
+//  
   useEffect(() => {
     // achievement section api call
     const clientAchievements = createClient({
@@ -161,7 +145,7 @@ const Home = () => {
             <div className='row'>
               <div className='col-12 col-md-12 text-center text-white'>
                 <h1 className='display-1 fw-bolder'>
-                  We <b className='text-orange'>Rise</b> By Lifting Others
+                  Every   <b className='text-orange'>Ability</b> Deserves Opportunity
                 </h1>
                 <TypeAnimation
                   sequence={[
@@ -350,63 +334,63 @@ const Home = () => {
       }
       {
         // Be The Change You Wish To See In The World
-        <section
-          // data-aos='fade-up'
-          // data-aos-offset='500'
-          className='bg-primary'
-          style={{ marginTop: '7em' }}
-        >
-          <div className='container-fluid'>
-            <div className='row'>
-              <div
-                style={{ backgroundImage: '../../assets/change3.png' }}
-                className='col-6 volunteer-bg'
-              ></div>
-              <div
-                className='col-md-6 p-5'
-                style={{ backgroundColor: '#07263B' }}
-              >
-                <h3 className='playfair-font fw-bolder text-white mt-5'>
-                  Be The Change You Wish <br /> To See In The World
-                </h3>
-                <h6 className='playfair-font fw-bolder text-white mt-5'>
-                  Welfare
-                </h6>
-                <small className='text-white'>
-                  Your support can make a difference. Together, we can create a
-                  world <br />
-                  where every individual is valued and included.
-                </small>
-                <h6 className='playfair-font fw-bolder text-white mt-5'>
-                  Schooling
-                </h6>
-                <small className='text-white'>
-                  Your support can make a difference. Together, we can create a
-                  world <br />
-                  where every individual is valued and included.
-                </small>
-                <div className='d-flex gap-3 mt-5'>
-                  <button
-                    onClick={() => {
-                      Navigate('/volunteer')
-                    }}
-                    className='btn btn-primary text-white'
-                  >
-                    Volunteer Now
-                  </button>
-                  <button
-                    onClick={() => {
-                      Navigate('/donation')
-                    }}
-                    className='btn bg-white text-primary'
-                  >
-                    Donate Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        // <section
+        //   // data-aos='fade-up'
+        //   // data-aos-offset='500'
+        //   className='bg-primary'
+        //   style={{ marginTop: '7em' }}
+        // >
+        //   <div className='container-fluid'>
+        //     <div className='row'>
+        //       <div
+        //         style={{ backgroundImage: '../../assets/change3.png' }}
+        //         className='col-6 volunteer-bg'
+        //       ></div>
+        //       <div
+        //         className='col-md-6 p-5'
+        //         style={{ backgroundColor: '#07263B' }}
+        //       >
+        //         <h3 className='playfair-font fw-bolder text-white mt-5'>
+        //           Be The Change You Wish <br /> To See In The World
+        //         </h3>
+        //         <h6 className='playfair-font fw-bolder text-white mt-5'>
+        //           Welfare
+        //         </h6>
+        //         <small className='text-white'>
+        //           Your support can make a difference. Together, we can create a
+        //           world <br />
+        //           where every individual is valued and included.
+        //         </small>
+        //         <h6 className='playfair-font fw-bolder text-white mt-5'>
+        //           Schooling
+        //         </h6>
+        //         <small className='text-white'>
+        //           Your support can make a difference. Together, we can create a
+        //           world <br />
+        //           where every individual is valued and included.
+        //         </small>
+        //         <div className='d-flex gap-3 mt-5'>
+        //           <button
+        //             onClick={() => {
+        //               Navigate('/volunteer')
+        //             }}
+        //             className='btn btn-primary text-white'
+        //           >
+        //             Volunteer Now
+        //           </button>
+        //           <button
+        //             onClick={() => {
+        //               Navigate('/donation')
+        //             }}
+        //             className='btn bg-white text-primary'
+        //           >
+        //             Donate Now
+        //           </button>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </section>
       }
      {
   // volunteers section

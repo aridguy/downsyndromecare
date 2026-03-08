@@ -188,7 +188,7 @@ const Navbar = () => {
             background-color: rgba(0, 0, 0, 0.95);
           }
         }
-      `}</style>
+      `}</style>''
     </nav>
   )
 }

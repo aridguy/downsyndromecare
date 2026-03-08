@@ -118,16 +118,27 @@ const About = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <h1 className='playfair-font fw-bolder'>
-                  We are Organization that Operates on a Non-Profit Basis
+                  Empowering Every Voice | Chromosome 21 Down Syndrome Care
                 </h1>
                 <p className='mt-4'>
-                  A non-profit organization dedicated to supporting individuals
-                  with Down syndrome through advocacy, education, and community
-                  programs.
+                  We are a nonprofit organization dedicated to uplifting individuals with Down syndrome through education, advocacy, and community support.
                 </p>
-                <Link to='/contact' className='btn btn-primary mb-4'>
-                  Find Out More
-                </Link>
+                <p className='mt-4'>
+                  At Chromosome 21 Down Syndrome Care, we believe that every person deserves dignity, opportunity, and a voice that’s heard. Our mission is to foster inclusion, celebrate abilities, and build a world where differences are embraced—not just accepted.
+                </p>
+                <p className='mt-4'>
+                  Through outreach programs, family support, and awareness campaigns, we stand beside individuals with Down syndrome and their families—amplifying their strengths and advocating for their rights.
+                </p>
+                <p className='mt-4'>Whether  you’re a parent, educator, ally, or advocate, there's a place for you here.</p>
+                <div>
+                  <p>Join us in creating a more inclusive tomorrow. </p>
+                  <Link to='/volunteer' className='btn btn-primary mb-4 mt-4'>
+                    Volunteer
+                  </Link> &nbsp;
+                  <Link to='/Donation' className='btn btn-primary mb-4 mt-4'>
+                    Donate
+                  </Link>
+                </div>
               </div>
               <div className='col-md-6'>
                 <img
@@ -327,6 +338,10 @@ const About = () => {
                 </p>
                 <Link to='/volunteer' className='btn btn-primary mb-4'>
                   Be a Volunteer
+                </Link>
+                &nbsp;
+                 <Link to='/projects' className='btn btn-primary mb-4'>
+                  Find Out More
                 </Link>
               </div>
               <div className='col-md-6'>
