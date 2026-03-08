@@ -222,9 +222,10 @@ const Footer = () => {
                 }}
               />
               <div>
-                <small>infos@c21downsyndromecare.org</small>
+                {/* <small>infos@c21downsyndromecare.org</small> */}
                 <br />
-                <small>contact@c21downsyndromecare.org</small>
+                <small>c21downsyndromecare@gmail.com
+                </small>
               </div>
             </div>
 

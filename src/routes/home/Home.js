@@ -106,7 +106,6 @@ const Home = () => {
         const response = await clientChangeTheWorld.getEntries({
           content_type: 'changeTheWorld'
         })
-
         if (response.items.length > 0) {
           // console.log(response.items)
           setChangeContent(response.items)

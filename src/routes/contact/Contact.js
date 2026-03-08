@@ -5,7 +5,7 @@ import Location from '../../assets/location.png'
 import Phone from '../../assets/phone.png'
 import Email from '../../assets/mail.png'
 import Time from '../../assets/time.png'
-import Maps from '../../chunks/Maps'
+// import Maps from '../../chunks/Maps'
 import Footer from '../../components/Footer'
 import emailjs from '@emailjs/browser'
 // import 'sweetalert2/src/sweetalert2.scss'
@@ -82,7 +82,7 @@ const Contact = () => {
         </div>
         <div className='container mt-5 text-center'>
           <div className='row'>
-            <div className='col-md-3 mt-4'>
+            {/* <div className='col-md-3 mt-4'>
               <img
                 decoding='async'
                 rel='preload'
@@ -93,8 +93,8 @@ const Contact = () => {
               <h5 className='fw-bolder playfair-font'>Our Location</h5>
               <small>1234 NW Bobcat Lane, St. </small> <br />
               <small>Robert, MO 65584-5678</small>
-            </div>
-            <div className='col-md-3 mt-4'>
+            </div> */}
+            <div className='col-md-4 mt-4'>
               <img
                 decoding='async'
                 rel='preload'
@@ -104,9 +104,9 @@ const Contact = () => {
               />
               <h5 className='fw-bolder playfair-font'>Our Email</h5>
               <small>contact@c21downsyndromcare.org</small> <br />
-              <small>Robert, MO 65584-5678</small>
+              {/* <small>Robert, MO 65584-5678</small> */}
             </div>
-            <div className='col-md-3 mt-4'>
+            <div className='col-md-4 mt-4'>
               <img
                 decoding='async'
                 rel='preload'
@@ -115,10 +115,10 @@ const Contact = () => {
                 alt='location'
               />
               <h5 className='fw-bolder playfair-font'>Our Lines</h5>
-              <small>+44367596005</small> <br />
-              <small>+23488574643, +909069464</small>
+              <small>Fola  @  +234 8039518058</small> <br />
+              <small>Paul  @  +234 7033691388</small>
             </div>
-            <div className='col-md-3 mt-4'>
+            <div className='col-md-4 mt-4'>
               <img
                 decoding='async'
                 rel='preload'
@@ -126,7 +126,7 @@ const Contact = () => {
                 src={Time}
                 alt='location'
               />
-              <h5 className='fw-bolder playfair-font'>Our Lines</h5>
+              <h5 className='fw-bolder playfair-font'>Opening Hours</h5>
               <small>Monday - Friday: 9am - 6 pm</small> <br />
               <small>Weekends: 10:30 am - 6pm</small>
             </div>
@@ -213,7 +213,7 @@ const Contact = () => {
       <section className=' mt-5'>
         <div className=''>
           <div className='col-md-12'>
-            <Maps />
+            
           </div>
         </div>
       </section>

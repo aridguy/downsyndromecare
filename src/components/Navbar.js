@@ -141,7 +141,7 @@ const Navbar = () => {
                 to='/blog'
                 onClick={(e) => handleNavClick(e, '/blog')}
               >
-                Blog
+                Articles
               </Link>
             </li>
             <li className='nav-item'>
