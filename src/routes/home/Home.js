@@ -11,7 +11,7 @@ import Donation from '../../assets/icons/donation.png'
 import Missions from '../../assets/icons/missions.png'
 import Volunteers from '../../assets/icons/volunteers.png'
 import { createClient } from 'contentful'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/Loader'
 // import { contentfulClient } from '../../components/HeroBanners'
 
@@ -19,7 +19,7 @@ import Loader from '../../components/Loader'
 
 // Inside your component:
 const Home = () => {
-  const Navigate = useNavigate('/')
+  // const Navigate = useNavigate('/')
   // innitial states
   const [changeContent, setChangeContent] = useState([])
   const [achievements, setAchievements] = useState([])
