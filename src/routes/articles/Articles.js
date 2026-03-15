@@ -9,7 +9,7 @@ import ReactImageGallery from 'react-image-gallery'
 import Footer from '../../components/Footer'
 import Loader from '../../components/Loader'
 
-const Blog = () => {
+const Articles = () => {
   const Navigate = useNavigate('/')
   const [blog, setBlog] = useState([])
   const [blogDetails, setBlogDetails] = useState(false)
@@ -186,4 +186,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default Articles

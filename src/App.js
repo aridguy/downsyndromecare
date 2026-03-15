@@ -8,7 +8,7 @@ import About from './routes/about/About';
 import Contact from './routes/contact/Contact';
 import Volunteer from './routes/Volunteer/Volunteer';
 import Faq from './routes/faq/Faq';
-import Blog from './routes/blog/Blog';
+import Articles from './routes/articles/Articles';
 import Projects from './routes/projects/Projects'
 // import TawkTo from './components/TawkTo';
 import Donation from './routes/donation/Donation';
@@ -27,7 +27,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="volunteer" element={<Volunteer />} />
           <Route path="faq" element={<Faq />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="articles" element={<Articles />} />
           <Route path="donation" element={<Donation />} />
           <Route path="projects" element={<Projects />} />
           <Route path="privacypolicy" element={<PrivacyPolicy />} />

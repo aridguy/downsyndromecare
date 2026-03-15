@@ -121,7 +121,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to='/blog' className='text-white text-decoration-none'>
-                  Blog
+                  Articles
                 </Link>
               </li>
               <li></li>

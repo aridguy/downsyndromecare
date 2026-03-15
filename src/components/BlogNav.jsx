@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/logo/logos.png'
 
 const BlogNav = () => {
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded)
+  }
+
+  const handleNavClick = () => {
+    setIsExpanded(false)
+  }
+
   return (
     <nav
       style={{
@@ -11,86 +21,109 @@ const BlogNav = () => {
         position: 'fixed',
         top: 0,
         width: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.9)' // Dark black background with slight transparency
+        backgroundColor: 'rgba(0,0,0,0.9)'
       }}
-      className='navbar fixed navbar-expand-lg navbar-dark'
+      className='navbar navbar-expand-lg navbar-dark'
     >
       <div className='container'>
-        {/* Logo on the left */}
-        <Link className='nav-link' to='/'>
-          <img  decoding="async"  rel="preload"  loading="lazy" width='50' src={Logo} fill="true" alt='logo-image' />
+        
+        {/* Logo */}
+        <Link className='nav-link' to='/' onClick={handleNavClick}>
+          <img
+            decoding='async'
+            loading='lazy'
+            width='50'
+            src={Logo}
+            alt='logo-image'
+          />
         </Link>
-        {/* Toggler for small screens */}
+
+        {/* Toggle button */}
         <button
           className='navbar-toggler'
           type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#navbarNavCenter'
-          aria-controls='navbarNavCenter'
-          aria-expanded='false'
+          aria-expanded={isExpanded}
           aria-label='Toggle navigation'
+          onClick={handleToggle}
         >
           <span className='navbar-toggler-icon'></span>
         </button>
-        {/* Collapsible content with dark background */}
+
+        {/* Menu */}
         <div
-          className='collapse navbar-collapse justify-content-center'
-          id='navbarNavCenter'
+          className={`collapse navbar-collapse justify-content-center ${
+            isExpanded ? 'show' : ''
+          }`}
           style={{
             backdropFilter: 'blur(8px)',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)' // Slightly different shade for contrast
+            backgroundColor: 'rgba(0,0,0,0.7)'
           }}
         >
           <ul className='navbar-nav mb-2 mb-lg-0'>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/'>
+              <Link className='nav-link' to='/' onClick={handleNavClick}>
                 Home
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/about'>
+              <Link className='nav-link' to='/about' onClick={handleNavClick}>
                 About
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/contact'>
+              <Link className='nav-link' to='/contact' onClick={handleNavClick}>
                 Contact
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/volunteer'>
+              <Link className='nav-link' to='/volunteer' onClick={handleNavClick}>
                 Volunteer
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/projects'>
+              <Link className='nav-link' to='/projects' onClick={handleNavClick}>
                 Projects
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/blog'>
-                Blog
+              <Link className='nav-link' to='/articles' onClick={handleNavClick}>
+                Articles
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link className='nav-link' to='/faq'>
+              <Link className='nav-link' to='/faq' onClick={handleNavClick}>
                 FAQ
               </Link>
             </li>
-            {/* Donate button for mobile */}
+
+            {/* Mobile donate */}
             <li className='nav-item d-lg-none mt-3 text-center'>
-              <a href='/' className='btn btn-primary w-100'>
+              <Link
+                to='/donation'
+                className='btn btn-primary w-100'
+                onClick={handleNavClick}
+              >
                 Donate
-              </a>
+              </Link>
             </li>
+
           </ul>
         </div>
-        {/* Donate button for large screens */}
+
+        {/* Desktop donate */}
         <div className='d-none d-lg-block'>
-          <a href='/' className='btn btn-primary'>
+          <Link to='/donation' className='btn btn-primary'>
             Donate
-          </a>
+          </Link>
         </div>
+
       </div>
     </nav>
   )

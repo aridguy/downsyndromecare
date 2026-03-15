@@ -15,7 +15,6 @@ import Loader from '../../components/Loader'
 
 const Contact = () => {
   const form = useRef()
-
   const sendEmail = e => {
     e.preventDefault()
     emailjs
@@ -82,18 +81,7 @@ const Contact = () => {
         </div>
         <div className='container mt-5 text-center'>
           <div className='row'>
-            {/* <div className='col-md-3 mt-4'>
-              <img
-                decoding='async'
-                rel='preload'
-                loading='lazy'
-                src={Location}
-                alt='location'
-              />
-              <h5 className='fw-bolder playfair-font'>Our Location</h5>
-              <small>1234 NW Bobcat Lane, St. </small> <br />
-              <small>Robert, MO 65584-5678</small>
-            </div> */}
+           
             <div className='col-md-4 mt-4'>
               <img
                 decoding='async'

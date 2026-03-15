@@ -218,7 +218,7 @@ const Projects = () => {
               />
 
               {/* Description */}
-              <p className='text-center mt-3'>
+              <p className='mt-3'>
                 {selectedProject.fields.projectDescription}
               </p>
 
@@ -229,6 +229,7 @@ const Projects = () => {
                   rel='noreferrer'
                   className='video-play-button'
                   href={selectedProject.fields.projectVideoLink}
+                  style={{marginTop: "-50px"}}
                 >
                   <span></span>
                 </a>
@@ -238,13 +239,14 @@ const Projects = () => {
               <p className='text-center'>
                 Date Posted:{' '}
                 <b>
-                  {new Date(
+                  {selectedProject.fields.projectDatePosted}
+                  {/* {new Date(
                     selectedProject.fields.projectDate
                   ).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric'
-                  })}
+                  })} */}
                 </b>
               </p>
 

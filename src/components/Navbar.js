@@ -9,31 +9,18 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 0
-      setScrolled(isScrolled)
+      setScrolled(window.scrollY > 0)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Handle menu toggle
   const handleToggle = () => {
-    const nav = document.getElementById('navbarNavCenter')
-    const willExpand = !nav.classList.contains('show')
-    setIsExpanded(willExpand)
-
-    // Force update the background by toggling a class
-    if (willExpand) {
-      nav.classList.add('mobile-menu-expanded')
-    } else {
-      nav.classList.remove('mobile-menu-expanded')
-    }
+    setIsExpanded(!isExpanded)
   }
 
-  // Handle navigation click
   const handleNavClick = (e, path) => {
-    // If already on the same page, scroll to top
     if (window.location.pathname === path) {
       e.preventDefault()
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -50,145 +37,107 @@ const Navbar = () => {
         top: 0,
         width: '100%',
         transition: 'background-color 0.3s ease, backdrop-filter 0.3s ease',
-        backgroundColor:
-          scrolled || isExpanded ? '#07263b' : 'transparent',
+        backgroundColor: scrolled || isExpanded ? '#07263b' : 'transparent',
         backdropFilter: scrolled || isExpanded ? 'blur(8px)' : 'none'
       }}
-      className='container-fluid navbar fixed navbar-expand-lg navbar-dark'
+      className='container-fluid navbar navbar-expand-lg navbar-dark'
     >
       <div className='container'>
-        {/* Logo on the left */}
-        <Link className='nav-link' to='/'>
+        
+        {/* Logo */}
+        <Link className='nav-link' to='/' onClick={(e)=>handleNavClick(e,'/')}>
           <img
             decoding='async'
-            rel='preload'
             loading='lazy'
             width='50'
             src={Logo}
-            alt='logo-image'
+            alt='logo'
           />
         </Link>
-        {/* Toggler for small screens */}
+
+        {/* Mobile Toggle */}
         <button
           className='navbar-toggler'
           type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#navbarNavCenter'
-          aria-controls='navbarNavCenter'
           aria-expanded={isExpanded}
           aria-label='Toggle navigation'
           onClick={handleToggle}
         >
           <span className='navbar-toggler-icon'></span>
         </button>
-        {/* Collapsible content */}
+
+        {/* Menu */}
         <div
-          className='collapse navbar-collapse justify-content-center'
-          id='navbarNavCenter'
-          style={{
-            transition: 'background-color 0.3s ease'
-          }}
+          className={`collapse navbar-collapse justify-content-center ${
+            isExpanded ? 'show' : ''
+          }`}
         >
           <ul className='navbar-nav mb-2 mb-lg-0'>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/'
-                onClick={(e) => handleNavClick(e, '/')}
-              >
+              <Link className='nav-link' to='/' onClick={(e)=>handleNavClick(e,'/')}>
                 Home
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/about'
-                onClick={(e) => handleNavClick(e, '/about')}
-              >
+              <Link className='nav-link' to='/about' onClick={(e)=>handleNavClick(e,'/about')}>
                 About
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/contact'
-                onClick={(e) => handleNavClick(e, '/contact')}
-              >
+              <Link className='nav-link' to='/contact' onClick={(e)=>handleNavClick(e,'/contact')}>
                 Contact
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/volunteer'
-                onClick={(e) => handleNavClick(e, '/volunteer')}
-              >
+              <Link className='nav-link' to='/volunteer' onClick={(e)=>handleNavClick(e,'/volunteer')}>
                 Volunteer
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/projects'
-                onClick={(e) => handleNavClick(e, '/projects')}
-              >
+              <Link className='nav-link' to='/projects' onClick={(e)=>handleNavClick(e,'/projects')}>
                 Projects
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/blog'
-                onClick={(e) => handleNavClick(e, '/blog')}
-              >
+              <Link className='nav-link' to='/articles' onClick={(e)=>handleNavClick(e,'/articles')}>
                 Articles
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='/faq'
-                onClick={(e) => handleNavClick(e, '/faq')}
-              >
+              <Link className='nav-link' to='/faq' onClick={(e)=>handleNavClick(e,'/faq')}>
                 FAQ
               </Link>
             </li>
-            {/* Donate button for mobile */}
+
+            {/* Mobile Donate */}
             <li className='nav-item d-lg-none mt-3 text-center'>
-              <a
-                href='/donation'
+              <Link
+                to='/donation'
                 className='btn btn-primary w-100'
-                onClick={e => {
-                  e.preventDefault()
-                  setIsExpanded(false)
-                  window.location.href = '/donation'
-                }}
+                onClick={()=>setIsExpanded(false)}
               >
                 Donate
-              </a>
+              </Link>
             </li>
+
           </ul>
         </div>
-        {/* Donate button for large screens */}
-        <div className='d-none d-lg-block'>
-          <a href='/donation' className='btn btn-primary'>
-            Donate
-          </a>
-        </div>
-      </div>
 
-      {/* Add this CSS to your App.css */}
-      <style jsx>{`
-        #navbarNavCenter.mobile-menu-expanded {
-          background-color: rgba(0, 0, 0, 0.95) !important;
-        }
-        @media (max-width: 991.98px) {
-          #navbarNavCenter.collapsing,
-          #navbarNavCenter.show {
-            background-color: rgba(0, 0, 0, 0.95);
-          }
-        }
-      `}</style>''
+        {/* Desktop Donate */}
+        <div className='d-none d-lg-block'>
+          <Link to='/donation' className='btn btn-primary'>
+            Donate
+          </Link>
+        </div>
+
+      </div>
     </nav>
   )
 }
