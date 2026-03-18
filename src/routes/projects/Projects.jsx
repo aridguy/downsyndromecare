@@ -5,7 +5,7 @@ import Footer from '../../components/Footer'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ReactImageGallery from 'react-image-gallery'
 import { createClient } from 'contentful'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/Loader'
 // import Socials from '../../chunks/Socials'
 
@@ -16,7 +16,7 @@ const Projects = () => {
     return d
   }
 
-  const Navigate = useNavigate('/')
+  // const Navigate = useNavigate('/')
   const [projects, setProjects] = useState([])
   const [projectDetails, setProjectDetails] = useState(false)
   const [selectedProject, setSelectedProject] = useState([])
@@ -253,7 +253,6 @@ const Projects = () => {
               {/* Donate Button */}
               <div className='text-center'>
                 <button
-                  onClick={() => Navigate('/donation')}
                   className='btn btn-primary mb-3'
                 >
                   Donate
