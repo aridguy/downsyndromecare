@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import ReactImageGallery from 'react-image-gallery'
 import Footer from '../../components/Footer'
 import Loader from '../../components/Loader'
+import ReactMarkdown from "react-markdown";
 
 const Articles = () => {
   const Navigate = useNavigate('/')
@@ -46,7 +47,7 @@ const Articles = () => {
   }, [])
 
   if (delayed || loading) return <Loader message='' />
-
+    // const text = "Line one.\nLine two.\nLine three.";
   return (
     <div>
       <BlogNav />
@@ -149,8 +150,9 @@ const Articles = () => {
         />
 
         {/* Description */}
-        <p className='text-center mt-3'>
-          {selectedBlog.fields.blogDescription}
+        <p className=' mt-3'>
+          <ReactMarkdown>{selectedBlog.fields.blogDescription}</ReactMarkdown>
+          
         </p>
 
         {/* Optional Date */}

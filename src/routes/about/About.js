@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import AboutLanding from '../../chunks/AboutLanding'
 import Describe2 from '../../assets/describe1.jpg'
-import Describe1 from '../../assets/describe2.jpg'
+// import Describe1 from '../../assets/describe2.jpg'
 import Footer from '../../components/Footer'
 import { createClient } from 'contentful'
 import { Link } from 'react-router-dom'
@@ -113,7 +113,7 @@ const About = () => {
       <AboutLanding />
       {
         // section 1 lets colaborate
-        <section className='sect-1' style={{ marginTop: '37em' }}>
+        <section className='sect-1' style={{ marginTop: '39em' }}>
           <div className='container'>
             <div className='row'>
               <div className='col-md-6'>
@@ -141,7 +141,59 @@ const About = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <img
+                <div
+                  style={{
+                    width: "100%",
+                    maxWidth: "900px",
+                    margin: "40px auto",
+                    borderRadius: "20px",
+                    overflow: "hidden",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                    position: "relative",
+                    background: "linear-gradient(135deg, #0f172a, #1e293b)",
+                    padding: "10px"
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      paddingBottom: "56.25%", // 16:9 ratio
+                      height: 0,
+                      borderRadius: "15px",
+                      overflow: "hidden"
+                    }}
+                  >
+                    <iframe
+                      src="https://www.youtube.com/embed/HYPKhdf34Zc"
+                      title="The Birth of C21 Down Syndrome Care"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                        borderRadius: "15px"
+                      }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+
+                  {/* Optional caption */}
+                  <div
+                    style={{
+                      marginTop: "12px",
+                      color: "#e2e8f0",
+                      fontSize: "14px",
+                      textAlign: "center",
+                      letterSpacing: "0.5px"
+                    }}
+                  >
+                    🌟 The Birth of C21 Down Syndrome Care | Our Story Begins
+                  </div>
+                </div>
+                {/* <img
                   style={{ borderRadius: '10px' }}
                   decoding='async'
                   rel='preload'
@@ -149,7 +201,7 @@ const About = () => {
                   src={Describe1}
                   alt='about us'
                   className='img-fluid'
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -340,7 +392,7 @@ const About = () => {
                   Be a Volunteer
                 </Link>
                 &nbsp;
-                 <Link to='/projects' className='btn btn-primary mb-4'>
+                <Link to='/projects' className='btn btn-primary mb-4'>
                   Find Out More
                 </Link>
               </div>
