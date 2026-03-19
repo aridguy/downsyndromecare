@@ -39,7 +39,7 @@ const Donation = () => {
     email: '',
     message: ''
   })
-  const presetAmounts = [1000, 2000, 5000, 10000, 20000, 50000]
+  // const presetAmounts = [1000, 2000, 5000, 10000, 20000, 50000]
   const currencies = [
     { code: 'NGN', symbol: '₦', name: 'Naira' },
     { code: 'USD', symbol: '$', name: 'US Dollar' },
@@ -144,7 +144,7 @@ const Donation = () => {
                 <div className='col-md-5 d-none d-md-flex bg-primary text-white p-5 align-items-center'>
                   <div>
                     <div className='display-3 mb-3'>
-                      <FiHeart className='text-danger' />
+                      <FiHeart className='text-warning' />
                     </div>
                     <h2 className='fw-bold mb-3'>Make a Difference</h2>
                     <p className='lead'>
@@ -162,7 +162,7 @@ const Donation = () => {
                         <div className='bg-white text-primary rounded-circle p-2 me-3'>
                           <FiGlobe size={20} />
                         </div>
-                        <span className='text-danger'>
+                        <span className='text-white'>
                           Currently accepting only NGN donations
                         </span>
                       </div>
@@ -219,7 +219,7 @@ const Donation = () => {
                       <label className='form-label fw-bold'>
                         Donation Amount
                       </label>
-                      <div className='d-flex flex-wrap gap-2 mb-3'>
+                      {/* <div className='d-flex flex-wrap gap-2 mb-3'>
                         {presetAmounts.map(amt => (
                           <button
                             key={amt}
@@ -234,7 +234,7 @@ const Donation = () => {
                             ₦{amt.toLocaleString()}
                           </button>
                         ))}
-                      </div>
+                      </div> */}
                       <div className='input-group'>
                         <span className='input-group-text'>₦</span>
                         <input

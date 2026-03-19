@@ -203,9 +203,9 @@ const Footer = () => {
                 }}
               />
               <div>
-                <small>+234 08058518598</small>
+                <small>+234 803 9518 058</small>
                 <br />
-                <small>+234 08035881312</small>
+                <small>+234 703 3691 388</small>
               </div>
             </div>
 
@@ -222,10 +222,9 @@ const Footer = () => {
                 }}
               />
               <div>
-                {/* <small>infos@c21downsyndromecare.org</small> */}
+                <small>contact@c21downsyndromecare.org</small>
                 <br />
-                <small>c21downsyndromecare@gmail.com
-                </small>
+                <small>c21downsyndromecares@gmail.com</small>
               </div>
             </div>
 
@@ -242,9 +241,9 @@ const Footer = () => {
                 }}
               />
               <div>
-                <small>Mon–Friday: 8am – 7pm</small>
+                <small>Monday - Friday: 9am - 6 pm</small>
                 <br />
-                <small>Sat: 9am – 5pm</small>
+                <small>Weekends: 10:30 am - 6pm</small>
               </div>
             </div>
 

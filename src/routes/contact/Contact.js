@@ -81,7 +81,6 @@ const Contact = () => {
         </div>
         <div className='container mt-5 text-center'>
           <div className='row'>
-           
             <div className='col-md-4 mt-4'>
               <img
                 decoding='async'
@@ -103,8 +102,8 @@ const Contact = () => {
                 alt='location'
               />
               <h5 className='fw-bolder playfair-font'>Our Lines</h5>
-              <small>Fola  @  +234 8039518058</small> <br />
-              <small>Paul  @  +234 7033691388</small>
+              <small>+234 803 9518 058</small> <br />
+              <small>+234 703 3691 388</small>
             </div>
             <div className='col-md-4 mt-4'>
               <img
