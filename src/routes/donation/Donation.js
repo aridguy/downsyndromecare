@@ -238,9 +238,10 @@ const Donation = () => {
                       <div className='input-group'>
                         <span className='input-group-text'>₦</span>
                         <input
+                        placeholder='Amount'
                           type='number'
                           className='form-control'
-                          value={amount}
+                          // value={amount}
                           onChange={e =>
                             setAmount(parseInt(e.target.value) || 0)
                           }

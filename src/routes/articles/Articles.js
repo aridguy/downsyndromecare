@@ -152,7 +152,6 @@ const Articles = () => {
         {/* Description */}
         <p className=' mt-3'>
           <ReactMarkdown>{selectedBlog.fields.blogDescription}</ReactMarkdown>
-          
         </p>
 
         {/* Optional Date */}
