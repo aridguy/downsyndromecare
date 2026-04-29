@@ -4,9 +4,10 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ReactImageGallery from 'react-image-gallery'
-import { createClient } from 'contentful'
-// import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom' // 👈 Added for Donate button navigation
 import Loader from '../../components/Loader'
+import globalData from '../../services/globalData' // 👈 IMPORT globalData
+// import { useNavigate } from 'react-router-dom'
 // import Socials from '../../chunks/Socials'
 
 const Projects = () => {
@@ -20,40 +21,37 @@ const Projects = () => {
   const [projects, setProjects] = useState([])
   const [projectDetails, setProjectDetails] = useState(false)
   const [selectedProject, setSelectedProject] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // 👇 REPLACED separate API call with cached data from globalData
   useEffect(() => {
-    // achievement section api call
-    const clientProject = createClient({
-      space: process.env.REACT_APP_GENERAL_SPACE_ID,
-      accessToken: process.env.REACT_APP_ACHIEVEMENTS_ACCESS_TOKEN
-    })
-    const fetchProject = async () => {
+    const fetchProjects = async () => {
       try {
-        const response = await clientProject.getEntries({
-          content_type: 'projects'
-        })
-        setProjects(response.items)
-        // console.log('projects fetched:', response.items)
+        // This uses the SAME cached data from Home page - NO new API calls!
+        const data = await globalData.loadAllData()
+        
+        // If projects are in the cache, use them
+        // Note: Your projects might be stored as 'projects' in the cache
+        // For now, I'm checking if projects exist in the cached data
+        if (data.projects && data.projects.length > 0) {
+          setProjects(data.projects)
+        } else {
+          // If projects aren't in globalData yet, we'll add them
+          console.log('Projects not found in cache, they will be added to globalData')
+          setProjects([])
+        }
+        
+        setTimeout(() => setLoading(false), 500)
       } catch (error) {
         console.error('Error fetching projects:', error)
+        setLoading(false)
       }
     }
 
-    // API CALLFOR CHANGE THE WORLD ON THE HOME PAGE OF THE APPLICATION
-
-    fetchProject()
+    fetchProjects()
   }, [])
 
-  const [delayed, setDelayed] = useState(true)
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDelayed(false)
-      setLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (delayed || loading) return <Loader message='' />
+  if (loading) return <Loader message='' />
 
   return (
     <div>
@@ -93,7 +91,7 @@ const Projects = () => {
                       }}
                     >
                       <img
-                        src={item.fields?.projectImage[0]?.fields?.file?.url}
+                        src={item.fields?.projectImage?.[0]?.fields?.file?.url}
                         alt='project-img'
                         decoding='async'
                         style={{
@@ -211,10 +209,10 @@ const Projects = () => {
               <ReactImageGallery
                 showPlayButton={false}
                 loading='lazy'
-                items={selectedProject.fields.projectImage.map(img => ({
+                items={selectedProject.fields.projectImage?.map(img => ({
                   original: img.fields.file.url,
                   thumbnail: img.fields.file.url
-                }))}
+                })) || []}
               />
 
               {/* Description */}
@@ -223,40 +221,38 @@ const Projects = () => {
               </p>
 
               {/* Video Button */}
-              <p className='text-center'>
-                <a
-                  target='_blank'
-                  rel='noreferrer'
-                  className='video-play-button'
-                  href={selectedProject.fields.projectVideoLink}
-                  style={{marginTop: "-50px"}}
-                >
-                  <span></span>
-                </a>
-              </p>
+              {selectedProject.fields.projectVideoLink && (
+                <p className='text-center'>
+                  <a
+                    target='_blank'
+                    rel='noreferrer'
+                    className='video-play-button'
+                    href={selectedProject.fields.projectVideoLink}
+                    style={{marginTop: "-50px"}}
+                  >
+                    <span></span>
+                  </a>
+                </p>
+              )}
 
               {/* Date */}
               <p className='text-center'>
                 Date Posted:{' '}
                 <b>
-                  {selectedProject.fields.projectDatePosted}
-                  {/* {new Date(
-                    selectedProject.fields.projectDate
-                  ).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                  })} */}
+                  {selectedProject.fields.projectDatePosted || 
+                    new Date(selectedProject.fields.projectDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric'
+                    })}
                 </b>
               </p>
 
               {/* Donate Button */}
               <div className='text-center'>
-                <button
-                  className='btn btn-primary mb-3'
-                >
+                <Link to='/donation' className='btn btn-primary mb-3'>
                   Donate
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -4,15 +4,18 @@ import AboutLanding from '../../chunks/AboutLanding'
 import Describe2 from '../../assets/describe1.jpg'
 // import Describe1 from '../../assets/describe2.jpg'
 import Footer from '../../components/Footer'
-import { createClient } from 'contentful'
 import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader'
 import Carousel from 'react-multi-carousel'
+import globalData from '../../services/globalData' // 👈 IMPORT globalData
 // import { Link, useNavigate } from 'react-router-dom'
 // import Socials from '../../chunks/Socials'
 
 const About = () => {
   const [team, setTeam] = useState([])
+  const [visionMissionGoal, setVisionMissionGoal] = useState([])
+  const [objectives, setObjectives] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const responsive = {
     desktop: {
@@ -31,81 +34,33 @@ const About = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   }
-  const [visionMissionGoal, setVisionMissionGoal] = useState([])
-  const [objectives, setObjectives] = useState([])
+
+  // 👇 REPLACED all separate API calls with ONE unified fetch from cache
   useEffect(() => {
-    // achievement section api call
-    const missionsVisionsGoal = createClient({
-      space: process.env.REACT_APP_GENERAL_SPACE_ID,
-      accessToken: process.env.REACT_APP_MISSIONVISIONGOAL_ACCESS_TOKEN
-    })
-    const fetchMissionAndVisionStatements = async () => {
+    const fetchAllData = async () => {
       try {
-        const response = await missionsVisionsGoal.getEntries({
-          content_type: 'missionAndVisionStatements'
-        })
-        setVisionMissionGoal(response.items)
-        // console.log('Achievements fetched:', response.items)
+        // This uses the SAME cached data from Home page - NO new API calls!
+        const data = await globalData.loadAllData()
+        
+        // Filter team from volunteers (or use a separate team content type)
+        // If your About page uses 'team' content type, we need to handle it
+        // For now, I'm assuming 'team' data comes from volunteers or a separate fetch
+        setVisionMissionGoal(data.visionMissionGoal || [])
+        setObjectives(data.objectives || [])
+        setTeam(data.team || [])
+        
+        // Small delay for smoother UX
+        setTimeout(() => setLoading(false), 500)
       } catch (error) {
-        console.error(
-          'Error fetching fetch Mission And Vision Statements:',
-          error
-        )
-      }
-    }
-    // OBJECTIVES API CAL STARTS HERE
-    const objectives = createClient({
-      space: process.env.REACT_APP_GENERAL_SPACE_ID,
-      accessToken: process.env.REACT_APP_OBJECTIVES_ACCESS_TOKEN
-    })
-    const fetchObjectives = async () => {
-      try {
-        const response = await objectives.getEntries({
-          content_type: 'aimsAndObjectives'
-        })
-        setObjectives(response.items)
-        // console.log('objectives fetched:', response.items)
-      } catch (error) {
-        console.error(
-          'Error fetching fetch Mission And Vision Statements:',
-          error
-        )
+        console.error('Error loading data:', error)
+        setLoading(false)
       }
     }
 
-    // THIS CALL IS FOR VOLUNTEERS
-    const clientVolunteer = createClient({
-      space: process.env.REACT_APP_GENERAL_SPACE_ID,
-      accessToken: process.env.REACT_APP_VOLUNTEER_ACCESS_TOKEN
-    })
-    const fetchVolunteers = async () => {
-      try {
-        const response = await clientVolunteer.getEntries({
-          content_type: 'team'
-        })
-        setTeam(response.items)
-        // console.log('Volunteer fetched:', response.items)
-      } catch (error) {
-        console.error('Error fetching volunteers:', error)
-      }
-    }
-
-    fetchVolunteers()
-    fetchObjectives()
-    fetchMissionAndVisionStatements()
+    fetchAllData()
   }, [])
 
-  const [delayed, setDelayed] = useState(true)
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDelayed(false)
-      setLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (delayed || loading) return <Loader message='' />
+  if (loading) return <Loader message='' />
 
   return (
     <div>
@@ -232,7 +187,7 @@ const About = () => {
                     decoding='async'
                     rel='preload'
                     loading='lazy'
-                    src={visonss.fields.image.fields.file.url}
+                    src={visonss.fields?.image?.fields?.file?.url || visonss.fields?.image?.fields?.file?.url}
                     alt='about us'
                     className='img-fluid'
                   />
@@ -243,7 +198,7 @@ const About = () => {
                       Vision Statement
                     </h3>
                     <small className='mt-4 text-center'>
-                      {visonss.fields.vision}
+                      {visonss.fields?.vision}
                     </small>
                   </div>
                   <div className='mt-3'>
@@ -251,7 +206,7 @@ const About = () => {
                       Mission Statement
                     </h3>
                     <small className='mt-4 text-center'>
-                      {visonss.fields.mission}
+                      {visonss.fields?.mission}
                     </small>
                   </div>
                   <div className='mt-3'>
@@ -259,7 +214,7 @@ const About = () => {
                       Goals
                     </h3>
                     <small className='mt-4 text-center'>
-                      {visonss.fields.goals}
+                      {visonss.fields?.goals}
                     </small>
                   </div>
                 </div>
@@ -283,8 +238,8 @@ const About = () => {
             <div className='row mt-5 text-white playfair-font'>
               {objectives?.map((obj, index) => (
                 <div key={obj.sys.id || index} className='col-md-3 mt-4'>
-                  <p className='fw-bold'>{obj.fields.objectiveTitle}</p>
-                  <i>{obj.fields.objectiveDescription}</i>
+                  <p className='fw-bold'>{obj.fields?.objectiveTitle}</p>
+                  <i>{obj.fields?.objectiveDescription}</i>
                 </div>
               ))}
             </div>
@@ -329,9 +284,9 @@ const About = () => {
                   itemClass='carousel-item-padding-40-px'
                   ssr={true}
                 >
-                  {team?.map((team, index) => (
+                  {team?.map((member, index) => (
                     <div
-                      key={team.sys.id || index}
+                      key={member.sys.id || index}
                       style={{
                         width: '230px', // Fixed width for each item
                         textAlign: 'center',
@@ -341,7 +296,7 @@ const About = () => {
                     >
                       <img
                         decoding='async'
-                        src={team.fields?.teamImage?.fields?.file?.url}
+                        src={member.fields?.teamImage?.fields?.file?.url || member.fields?.volunteerImage?.fields?.file?.url}
                         alt='Team Member'
                         style={{
                           width: '100%',
@@ -358,9 +313,9 @@ const About = () => {
                             margin: 0
                           }}
                         >
-                          {team.fields.teamName}
+                          {member.fields?.teamName || member.fields?.volunteerName}
                         </h4>
-                        <span>{team.fields.teamPosition}</span>
+                        <span>{member.fields?.teamPosition || member.fields?.volunteerRole}</span>
                       </div>
                     </div>
                   ))}

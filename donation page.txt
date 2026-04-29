@@ -53,54 +53,63 @@ const Donation = () => {
   const handleSubmit = e => {
     e.preventDefault()
   }
-// ONLY CHANGE IS INSIDE handlePaystackPayment
 
-const handlePaystackPayment = () => {
-  if (!donorInfo.email || !donorInfo.name) {
-    Swal.fire('Error', 'Please enter your name and email', 'error')
-    return
-  }
-
-  if (amount < 1) {
-    Swal.fire('Error', 'Enter a valid amount', 'error')
-    return
-  }
-
-  if (currency !== 'NGN') {
-    Swal.fire({
-      icon: 'error',
-      title: 'Currency Not Supported',
-      text: 'Please select NGN (₦)'
-    })
-    return
-  }
-
-  const handler = window.PaystackPop.setup({
-    key: process.env.REACT_APP_PK_KEY,
-    email: donorInfo.email,
-    amount: amount * 100,
-    currency: currency,
-    ref: '' + Math.floor(Math.random() * 1000000000 + 1),
-
-    // ✅ SIMPLE SUCCESS (NO BACKEND HERE)
-    callback: function (response) {
+  const handlePaystackPayment = () => {
+    if (currency !== 'NGN') {
       Swal.fire({
-        icon: 'success',
-        title: 'Payment Successful 🎉',
-        text: 'You will receive a confirmation email shortly'
+        icon: 'error',
+        title: 'Currency Not Supported',
+        text: 'Please select NGN (₦) for donations at this time'
       })
-
-      setSuccess(true)
-    },
-
-    onClose: function () {
-      Swal.fire('Cancelled', 'Payment not completed', 'info')
+      return
     }
-  })
 
-  handler.openIframe()
-}
-  
+    const handler = window.PaystackPop.setup({
+      key: process.env.REACT_APP_PK_KEY,
+      email: donorInfo.email,
+      amount: amount * 100, // Paystack expects amount in kobo
+      currency: currency,
+      ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+      callback: function (response) {
+        // alert('Payment complete! Reference: ' + response.reference)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer
+            toast.onmouseleave = Swal.resumeTimer
+          }
+        })
+
+        Toast.fire({
+          icon: 'info',
+          title: 'Payment completed ' + response.reference
+        })
+        setSuccess(true)
+      },
+      onClose: function () {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 9000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer
+            toast.onmouseleave = Swal.resumeTimer
+          }
+        })
+        Toast.fire({
+          icon: 'info',
+          title: 'Payment not completed'
+        })
+      }
+    })
+    handler.openIframe()
+  }
 
   const [delayed, setDelayed] = useState(true)
   const [loading, setLoading] = useState(true)

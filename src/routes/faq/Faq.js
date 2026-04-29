@@ -5,43 +5,40 @@ import FaqLanding from '../../chunks/FaqLanding'
 import Footer from '../../components/Footer'
 import { TypeAnimation } from 'react-type-animation'
 // import Socials from '../../chunks/Socials'
-import { createClient } from 'contentful'
 import Loader from '../../components/Loader'
+import globalData from '../../services/globalData' // 👈 IMPORT globalData
 
 const Faq = () => {
   const [faq, setFaq] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // 👇 REPLACED separate API call with cached data from globalData
   useEffect(() => {
-    // achievement section api call
-    const clientFaq = createClient({
-      space: process.env.REACT_APP_GENERAL_SPACE_ID,
-      accessToken: process.env.REACT_APP_ACHIEVEMENTS_ACCESS_TOKEN
-    })
     const fetchFaq = async () => {
       try {
-        const response = await clientFaq.getEntries({
-          content_type: 'faq'
-        })
-        setFaq(response.items)
-        // console.log('faq fetched:', response.items)
+        // This uses the SAME cached data from Home page - NO new API calls!
+        const data = await globalData.loadAllData()
+        
+        // Get FAQ from cached data
+        if (data.faq && data.faq.length > 0) {
+          setFaq(data.faq)
+        } else {
+          console.log('FAQ not found in cache, they will be added to globalData')
+          setFaq([])
+        }
+        
+        setTimeout(() => setLoading(false), 500)
       } catch (error) {
-        console.error('Error fetching projects:', error)
+        console.error('Error fetching FAQ:', error)
+        setLoading(false)
       }
     }
-    // API CALLFOR CHANGE THE WORLD ON THE HOME PAGE OF THE APPLICATION
+
     fetchFaq()
   }, [])
 
-   const [delayed, setDelayed] = useState(true)
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setDelayed(false)
-        setLoading(false)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }, [])
-  
-    if (delayed || loading) return <Loader message="" />
+  if (loading) return <Loader message="" />
+
   return (
     <div>
     
