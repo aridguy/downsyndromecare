@@ -1,6 +1,6 @@
 // components/TermsConsentPopup.jsx
-import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
+import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const TermsConsentPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -8,14 +8,14 @@ const TermsConsentPopup = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   const colors = {
-    green: '#2D6A4F',
-    darkGreen: '#1B4332',
-    lightGreen: '#40916C',
-    cream: '#FEFAE0',
-    gray: '#5A5A5A',
-    lightGray: '#F8F9FA',
-    white: '#FFFFFF',
-    darkGray: '#333333'
+    green: "#2D6A4F",
+    darkGreen: "#1B4332",
+    lightGreen: "#40916C",
+    cream: "#FEFAE0",
+    gray: "#5A5A5A",
+    lightGray: "#F8F9FA",
+    white: "#FFFFFF",
+    darkGray: "#333333",
   };
 
   // Listen for route changes (popstate and pushState)
@@ -25,32 +25,32 @@ const TermsConsentPopup = () => {
     };
 
     // Listen for browser back/forward buttons
-    window.addEventListener('popstate', handleRouteChange);
-    
+    window.addEventListener("popstate", handleRouteChange);
+
     // Override pushState and replaceState to detect route changes
     const originalPushState = window.history.pushState;
     const originalReplaceState = window.history.replaceState;
 
-    window.history.pushState = function(...args) {
+    window.history.pushState = function (...args) {
       originalPushState.apply(window.history, args);
       handleRouteChange();
     };
 
-    window.history.replaceState = function(...args) {
+    window.history.replaceState = function (...args) {
       originalReplaceState.apply(window.history, args);
       handleRouteChange();
     };
 
     return () => {
-      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener("popstate", handleRouteChange);
       window.history.pushState = originalPushState;
       window.history.replaceState = originalReplaceState;
     };
   }, []);
 
   // List of pages where popup should NOT show (legal pages)
-  const exemptPages = ['/termsandconditions', '/privacypolicy'];
-  
+  const exemptPages = ["/termsandconditions", "/privacypolicy"];
+
   // Check if current page is exempt from showing popup
   const isExemptPage = exemptPages.includes(currentPath);
 
@@ -62,20 +62,20 @@ const TermsConsentPopup = () => {
       return;
     }
 
-    const consentData = localStorage.getItem('termsConsent');
-    
+    const consentData = localStorage.getItem("termsConsent");
+
     if (consentData) {
       try {
         const parsed = JSON.parse(consentData);
         const consentDate = new Date(parsed.date);
         const now = new Date();
         const daysSinceConsent = (now - consentDate) / (1000 * 60 * 60 * 24);
-        
+
         if (daysSinceConsent < 365 && parsed.agreed === true) {
           setConsentGiven(true);
           setShowPopup(false);
         } else {
-          localStorage.removeItem('termsConsent');
+          localStorage.removeItem("termsConsent");
           setShowPopup(true);
         }
       } catch (e) {
@@ -92,34 +92,34 @@ const TermsConsentPopup = () => {
       date: new Date().toISOString(),
       sessionId: `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       userAgent: navigator.userAgent,
-      version: '1.0'
+      version: "1.0",
     };
-    
-    localStorage.setItem('termsConsent', JSON.stringify(consentRecord));
+
+    localStorage.setItem("termsConsent", JSON.stringify(consentRecord));
     setConsentGiven(true);
     setShowPopup(false);
-    
+
     Swal.fire({
-      title: 'Welcome!',
-      text: 'Thank you for agreeing to our Terms & Conditions.',
-      icon: 'success',
+      title: "Welcome!",
+      text: "Thank you for agreeing to our Terms & Conditions.",
+      icon: "success",
       confirmButtonColor: colors.green,
       timer: 2500,
-      showConfirmButton: false
+      showConfirmButton: false,
     });
   };
 
   const handleDecline = () => {
     // Close the popup first
     setShowPopup(false);
-    
+
     Swal.fire({
-      title: 'Unable to Proceed',
-      text: 'You must accept our Terms & Conditions and Privacy Policy to continue using this website.',
-      icon: 'info',
+      title: "Unable to Proceed",
+      text: "You must accept our Terms & Conditions and Privacy Policy to continue using this website.",
+      icon: "info",
       confirmButtonColor: colors.green,
-      confirmButtonText: 'Accept Terms',
-      allowOutsideClick: false
+      confirmButtonText: "Accept Terms",
+      allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         handleAgree();
@@ -140,7 +140,9 @@ const TermsConsentPopup = () => {
         {/* Popup Container */}
         <div className="consent-popup">
           {/* Close button */}
-          <button className="consent-close" onClick={handleDecline}>✕</button>
+          <button className="consent-close" onClick={handleDecline}>
+            ✕
+          </button>
 
           {/* Icon */}
           <div className="consent-icon">
@@ -148,35 +150,66 @@ const TermsConsentPopup = () => {
           </div>
 
           {/* Title */}
-          <h2 className="consent-title">
-            We Value Your Privacy
-          </h2>
+          <h2 className="consent-title">We Value Your Privacy</h2>
 
           {/* Description */}
           <p className="consent-description">
-            To continue using <strong>Cromosome 21 Down Syndrome Care</strong>, please review and accept our terms.
+            To continue using <strong>Cromosome 21 Down Syndrome Care</strong>,
+            please review and accept our terms.
           </p>
 
           {/* Links */}
           <div className="consent-links">
-            <a href="/termsandconditions" target="_blank" rel="noopener noreferrer" className="consent-link">Terms & Conditions</a>
+            <a
+              href="/termsandconditions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="consent-link"
+            >
+              Terms & Conditions
+            </a>
             <span className="link-separator">•</span>
-            <a href="/privacypolicy" target="_blank" rel="noopener noreferrer" className="consent-link">Privacy Policy</a>
+            <a
+              href="/privacypolicy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="consent-link"
+            >
+              Privacy Policy
+            </a>
           </div>
 
           {/* What you agree to */}
           <div className="consent-summary">
             <div className="summary-item">
               <span className="summary-check">✓</span>
-              <span>Your data is used only for our programs and communication</span>
+              <span>
+                I agree to the{" "}
+                <a href="/termsandconditions" target="_blank">
+                  Terms & Conditions
+                </a>
+              </span>
             </div>
             <div className="summary-item">
               <span className="summary-check">✓</span>
-              <span>You can request data deletion at any time</span>
+              <span>
+                I have read the{" "}
+                <a href="/privacypolicy" target="_blank">
+                  Privacy Policy
+                </a>
+              </span>
             </div>
             <div className="summary-item">
               <span className="summary-check">✓</span>
-              <span>We never sell your personal information</span>
+              <span>
+                I understand my data will be used for communication and programs
+              </span>
+            </div>
+            <div className="summary-item">
+              <span className="summary-check">✓</span>
+              <span>
+                I consent to receive email updates (unsubscribe anytime)
+              </span>
             </div>
           </div>
 
