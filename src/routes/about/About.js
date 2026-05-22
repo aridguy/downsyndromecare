@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader'
 import Carousel from 'react-multi-carousel'
 import globalData from '../../services/globalData' // 👈 IMPORT globalData
+// import NotificationBell from '../../components/NotificationBell'
 // import { Link, useNavigate } from 'react-router-dom'
 // import Socials from '../../chunks/Socials'
 
@@ -66,6 +67,7 @@ const About = () => {
     <div>
       <Navbar />
       <AboutLanding />
+    
       {
         // section 1 lets colaborate
         <section className='sect-1' style={{ marginTop: '39em' }}>
