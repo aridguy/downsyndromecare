@@ -32,7 +32,7 @@ const Donation = () => {
   }, [clientSuccess]) // Empty dependency array means this runs once on component mount
 
   const Navigate = useNavigate()
-  const [amount, setAmount] = useState(5000)
+  const [amount, setAmount] = useState("0")
   const [currency, setCurrency] = useState('NGN')
   const [donorInfo, setDonorInfo] = useState({
     name: '',
