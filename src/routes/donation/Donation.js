@@ -76,7 +76,7 @@ const handlePaystackPayment = () => {
   }
 
   const handler = window.PaystackPop.setup({
-    key: process.env.REACT_APP_PK_KEY,
+    key: process.env.REACT_APP_PK_KEY_TEST,
     email: donorInfo.email,
     amount: amount * 100,
     currency: currency,
